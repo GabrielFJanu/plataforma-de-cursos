@@ -1,0 +1,12 @@
+import { Router } from "express";
+import CursoController from "../controllers/cursoController.js";
+import { createCursoValidation } from "../validators/cursoValidator.js";
+import { handleValidationErrors } from "../middlewares/validatorMiddleware.js";
+
+const cursoRouter = Router();
+
+cursoRouter.get('/', CursoController.list);
+cursoRouter.get('/:id', CursoController.fetchById);
+cursoRouter.post('/',createCursoValidation, handleValidationErrors, CursoController.create)
+
+export default cursoRouter;
