@@ -21,7 +21,7 @@ class CursoController {
     }
 
     static async create(req, res) {
-        const { titulo, descricao, area_conhecimento, url, id_dono } = req.body;
+        const { titulo, descricao, area_conhecimento, url, id_criador } = req.body;
 
         const newCurso = {
             id: randomUUID(),
@@ -29,7 +29,7 @@ class CursoController {
             descricao,
             area_conhecimento,
             url,
-            id_dono
+            id_criador
         };
 
         db.data.cursos.push(newCurso);

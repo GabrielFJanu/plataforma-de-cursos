@@ -18,8 +18,8 @@ export const createCursoValidation = [
     .notEmpty().withMessage('O endereço URL é obrigatório')
     .isURL().withMessage('O endereço URL precisa ser válido'),
 
-    body('id_dono')
+    body('id_criador')
     .trim()
-    .notEmpty().withMessage('O id do usuário dono é obrigatório')
-    .isUUID().withMessage('O id do usuário dono dever ser um UUID válido')
+    .notEmpty().withMessage('O id do usuário criador é obrigatório')
+    .isUUID().withMessage('O id do usuário criador dever ser um UUID válido')
 ]
