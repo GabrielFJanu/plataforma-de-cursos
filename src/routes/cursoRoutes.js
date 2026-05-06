@@ -1,5 +1,5 @@
 import { Router } from "express";
-import CursoController from "../controllers/cursoController.js";
+import CursoController from "../controllers/CursoController.js";
 import { createCursoValidation } from "../validators/cursoValidator.js";
 import { handleValidationErrors } from "../middlewares/validatorMiddleware.js";
 

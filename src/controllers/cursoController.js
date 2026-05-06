@@ -1,42 +1,37 @@
-import db from '../database/database.js'
-import { randomUUID } from "node:crypto";
+import CursoService from "../services/CursoService";
 
 class CursoController {
 
     static getAll(req, res) {
-        res.status(200).json(db.data.cursos);
+        cursos = CursoService.getAll();
+
+        res.status(200).json(cursos);
     }
 
-    static getById(req, res) {
-        const id = req.params.id;
+    static getById(req, res, next) {
+        try {
+            const id = req.params.id;
         
-        const curso = db.data.cursos.find(curso => curso.id == id);
+            const curso = CursoService.getById(id);
 
-        if (!curso) {
-            res.status(404).json({ message: "Curso não encontrado" });
-            return;
+            res.status(200).json(curso)
         }
-
-        res.status(200).json(curso)
+        catch (error) {
+            next(error);
+        }
     }
 
-    static async create(req, res) {
-        const { titulo, descricao, area_conhecimento, url, id_criador } = req.body;
+    static async create(req, res, next) {
+        try {
+            const cursoData = req.body;
 
-        const newCurso = {
-            id: randomUUID(),
-            titulo,
-            descricao,
-            area_conhecimento,
-            url,
-            id_criador
-        };
+            const newCurso = await CursoService.create(cursoData);
 
-        db.data.cursos.push(newCurso);
-
-        await db.write();
-
-        res.status(201).json(newCurso);
+            res.status(201).json(newCurso);
+        }
+        catch (error) {
+            next(error);
+        }
     }
 }
 
