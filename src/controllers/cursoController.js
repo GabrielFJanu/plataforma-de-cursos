@@ -3,11 +3,11 @@ import { randomUUID } from "node:crypto";
 
 class CursoController {
 
-    static list(req, res) {
+    static getAll(req, res) {
         res.status(200).json(db.data.cursos);
     }
 
-    static fetchById(req, res) {
+    static getById(req, res) {
         const id = req.params.id;
         
         const curso = db.data.cursos.find(curso => curso.id == id);
