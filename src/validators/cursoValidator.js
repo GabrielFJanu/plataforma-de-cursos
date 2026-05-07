@@ -1,6 +1,13 @@
-import { body } from 'express-validator';
+import { body, param } from 'express-validator';
 
-export const createCursoValidation = [
+export const cursoGetByIdValidation = [
+    param('id')
+    .trim()
+    .notEmpty().withMessage('O ID é obrigatório')
+    .isUUID().withMessage('O ID do curso dever ser um UUID válido')
+]
+
+export const cursoCreateValidation = [
     body('titulo')
     .trim()
     .notEmpty().withMessage('O título é obrigatório')
@@ -20,6 +27,6 @@ export const createCursoValidation = [
 
     body('id_criador')
     .trim()
-    .notEmpty().withMessage('O id do usuário criador é obrigatório')
-    .isUUID().withMessage('O id do usuário criador dever ser um UUID válido')
+    .notEmpty().withMessage('O ID do usuário criador é obrigatório')
+    .isUUID().withMessage('O ID do usuário criador dever ser um UUID válido')
 ]
