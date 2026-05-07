@@ -1,12 +1,12 @@
 import { Router } from "express";
 import CursoController from "../controllers/CursoController.js";
-import { cursoGetByIdValidation, cursoCreateValidation } from "../validators/cursoValidator.js";
+import { validateGetCursoById, validateCreateCurso } from "../validators/cursoValidator.js";
 import { handleValidationErrors } from "../middlewares/validatorMiddleware.js";
 
 const cursoRouter = Router();
 
 cursoRouter.get('/', CursoController.getAll);
-cursoRouter.get('/:id', cursoGetByIdValidation, handleValidationErrors, CursoController.getById);
-cursoRouter.post('/', cursoCreateValidation, handleValidationErrors, CursoController.create);
+cursoRouter.get('/:id', validateGetCursoById, handleValidationErrors, CursoController.getById);
+cursoRouter.post('/', validateCreateCurso, handleValidationErrors, CursoController.create);
 
 export default cursoRouter;

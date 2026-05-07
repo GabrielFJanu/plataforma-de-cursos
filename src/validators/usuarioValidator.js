@@ -1,13 +1,13 @@
 import { body, param } from 'express-validator';
 
-export const usuarioGetByIdValidation = [
+export const validateGetUsuarioById = [
     param('id')
     .trim()
     .notEmpty().withMessage('O ID é obrigatório')
     .isUUID().withMessage('O ID deve ser um UUID válido')
 ]
 
-export const usuarioCreateValidation = [
+export const validateCreateUsuario = [
     body('nome')
     .trim()
     .notEmpty().withMessage('O nome é obrigatório')

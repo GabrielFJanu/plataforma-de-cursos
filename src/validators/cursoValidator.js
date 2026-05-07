@@ -1,13 +1,13 @@
 import { body, param } from 'express-validator';
 
-export const cursoGetByIdValidation = [
+export const validateGetCursoById = [
     param('id')
     .trim()
     .notEmpty().withMessage('O ID é obrigatório')
     .isUUID().withMessage('O ID deve ser um UUID válido')
 ]
 
-export const cursoCreateValidation = [
+export const validateCreateCurso = [
     body('titulo')
     .trim()
     .notEmpty().withMessage('O título é obrigatório')
