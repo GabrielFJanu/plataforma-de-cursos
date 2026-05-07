@@ -1,13 +1,14 @@
-import CursoRepository from "../repositories/cursoRepository";
+import CursoRepository from "../repositories/CursoRepository.js";
+import UsuarioRepository from "../repositories/UsuarioRepository.js";
 
 class CursoService {
-    static getAll() {
-        const cursos = CursoRepository.getAll();
+    static async getAll() {
+        const cursos = await CursoRepository.getAll();
         return cursos;
     }
 
-    static getById(id) {
-        const cursoFromDb = CursoRepository.getById(id);
+    static async getById(id) {
+        const cursoFromDb = await CursoRepository.getById(id);
 
         // regra de negócio: verificar se o curso existe
         if (!cursoFromDb) {
@@ -22,7 +23,7 @@ class CursoService {
     static async create(cursoData) {
         
         // regra de negócio: verificar se o criador (usuário) existe
-        const criador = UserRepository.getById(cursoData.id_criador);
+        const criador = await UsuarioRepository.getById(cursoData.id_criador);
 
         if (!criador) {
             const criadorNotFoundError = new Error('Criador não encontrado');

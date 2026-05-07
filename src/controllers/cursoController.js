@@ -1,18 +1,23 @@
-import CursoService from "../services/CursoService";
+import CursoService from "../services/CursoService.js";
 
 class CursoController {
 
-    static getAll(req, res) {
-        cursos = CursoService.getAll();
+    static async getAll(req, res) {
+        try {
+            const cursos = await CursoService.getAll();
 
-        res.status(200).json(cursos);
+            res.status(200).json(cursos);
+        }
+        catch (error) {
+            next(error);
+        }
     }
 
-    static getById(req, res, next) {
+    static async getById(req, res, next) {
         try {
             const id = req.params.id;
         
-            const curso = CursoService.getById(id);
+            const curso = await CursoService.getById(id);
 
             res.status(200).json(curso)
         }

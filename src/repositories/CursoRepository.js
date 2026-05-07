@@ -1,18 +1,23 @@
-import db from '../config/database.js';
+import db from '../database/database.js';
 import { v4 as uuidv4 } from 'uuid';
 
 class CursoRepository {
-    static getAll(){
+    static async getAll(){
+        await db.read();
+
         const cursos = db.data.cursos;
         return cursos;
     }
 
-    static getById(id) {
+    static async getById(id) {
+        await db.read();
+
         const curso = db.data.cursos.find(curso => curso.id == id);
         return curso;
     }
 
     static async create({titulo, descricao, area_conhecimento, url, id_criador}) {
+        await db.read();
 
         const newCurso = {
             id: uuidv4(),

@@ -7,6 +7,6 @@ const cursoRouter = Router();
 
 cursoRouter.get('/', CursoController.getAll);
 cursoRouter.get('/:id', cursoGetByIdValidation, handleValidationErrors, CursoController.getById);
-cursoRouter.post('/', cursoCreateValidation, handleValidationErrors, CursoController.create)
+cursoRouter.post('/', cursoCreateValidation, handleValidationErrors, CursoController.create);
 
 export default cursoRouter;
