@@ -1,4 +1,4 @@
-export const handleGlobalErrors = (error, req, res, next) => {
+export const globalErrorHandler = (error, req, res, next) => {
     console.error("ERRO:", error.message);
     console.error("Stack:", error.stack);
 

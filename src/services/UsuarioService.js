@@ -1,9 +1,11 @@
+import { UsuarioResponseDto } from "../dtos/usuarioDtos.js";
 import UsuarioRepository from "../repositories/UsuarioRepository.js";
 
 class UsuarioService {
     static async getAll() {
-        const usuarios = await UsuarioRepository.getAll();
-        return usuarios;
+        const usuariosFromDb = await UsuarioRepository.getAll();
+        const usuariosDto = usuariosFromDb.map( usuarioFromDb => new UsuarioResponseDto(usuarioFromDb));
+        return usuariosDto;
     }
 
     static async getById(id) {
@@ -16,12 +18,15 @@ class UsuarioService {
             throw usuarioNotFoundError;
         }
 
-        return usuarioFromDb;
+        const usuarioDto = new UsuarioResponseDto(usuarioFromDb);
+        return usuarioDto;
     }
 
-    static async create(usuarioData) {
-        const newUsuario = await UsuarioRepository.create(usuarioData);
-        return newUsuario;
+    static async create(createUsuarioData) {
+        const newUsuarioFromDb = await UsuarioRepository.create(createUsuarioData);
+
+        const usuarioDto = new UsuarioResponseDto(newUsuarioFromDb);
+        return usuarioDto;
     }
 }
 

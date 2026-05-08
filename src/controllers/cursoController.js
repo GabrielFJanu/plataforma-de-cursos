@@ -2,11 +2,11 @@ import CursoService from "../services/CursoService.js";
 
 class CursoController {
 
-    static async getAll(req, res) {
+    static async getAll(req, res, next) {
         try {
-            const cursos = await CursoService.getAll();
+            const cursosDto = await CursoService.getAll();
 
-            res.status(200).json(cursos);
+            res.status(200).json(cursosDto);
         }
         catch (error) {
             next(error);
@@ -17,9 +17,9 @@ class CursoController {
         try {
             const id = req.params.id;
         
-            const curso = await CursoService.getById(id);
+            const cursoDto = await CursoService.getById(id);
 
-            res.status(200).json(curso)
+            res.status(200).json(cursoDto)
         }
         catch (error) {
             next(error);
@@ -28,11 +28,11 @@ class CursoController {
 
     static async create(req, res, next) {
         try {
-            const cursoData = req.body;
+            const createCursoData = req.body;
 
-            const newCurso = await CursoService.create(cursoData);
+            const newCursoDto = await CursoService.create(createCursoData);
 
-            res.status(201).json(newCurso);
+            res.status(201).json(newCursoDto);
         }
         catch (error) {
             next(error);

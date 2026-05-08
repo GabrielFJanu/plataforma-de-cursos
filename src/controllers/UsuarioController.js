@@ -2,11 +2,11 @@ import UsuarioService from "../services/UsuarioService.js";
 
 class UsuarioController {
 
-    static async getAll(req, res) {
+    static async getAll(req, res, next) {
         try {
-            const usuarios = await UsuarioService.getAll();
+            const usuariosDto = await UsuarioService.getAll();
 
-            res.status(200).json(usuarios);
+            res.status(200).json(usuariosDto);
         }
         catch (error) {
             next(error);
@@ -17,9 +17,9 @@ class UsuarioController {
         try {
             const id = req.params.id;
         
-            const usuario = await UsuarioService.getById(id);
+            const usuarioDto = await UsuarioService.getById(id);
 
-            res.status(200).json(usuario)
+            res.status(200).json(usuarioDto)
         }
         catch (error) {
             next(error);
@@ -28,11 +28,11 @@ class UsuarioController {
 
     static async create(req, res, next) {
         try {
-            const usuarioData = req.body;
+            const createUsuarioData = req.body;
 
-            const newUsuario = await UsuarioService.create(usuarioData);
+            const newUsuarioDto = await UsuarioService.create(createUsuarioData);
 
-            res.status(201).json(newUsuario);
+            res.status(201).json(newUsuarioDto);
         }
         catch (error) {
             next(error);

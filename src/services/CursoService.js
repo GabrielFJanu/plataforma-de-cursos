@@ -5,8 +5,8 @@ import UsuarioRepository from "../repositories/UsuarioRepository.js";
 class CursoService {
     static async getAll() {
         const cursosFromDb = await CursoRepository.getAll();
-        const cursosResponseDto = cursosFromDb.map(cursoFromDb => new CursoResponseDto(cursoFromDb));
-        return cursosResponseDto
+        const cursosDto = cursosFromDb.map(cursoFromDb => new CursoResponseDto(cursoFromDb));
+        return cursosDto
     }
 
     static async getById(id) {
@@ -19,14 +19,14 @@ class CursoService {
             throw cursoNotFoundError;
         }
 
-        const cursoResponseDto = new CursoResponseDto(cursoFromDb);
-        return cursoResponseDto;
+        const cursoDto = new CursoResponseDto(cursoFromDb);
+        return cursoDto;
     }
 
-    static async create(cursoData) {
+    static async create(createCursoData) {
         
         // regra de negócio: verificar se o criador (usuário) existe
-        const criador = await UsuarioRepository.getById(cursoData.id_criador);
+        const criador = await UsuarioRepository.getById(createCursoData.id_criador);
 
         if (!criador) {
             const criadorNotFoundError = new Error('Criador não encontrado');
@@ -34,9 +34,9 @@ class CursoService {
             throw criadorNotFoundError;
         }
 
-        const cursoFromDb = await CursoRepository.create(cursoData);
-        const cursoResponseDto = new CursoResponseDto(cursoFromDb);
-        return cursoResponseDto;
+        const cursoFromDb = await CursoRepository.create(createCursoData);
+        const cursoDto = new CursoResponseDto(cursoFromDb);
+        return cursoDto;
     }
 }
 
