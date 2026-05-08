@@ -23,9 +23,9 @@ class UsuarioService {
     }
 
     static async create(createUsuarioData) {
-        const newUsuarioFromDb = await UsuarioRepository.create(createUsuarioData);
+        const usuarioFromDb = await UsuarioRepository.create(createUsuarioData);
 
-        const usuarioDto = new UsuarioResponseDto(newUsuarioFromDb);
+        const usuarioDto = new UsuarioResponseDto(usuarioFromDb);
         return usuarioDto;
     }
 }
