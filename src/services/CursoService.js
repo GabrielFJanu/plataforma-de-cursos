@@ -1,10 +1,12 @@
+import { CursoResponseDto } from "../dtos/cursoDtos.js";
 import CursoRepository from "../repositories/CursoRepository.js";
 import UsuarioRepository from "../repositories/UsuarioRepository.js";
 
 class CursoService {
     static async getAll() {
-        const cursos = await CursoRepository.getAll();
-        return cursos;
+        const cursosFromDb = await CursoRepository.getAll();
+        const cursosResponseDto = cursosFromDb.map(cursoFromDb => new CursoResponseDto(cursoFromDb));
+        return cursosResponseDto
     }
 
     static async getById(id) {
@@ -17,7 +19,8 @@ class CursoService {
             throw cursoNotFoundError;
         }
 
-        return cursoFromDb;
+        const cursoResponseDto = new CursoResponseDto(cursoFromDb);
+        return cursoResponseDto;
     }
 
     static async create(cursoData) {
@@ -31,8 +34,9 @@ class CursoService {
             throw criadorNotFoundError;
         }
 
-        const newCurso = await CursoRepository.create(cursoData);
-        return newCurso;
+        const cursoFromDb = await CursoRepository.create(cursoData);
+        const cursoResponseDto = new CursoResponseDto(cursoFromDb);
+        return cursoResponseDto;
     }
 }
 
