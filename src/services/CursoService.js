@@ -1,4 +1,4 @@
-import { CursoResponseDto } from "../dtos/cursoDtos.js";
+import { CursoResponseDto } from "../dtos/cursoDto.js";
 import CursoRepository from "../repositories/CursoRepository.js";
 import UsuarioRepository from "../repositories/UsuarioRepository.js";
 

@@ -1,4 +1,4 @@
-import { UsuarioResponseDto } from "../dtos/usuarioDtos.js";
+import { UsuarioResponseDto } from "../dtos/usuarioDto.js";
 import UsuarioRepository from "../repositories/UsuarioRepository.js";
 
 class UsuarioService {
