@@ -16,16 +16,16 @@ class CursoRepository {
         return curso;
     }
 
-    static async create({titulo, descricao, area_conhecimento, url, id_criador}) {
+    static async create(createCursoData) {
         await db.read();
 
         const newCurso = {
             id: uuidv4(),
-            titulo,
-            descricao,
-            area_conhecimento,
-            url,
-            id_criador,
+            titulo: createCursoData.titulo,
+            descricao: createCursoData.descricao,
+            area_conhecimento: createCursoData.area_conhecimento,
+            url: createCursoData.url,
+            id_criador: createCursoData.id_criador,
         };
 
         db.data.cursos.push(newCurso);
@@ -33,6 +33,22 @@ class CursoRepository {
         await db.write();
 
         return newCurso
+    }
+
+    static async update(id, updateCursoData) {
+        await db.read();
+
+        const curso = db.data.cursos.find(curso => curso.id == id);
+
+        if (!curso) {
+            return null;
+        }
+
+        Object.assign(curso, updateCursoData);
+
+        await db.write();
+
+        return curso;
     }
 }
 

@@ -38,6 +38,20 @@ class CursoController {
             next(error);
         }
     }
+
+    static async update(req, res, next) {
+        try {
+            const id = req.params.id;
+            const updateCursoData = req.body;
+
+            const cursoDto = await CursoService.update(id, updateCursoData);
+
+            res.status(200).json(cursoDto);
+        }
+        catch (error) {
+            next(error);
+        }
+    }
 }
 
 export default CursoController

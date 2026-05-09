@@ -16,14 +16,14 @@ class UsuarioRepository {
         return usuario;
     }
 
-    static async create({nome, sobrenome, email}) {
+    static async create(createUsuarioData) {
         await db.read();
 
         const newUsuario = {
             id: uuidv4(),
-            nome,
-            sobrenome,
-            email
+            nome: createUsuarioData.nome,
+            sobrenome: createUsuarioData.sobrenome,
+            email: createUsuarioData.email
         };
 
         db.data.usuarios.push(newUsuario);
