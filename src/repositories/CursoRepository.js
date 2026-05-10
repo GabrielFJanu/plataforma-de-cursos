@@ -50,6 +50,14 @@ class CursoRepository {
 
         return curso;
     }
+
+    static async delete(id) {
+        await db.read();
+
+        db.data.cursos = db.data.cursos.filter(curso => curso.id != id);
+
+        await db.write();
+    }
 }
 
 export default CursoRepository

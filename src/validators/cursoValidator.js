@@ -7,7 +7,7 @@ export const getCursoByIdValidation = [
         .isUUID().withMessage('O ID deve ser um UUID válido')
 ];
 
-const cursoRequiredFieldsValidation = [
+export const createCursoValidation = checkExact([
     body('titulo')
         .trim()
         .notEmpty().withMessage('O título é obrigatório')
@@ -32,13 +32,11 @@ const cursoRequiredFieldsValidation = [
         .trim()
         .notEmpty().withMessage('O ID do usuário criador é obrigatório')
         .isUUID().withMessage('O ID do usuário criador deve ser um UUID válido')
-];
-
-export const createCursoValidation = checkExact(cursoRequiredFieldsValidation);
+]);
 
 export const fullUpdateCursoValidation = checkExact([
     ...getCursoByIdValidation,
-    ...cursoRequiredFieldsValidation
+    ...createCursoValidation
 ]);
 
 export const partialUpdateCursoValidation = checkExact([
@@ -73,3 +71,7 @@ export const partialUpdateCursoValidation = checkExact([
         .notEmpty().withMessage('O ID do usuário criador não pode ser vazio')
         .isUUID().withMessage('O ID do usuário criador deve ser um UUID válido')
 ]);
+
+export const deleteCursoValidation = checkExact([
+    ...getCursoByIdValidation
+])

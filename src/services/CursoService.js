@@ -6,7 +6,7 @@ import { createHttpError } from "../utils/createHttpError.js";
 class CursoService {
     static async getAll() {
         const cursosFromDb = await CursoRepository.getAll();
-        
+
         const cursosDto = cursosFromDb.map(cursoFromDb => new CursoResponseDto(cursoFromDb));
         return cursosDto
     }
@@ -58,6 +58,16 @@ class CursoService {
 
         const updatedCursoDto = new CursoResponseDto(updatedCursoFromDb);
         return updatedCursoDto;
+    }
+
+    static async delete(id) {
+        const cursoFromDb = await CursoRepository.getById(id);
+
+        if (!cursoFromDb) {
+            throw createHttpError('Curso não encontrado', 404);
+        }
+
+        await CursoRepository.delete(id);
     }
 
 }
