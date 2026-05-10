@@ -12,7 +12,6 @@ class UsuarioService {
     static async getById(id) {
         const usuarioFromDb = await UsuarioRepository.getById(id);
 
-        // regra de negócio: verificar se o usuario existe
         if (!usuarioFromDb) {
             throw createHttpError('Usuário não encontrado', 404);
         }
@@ -26,6 +25,23 @@ class UsuarioService {
 
         const usuarioDto = new UsuarioResponseDto(usuarioFromDb);
         return usuarioDto;
+    }
+
+    static async update(id, updateUsuarioData) {
+        if (Object.keys(updateUsuarioData).length === 0) {
+            throw createHttpError('Nenhum dado para atualização foi enviado', 400);
+        }
+
+        const usuarioFromDb = await UsuarioRepository.getById(id);
+
+        if (!usuarioFromDb) {
+            throw createHttpError('Usuário não encontrado', 404);
+        }
+
+        const updatedUsuarioFromDb = await UsuarioRepository.update(id, updateUsuarioData);
+
+        const updatedUsuarioDto = new UsuarioResponseDto(updatedUsuarioFromDb);
+        return updatedUsuarioDto;
     }
 }
 

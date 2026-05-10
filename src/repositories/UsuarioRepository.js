@@ -32,6 +32,22 @@ class UsuarioRepository {
 
         return newUsuario;
     }
+
+    static async update(id, updateUsuarioData) {
+        await db.read();
+
+        const usuario = db.data.usuarios.find(usuario => usuario.id == id);
+
+        if (!usuario) {
+            return null;
+        }
+
+        Object.assign(usuario, updateUsuarioData);
+
+        await db.write();
+
+        return usuario;
+    }
 }
 
 export default UsuarioRepository

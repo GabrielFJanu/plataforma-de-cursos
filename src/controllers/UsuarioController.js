@@ -38,6 +38,20 @@ class UsuarioController {
             next(error);
         }
     }
+
+    static async update(req, res, next) {
+        try {
+            const id = req.params.id;
+            const updateUsuarioData = req.body;
+
+            const usuarioDto = await UsuarioService.update(id, updateUsuarioData);
+
+            res.status(200).json(usuarioDto);
+        }
+        catch (error) {
+            next(error);
+        }
+    }
 }
 
 export default UsuarioController
