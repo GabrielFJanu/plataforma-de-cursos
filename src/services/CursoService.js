@@ -6,6 +6,7 @@ import { createHttpError } from "../utils/createHttpError.js";
 class CursoService {
     static async getAll() {
         const cursosFromDb = await CursoRepository.getAll();
+        
         const cursosDto = cursosFromDb.map(cursoFromDb => new CursoResponseDto(cursoFromDb));
         return cursosDto
     }
@@ -13,7 +14,6 @@ class CursoService {
     static async getById(id) {
         const cursoFromDb = await CursoRepository.getById(id);
 
-        // regra de negócio: verificar se o curso existe
         if (!cursoFromDb) {
             throw createHttpError('Curso não encontrado', 404);
         }
@@ -23,8 +23,6 @@ class CursoService {
     }
 
     static async create(createCursoData) {
-        
-        // regra de negócio: verificar se o criador (usuário) existe
         const criador = await UsuarioRepository.getById(createCursoData.id_criador);
 
         if (!criador) {
@@ -32,25 +30,23 @@ class CursoService {
         }
 
         const cursoFromDb = await CursoRepository.create(createCursoData);
+
         const cursoDto = new CursoResponseDto(cursoFromDb);
         return cursoDto;
     }
 
     static async update(id, updateCursoData) {
-        // regra de negócio: verificar se existe pelo menos um campo a ser atualizado
         if (Object.keys(updateCursoData).length === 0) {
             throw createHttpError('Nenhum dado para atualização foi enviado', 400);
         }
 
         const cursoFromDb = await CursoRepository.getById(id);
 
-        // regra de negócio: verificar se o curso existe
         if (!cursoFromDb) {
             throw createHttpError('Curso não encontrado', 404);
         }
 
-        // regra de negócio: se id_criador for atualizado, verificar se o criador (usuário) existe
-        if (updateCursoData.id_criador) {
+        if (updateCursoData.id_criador !== undefined) {
             const criador = await UsuarioRepository.getById(updateCursoData.id_criador);
 
             if (!criador) {
