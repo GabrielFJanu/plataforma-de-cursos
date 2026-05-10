@@ -48,6 +48,14 @@ class UsuarioRepository {
 
         return usuario;
     }
+
+    static async delete(id) {
+        await db.read();
+
+        db.data.usuarios = db.data.usuarios.filter(usuario => usuario.id != id);
+
+        await db.write();
+    }
 }
 
 export default UsuarioRepository

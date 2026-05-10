@@ -72,3 +72,10 @@ export const partialUpdateUsuarioValidation = checkExact([
         .notEmpty().withMessage('O email não deve ser vazio')
         .isEmail().withMessage('O email deve ser válido')
 ])
+
+export const deleteUsuarioValidation = checkExact([
+    param('id')
+        .trim()
+        .notEmpty().withMessage('O ID não deve ser vazio')
+        .isUUID().withMessage('O ID deve ser um UUID válido')
+]);

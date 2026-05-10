@@ -52,6 +52,19 @@ class UsuarioController {
             next(error);
         }
     }
+
+    static async delete(req, res, next) {
+        try {
+            const id = req.params.id;
+
+            await UsuarioService.delete(id);
+
+            res.status(204).send();
+        }
+        catch (error) {
+            next(error);
+        }
+    }
 }
 
 export default UsuarioController

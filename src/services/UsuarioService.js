@@ -43,6 +43,16 @@ class UsuarioService {
         const updatedUsuarioDto = new UsuarioResponseDto(updatedUsuarioFromDb);
         return updatedUsuarioDto;
     }
+
+    static async delete(id) {
+        const usuarioFromDb = await UsuarioRepository.getById(id);
+
+        if (!usuarioFromDb) {
+            throw createHttpError('Usuário não encontrado', 404);
+        }
+
+        await UsuarioRepository.delete(id);
+    }
 }
 
 export default UsuarioService;
