@@ -1,5 +1,6 @@
 import { UsuarioResponseDto } from "../dtos/usuarioDto.js";
 import UsuarioRepository from "../repositories/UsuarioRepository.js";
+import { createHttpError } from "../utils/createHttpError.js";
 
 class UsuarioService {
     static async getAll() {
@@ -13,9 +14,7 @@ class UsuarioService {
 
         // regra de negócio: verificar se o usuario existe
         if (!usuarioFromDb) {
-            const usuarioNotFoundError = new Error('Usuário não encontrado');
-            usuarioNotFoundError.statusCode = 404;
-            throw usuarioNotFoundError;
+            throw createHttpError('Usuário não encontrado', 404);
         }
 
         const usuarioDto = new UsuarioResponseDto(usuarioFromDb);
