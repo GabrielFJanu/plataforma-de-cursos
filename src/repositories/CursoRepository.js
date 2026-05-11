@@ -58,6 +58,13 @@ class CursoRepository {
 
         await db.write();
     }
+
+    static async getByUsuarioId(usuarioId) {
+        await db.read();
+
+        const cursos = db.data.cursos.filter(curso => curso.id_criador == usuarioId);
+        return cursos;
+    }
 }
 
 export default CursoRepository

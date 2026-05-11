@@ -65,6 +65,19 @@ class CursoController {
             next(error);
         }
     }
+
+    static async getByUsuarioId(req, res, next) {
+        try {
+            const usuarioId = req.params.id;
+
+            const cursosDto = await CursoService.getByUsuarioId(usuarioId);
+
+            res.status(200).json(cursosDto);
+        }
+        catch (error) {
+            next(error);
+        }
+    }
 }
 
 export default CursoController

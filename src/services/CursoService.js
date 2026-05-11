@@ -70,6 +70,19 @@ class CursoService {
         await CursoRepository.delete(id);
     }
 
+    static async getByUsuarioId(usuarioId) {
+        const usuarioFromDb = await UsuarioRepository.getById(usuarioId);
+
+        if (!usuarioFromDb) {
+            throw createHttpError('Usuário não encontrado', 404);
+        }
+
+        const cursosFromDb = await CursoRepository.getByUsuarioId(usuarioId);
+
+        const cursosDto = cursosFromDb.map(curso => new CursoResponseDto(curso));
+        return cursosDto;
+    }
+
 }
 
 export default CursoService;
