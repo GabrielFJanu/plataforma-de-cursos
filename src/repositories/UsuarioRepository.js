@@ -21,9 +21,7 @@ class UsuarioRepository {
 
         const newUsuario = {
             id: uuidv4(),
-            nome: createUsuarioData.nome,
-            sobrenome: createUsuarioData.sobrenome,
-            email: createUsuarioData.email
+            ...createUsuarioData
         };
 
         db.data.usuarios.push(newUsuario);

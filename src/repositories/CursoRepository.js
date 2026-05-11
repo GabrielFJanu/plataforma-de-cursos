@@ -21,11 +21,7 @@ class CursoRepository {
 
         const newCurso = {
             id: uuidv4(),
-            titulo: createCursoData.titulo,
-            descricao: createCursoData.descricao,
-            area_conhecimento: createCursoData.area_conhecimento,
-            url: createCursoData.url,
-            id_criador: createCursoData.id_criador,
+            ...createCursoData
         };
 
         db.data.cursos.push(newCurso);

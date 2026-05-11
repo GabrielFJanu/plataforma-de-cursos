@@ -2,6 +2,7 @@ import { CursoResponseDto } from "../dtos/cursoDto.js";
 import CursoRepository from "../repositories/CursoRepository.js";
 import UsuarioRepository from "../repositories/UsuarioRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
+import { extractYoutubeId } from "../utils/extractYoutubeId.js";
 
 class CursoService {
     static async getAll() {
@@ -23,6 +24,15 @@ class CursoService {
     }
 
     static async create(createCursoData) {
+
+        const youtubeId = extractYoutubeId(createCursoData.url);
+        
+        if (!youtubeId) {
+            throw createHttpError('URL do YouTube inválida', 400);
+        }
+
+        createCursoData.youtube_id = youtubeId;
+
         const criador = await UsuarioRepository.getById(createCursoData.id_criador);
 
         if (!criador) {
@@ -44,6 +54,16 @@ class CursoService {
 
         if (!cursoFromDb) {
             throw createHttpError('Curso não encontrado', 404);
+        }
+
+        if (updateCursoData.url !== undefined) {
+            const youtubeId = extractYoutubeId(updateCursoData.url);
+        
+            if (!youtubeId) {
+                throw createHttpError('URL do YouTube inválida', 400);
+            }
+
+            updateCursoData.youtube_id = youtubeId;
         }
 
         if (updateCursoData.id_criador !== undefined) {
