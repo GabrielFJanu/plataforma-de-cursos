@@ -1,12 +1,12 @@
-import UsuarioService from "../services/UsuarioService.js";
+import UserService from "../services/UserService.js";
 
-class UsuarioController {
+class UserController {
 
     static async getAll(req, res, next) {
         try {
-            const usuariosDto = await UsuarioService.getAll();
+            const usersDto = await UserService.getAll();
 
-            res.status(200).json(usuariosDto);
+            res.status(200).json(usersDto);
         }
         catch (error) {
             next(error);
@@ -17,9 +17,9 @@ class UsuarioController {
         try {
             const id = req.params.id;
         
-            const usuarioDto = await UsuarioService.getById(id);
+            const userDto = await UserService.getById(id);
 
-            res.status(200).json(usuarioDto)
+            res.status(200).json(userDto)
         }
         catch (error) {
             next(error);
@@ -28,11 +28,11 @@ class UsuarioController {
 
     static async create(req, res, next) {
         try {
-            const createUsuarioData = req.body;
+            const createUserData = req.body;
 
-            const newUsuarioDto = await UsuarioService.create(createUsuarioData);
+            const newUserDto = await UserService.create(createUserData);
 
-            res.status(201).json(newUsuarioDto);
+            res.status(201).json(newUserDto);
         }
         catch (error) {
             next(error);
@@ -42,11 +42,11 @@ class UsuarioController {
     static async update(req, res, next) {
         try {
             const id = req.params.id;
-            const updateUsuarioData = req.body;
+            const updateUserData = req.body;
 
-            const usuarioDto = await UsuarioService.update(id, updateUsuarioData);
+            const userDto = await UserService.update(id, updateUserData);
 
-            res.status(200).json(usuarioDto);
+            res.status(200).json(userDto);
         }
         catch (error) {
             next(error);
@@ -57,7 +57,7 @@ class UsuarioController {
         try {
             const id = req.params.id;
 
-            await UsuarioService.delete(id);
+            await UserService.delete(id);
 
             res.status(204).send();
         }
@@ -67,4 +67,4 @@ class UsuarioController {
     }
 }
 
-export default UsuarioController
+export default UserController

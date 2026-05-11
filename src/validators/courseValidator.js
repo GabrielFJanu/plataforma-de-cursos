@@ -1,25 +1,25 @@
 import { body, param, checkExact } from 'express-validator';
 
-export const getCursoByIdValidation = checkExact([
+export const getCourseByIdValidation = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
         .isUUID().withMessage('O ID deve ser um UUID válido')
 ]);
 
-export const createCursoValidation = checkExact([
-    body('titulo')
+export const createCourseValidation = checkExact([
+    body('title')
         .trim()
         .notEmpty().withMessage('O título não deve ser vazio')
         .isString().withMessage('O título deve ser um texto'),
 
-    body('descricao')
+    body('description')
         .optional()
         .trim()
         .notEmpty().withMessage('A descrição não deve ser vazia')
         .isString().withMessage('A descrição deve ser um texto'),
 
-    body('area_conhecimento')
+    body('knowledgeArea')
         .trim()
         .notEmpty().withMessage('A área do conhecimento não deve ser vazia')
         .isString().withMessage('A área do conhecimento deve ser um texto'),
@@ -29,30 +29,30 @@ export const createCursoValidation = checkExact([
         .notEmpty().withMessage('O endereço URL não deve ser vazio')
         .isURL().withMessage('O endereço URL deve ser válido'),
 
-    body('id_criador')
+    body('creatorId')
         .trim()
         .notEmpty().withMessage('O ID do usuário criador não deve ser vazio')
         .isUUID().withMessage('O ID do usuário criador deve ser um UUID válido')
 ]);
 
-export const fullUpdateCursoValidation = checkExact([
+export const fullUpdateCourseValidation = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
         .isUUID().withMessage('O ID deve ser um UUID válido'),
 
-    body('titulo')
+    body('title')
         .trim()
         .notEmpty().withMessage('O título não deve ser vazio')
         .isString().withMessage('O título deve ser um texto'),
 
-    body('descricao')
+    body('description')
         .optional()
         .trim()
         .notEmpty().withMessage('A descrição não deve ser vazia')
         .isString().withMessage('A descrição deve ser um texto'),
 
-    body('area_conhecimento')
+    body('knowledgeArea')
         .trim()
         .notEmpty().withMessage('A área do conhecimento não deve ser vazia')
         .isString().withMessage('A área do conhecimento deve ser um texto'),
@@ -62,31 +62,31 @@ export const fullUpdateCursoValidation = checkExact([
         .notEmpty().withMessage('O endereço URL não deve ser vazio')
         .isURL().withMessage('O endereço URL deve ser válido'),
 
-    body('id_criador')
+    body('creatorId')
         .trim()
         .notEmpty().withMessage('O ID do usuário criador não deve ser vazio')
         .isUUID().withMessage('O ID do usuário criador deve ser um UUID válido')
 ]);
 
-export const partialUpdateCursoValidation = checkExact([
+export const partialUpdateCourseValidation = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
         .isUUID().withMessage('O ID deve ser um UUID válido'),
 
-    body('titulo')
+    body('title')
         .optional()
         .trim()
         .notEmpty().withMessage('O título não deve ser vazio')
         .isString().withMessage('O título deve ser um texto'),
 
-    body('descricao')
+    body('description')
         .optional()
         .trim()
         .notEmpty().withMessage('A descrição não deve ser vazia')
         .isString().withMessage('A descrição deve ser um texto'),
 
-    body('area_conhecimento')
+    body('knowledgeArea')
         .optional()
         .trim()
         .notEmpty().withMessage('A área do conhecimento não deve ser vazia')
@@ -98,14 +98,14 @@ export const partialUpdateCursoValidation = checkExact([
         .notEmpty().withMessage('O endereço URL não deve ser vazio')
         .isURL().withMessage('O endereço URL deve ser válido'),
 
-    body('id_criador')
+    body('creatorId')
         .optional()
         .trim()
         .notEmpty().withMessage('O ID do usuário criador não deve ser vazio')
         .isUUID().withMessage('O ID do usuário criador deve ser um UUID válido')
 ]);
 
-export const deleteCursoValidation = checkExact([
+export const deleteCourseValidation = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')

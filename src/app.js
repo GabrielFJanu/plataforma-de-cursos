@@ -1,8 +1,8 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import cursoRouter from './routes/cursoRoutes.js';
-import usuarioRouter from './routes/usuarioRoutes.js';
+import courseRouter from './routes/courseRoutes.js';
+import userRouter from './routes/UserRoutes.js';
 import webRouter from './routes/webRoutes.js';
 import { globalErrorHandler } from './middlewares/errorMiddleware.js';
 
@@ -13,8 +13,8 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/api/cursos', cursoRouter);
-app.use('/api/usuarios', usuarioRouter);
+app.use('/api/courses', courseRouter);
+app.use('/api/users', userRouter);
 app.use('/', webRouter);
 
 app.use(globalErrorHandler);

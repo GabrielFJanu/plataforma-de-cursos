@@ -1,19 +1,19 @@
 import { body, param, checkExact } from 'express-validator';
 
-export const getUsuarioByIdValidation = checkExact([
+export const getUserByIdValidation = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
         .isUUID().withMessage('O ID deve ser um UUID válido')
 ]);
 
-export const createUsuarioValidation = checkExact([
-    body('nome')
+export const createUserValidation = checkExact([
+    body('firstname')
         .trim()
         .notEmpty().withMessage('O nome não deve ser vazio')
         .isString().withMessage('O nome deve ser um texto'),
 
-    body('sobrenome')
+    body('lastname')
         .optional()
         .trim()
         .notEmpty().withMessage('O sobrenome não deve ser vazio')
@@ -25,18 +25,18 @@ export const createUsuarioValidation = checkExact([
         .isEmail().withMessage('O email deve ser válido')
 ]);
 
-export const fullUpdateUsuarioValidation = checkExact([
+export const fullUpdateUserValidation = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
         .isUUID().withMessage('O ID deve ser um UUID válido'),
 
-    body('nome')
+    body('firstname')
         .trim()
         .notEmpty().withMessage('O nome não deve ser vazio')
         .isString().withMessage('O nome deve ser um texto'),
 
-    body('sobrenome')
+    body('lastname')
         .optional()
         .trim()
         .notEmpty().withMessage('O sobrenome não pode ser vazio')
@@ -48,19 +48,19 @@ export const fullUpdateUsuarioValidation = checkExact([
         .isEmail().withMessage('O email deve ser válido')
 ])
 
-export const partialUpdateUsuarioValidation = checkExact([
+export const partialUpdateUserValidation = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
         .isUUID().withMessage('O ID deve ser um UUID válido'),
 
-    body('nome')
+    body('firstname')
         .trim()
         .optional()
         .notEmpty().withMessage('O nome não deve ser vazio')
         .isString().withMessage('O nome deve ser um texto'),
 
-    body('sobrenome')
+    body('lastname')
         .optional()
         .trim()
         .notEmpty().withMessage('O sobrenome não pode ser vazio')
@@ -73,7 +73,7 @@ export const partialUpdateUsuarioValidation = checkExact([
         .isEmail().withMessage('O email deve ser válido')
 ])
 
-export const deleteUsuarioValidation = checkExact([
+export const deleteUserValidation = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
