@@ -3,6 +3,6 @@ import WebController from '../controllers/WebController.js';
 
 const webRouter = Router();
 
-webRouter.get('/', WebController.renderIndex);
+webRouter.get('/', WebController.index);
 
 export default webRouter;

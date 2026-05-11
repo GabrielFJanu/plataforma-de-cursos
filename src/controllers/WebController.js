@@ -1,5 +1,5 @@
 class WebController {
-    static async renderIndex(req, res, next) {
+    static async index(req, res, next) {
         try {
             res.render('index');
         }
