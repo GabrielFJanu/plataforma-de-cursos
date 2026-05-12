@@ -1,4 +1,5 @@
 import UserService from "../services/UserService.js";
+import CourseService from "../services/CourseService.js";
 
 class UserController {
 
@@ -60,6 +61,19 @@ class UserController {
             await UserService.delete(id);
 
             res.status(204).send();
+        }
+        catch (error) {
+            next(error);
+        }
+    }
+
+    static async getCoursesByUserId(req, res, next) {
+        try {
+            const userId = req.params.id;
+
+            const coursesDto = await CourseService.getByUserId(userId);
+
+            res.status(200).json(coursesDto);
         }
         catch (error) {
             next(error);

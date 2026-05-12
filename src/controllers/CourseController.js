@@ -65,19 +65,6 @@ class CourseController {
             next(error);
         }
     }
-
-    static async getByUserId(req, res, next) {
-        try {
-            const userId = req.params.id;
-
-            const coursesDto = await CourseService.getByUserId(userId);
-
-            res.status(200).json(coursesDto);
-        }
-        catch (error) {
-            next(error);
-        }
-    }
 }
 
 export default CourseController

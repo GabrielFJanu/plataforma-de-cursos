@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import courseRouter from './routes/courseRoutes.js';
-import userRouter from './routes/UserRoutes.js';
+import userRouter from './routes/userRoutes.js';
 import webRouter from './routes/webRoutes.js';
 import { globalErrorHandler } from './middlewares/errorMiddleware.js';
 

@@ -1,6 +1,5 @@
 import { Router } from "express";
-import UserController from "../controllers/UserController.js";
-import CourseController from "../controllers/CourseController.js"
+import UserController from "../controllers/UserController.js"
 import { getUserByIdValidation, createUserValidation, fullUpdateUserValidation, partialUpdateUserValidation, deleteUserValidation } from "../validators/userValidator.js";
 import { validationErrorHandler } from "../middlewares/validatorMiddleware.js";
 
@@ -12,6 +11,6 @@ userRouter.post('/', createUserValidation, validationErrorHandler, UserControlle
 userRouter.put('/:id', fullUpdateUserValidation, validationErrorHandler, UserController.update);
 userRouter.patch('/:id', partialUpdateUserValidation, validationErrorHandler, UserController.update);
 userRouter.delete('/:id', deleteUserValidation, validationErrorHandler, UserController.delete);
-userRouter.get('/:id/courses', getUserByIdValidation, validationErrorHandler, CourseController.getByUserId);
+userRouter.get('/:id/courses', getUserByIdValidation, validationErrorHandler, UserController.getCoursesByUserId);
 
 export default userRouter;
