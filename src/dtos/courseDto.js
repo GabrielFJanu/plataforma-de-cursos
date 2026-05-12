@@ -7,5 +7,6 @@ export class CourseResponseDto {
         this.url = courseFromDb.url
         this.youtubeId = courseFromDb.youtubeId
         // creatorId omitido
+        this.createdAt = courseFromDb.createdAt
     }
 }

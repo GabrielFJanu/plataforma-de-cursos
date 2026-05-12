@@ -21,7 +21,8 @@ class CourseRepository {
 
         const newCourse = {
             id: uuidv4(),
-            ...createCourseData
+            ...createCourseData,
+            createdAt: new Date().toISOString()
         };
 
         db.data.courses.push(newCourse);

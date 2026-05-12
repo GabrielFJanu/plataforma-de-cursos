@@ -21,7 +21,8 @@ class UserRepository {
 
         const newUser = {
             id: uuidv4(),
-            ...createUserData
+            ...createUserData,
+            createdAt: new Date().toISOString()
         };
 
         db.data.users.push(newUser);

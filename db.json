@@ -7,7 +7,17 @@
       "knowledgeArea": "Artes",
       "url": "https://www.youtube.com/watch?v=3CKCOYvqZIk",
       "creatorId": "a69ec8df-03fd-4ae4-bd4d-a45fc361875a",
-      "youtubeId": "3CKCOYvqZIk"
+      "youtubeId": "3CKCOYvqZIk",
+      "createdAt": "2026-05-12T01:44:03+00:00"
+    },
+    {
+      "id": "48db63cd-03e2-4d2f-bf3f-ce03777670b4",
+      "title": "Tutorial c++ (indiano com microfone estourado)",
+      "knowledgeArea": "Programação",
+      "url": "https://www.youtube.com/watch?v=Y9Zw6xOGly0",
+      "creatorId": "a69ec8df-03fd-4ae4-bd4d-a45fc361875a",
+      "youtubeId": "Y9Zw6xOGly0",
+      "createdAt": "2026-05-12T01:58:30.818Z"
     }
   ],
   "users": [
@@ -15,7 +25,8 @@
       "id": "a69ec8df-03fd-4ae4-bd4d-a45fc361875a",
       "firstname": "Gabriel",
       "lastname": "Januário",
-      "email": "gabrielfreitasj2004@gmail.com"
+      "email": "gabrielfreitasj2004@gmail.com",
+      "createdAt": "2026-05-12T01:43:12+00:00"
     }
   ]
 }

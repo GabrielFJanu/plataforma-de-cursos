@@ -4,5 +4,6 @@ export class UserResponseDto {
         this.firstname = userFromDb.firstname
         this.lastname = userFromDb.lastname
         this.email = userFromDb.email
+        this.createdAt = userFromDb.createdAt
     }
 }

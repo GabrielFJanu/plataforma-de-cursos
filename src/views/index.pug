@@ -24,6 +24,7 @@ html(lang="pt-BR")
                                 h5.card-title= course.title
                                 p.card-text= course.description 
                                 p.card-text
-                                    small.text-muted DD/MM/AAAA
+                                    small.text-muted Criado em 
+                                    small.text-muted= new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(course.createdAt))
         else 
             p Nenhum curso disponível no momento.
