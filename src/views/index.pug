@@ -20,9 +20,10 @@ html(lang="pt-BR")
                             )
                         div.col-md-6
                             div.card-body
+                                p.card-text.badge.badge-secondary= course.knowledgeArea
                                 h5.card-title= course.title
                                 p.card-text= course.description 
                                 p.card-text
-                                    small.text-muted= course.knowledgeArea
+                                    small.text-muted DD/MM/AAAA
         else 
             p Nenhum curso disponível no momento.
