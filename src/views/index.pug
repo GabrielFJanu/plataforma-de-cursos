@@ -1,30 +1,26 @@
-doctype html
-html(lang="pt-BR")
-    head
-        title Cursos
-        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh", crossorigin="anonymous")
-        link(rel="stylesheet", href="/css/style.css")
-    body 
-        h1.m-4 Cursos disponíveis
+extends layouts/layout.pug 
 
-        if courses.length > 0
-            each course in courses
-                div.card.m-4(style="max-width: 640px;")
-                    div.row.no-gutters
-                        div.col-md-6
-                            iframe(
-                                src=`https://www.youtube.com/embed/${course.youtubeId}`,
-                                title= course.title,
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-                                referrerpolicy="strict-origin-when-cross-origin"
-                            )
-                        div.col-md-6
-                            div.card-body
-                                p.card-text.badge.badge-secondary= course.knowledgeArea
-                                h5.card-title= course.title
-                                p.card-text= course.description 
-                                p.card-text
-                                    small.text-muted Criado em 
-                                    small.text-muted= new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(course.createdAt))
-        else 
-            p Nenhum curso disponível no momento.
+block content
+    h3.m-4 Cursos disponíveis
+
+    if courses.length > 0
+        each course in courses
+            div.card.bg-light.m-4(style="max-width: 640px;")
+                div.row.no-gutters
+                    div.col-md-6
+                        iframe(
+                            src=`https://www.youtube.com/embed/${course.youtubeId}`,
+                            title= course.title,
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+                            referrerpolicy="strict-origin-when-cross-origin"
+                        )
+                    div.col-md-6
+                        div.card-body
+                            p.card-text.badge.badge-secondary= course.knowledgeArea
+                            h5.card-title= course.title
+                            p.card-text= course.description 
+                            p.card-text
+                                small.text-muted Criado em 
+                                small.text-muted= new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(course.createdAt))
+    else 
+        p Nenhum curso disponível no momento.

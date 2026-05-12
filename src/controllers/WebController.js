@@ -6,6 +6,7 @@ class WebController {
             const coursesDto = await CourseService.getAll();
 
             res.render('index', {
+                title: 'index',
                 courses: coursesDto
             });
         }

@@ -2,3 +2,14 @@ iframe {
     height: 100%;
     border-radius: 6px;
 }
+
+.logo-icon {
+    position: relative;
+    top: -10px;
+}
+
+.logo-text {
+    font-weight: 550;
+    font-family: cambria;
+    font-size: 40px;
+}

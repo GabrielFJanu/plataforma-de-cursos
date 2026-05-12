@@ -29,7 +29,7 @@ class CourseRepository {
 
         await db.write();
 
-        return newCourse
+        return newCourse;
     }
 
     static async update(id, updateCourseData) {
