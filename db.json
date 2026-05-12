@@ -1,4 +1,21 @@
 {
-  "courses": [],
-  "users": []
+  "courses": [
+    {
+      "id": "6cbff579-cf9c-40ac-a424-2a51c008c509",
+      "title": "Como desenhar do ZERO",
+      "description": "Curso introdutório de desenho para iniciantes",
+      "knowledgeArea": "Artes",
+      "url": "https://www.youtube.com/watch?v=3CKCOYvqZIk",
+      "creatorId": "a69ec8df-03fd-4ae4-bd4d-a45fc361875a",
+      "youtubeId": "3CKCOYvqZIk"
+    }
+  ],
+  "users": [
+    {
+      "id": "a69ec8df-03fd-4ae4-bd4d-a45fc361875a",
+      "firstname": "Gabriel",
+      "lastname": "Januário",
+      "email": "gabrielfreitasj2004@gmail.com"
+    }
+  ]
 }

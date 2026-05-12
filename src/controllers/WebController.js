@@ -1,7 +1,13 @@
+import CourseService from "../services/CourseService.js";
+
 class WebController {
     static async index(req, res, next) {
         try {
-            res.render('index');
+            const coursesDto = await CourseService.getAll();
+
+            res.render('index', {
+                courses: coursesDto
+            });
         }
         catch (error) {
             next(error);

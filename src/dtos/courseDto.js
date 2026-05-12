@@ -5,7 +5,7 @@ export class CourseResponseDto {
         this.description = courseFromDb.description
         this.knowledgeArea = courseFromDb.knowledgeArea
         this.url = courseFromDb.url
-        // youtubeId omitido
+        this.youtubeId = courseFromDb.youtubeId
         // creatorId omitido
     }
 }
