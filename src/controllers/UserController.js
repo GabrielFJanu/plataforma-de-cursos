@@ -27,11 +27,11 @@ class UserController {
         }
     }
 
-    static async findCoursesById(req, res, next) {
+    static async findCoursesByCreatorId(req, res, next) {
         try {
-            const id = req.params.id;
+            const creatorId = req.params.id;
 
-            const coursesDto = await CourseService.findByCreatorId(id);
+            const coursesDto = await CourseService.findByCreatorId(creatorId);
 
             res.status(200).json(coursesDto);
         }
