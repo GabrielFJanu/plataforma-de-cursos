@@ -8,7 +8,7 @@ const courseRouter = Router();
 courseRouter.get('/', CourseController.getAll);
 courseRouter.post('/', validateCreateCourse, validationErrorHandler, CourseController.create);
 courseRouter.get('/:id', validateGetCourseById, validationErrorHandler, CourseController.getById);
-courseRouter.put('/:id', validateReplaceCourse, validationErrorHandler, CourseController.update);
+courseRouter.put('/:id', validateReplaceCourse, validationErrorHandler, CourseController.replace);
 courseRouter.patch('/:id', validateUpdateCourse, validationErrorHandler, CourseController.update);
 courseRouter.delete('/:id', validateDeleteCourse, validationErrorHandler, CourseController.delete);
 

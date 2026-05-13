@@ -2,6 +2,23 @@ import db from '../database/database.js';
 import { v4 as uuidv4 } from 'uuid';
 
 class CourseRepository {
+
+    static async create(createCourseData) {
+        await db.read();
+
+        const newCourse = {
+            id: uuidv4(),
+            ...createCourseData,
+            createdAt: new Date().toISOString()
+        };
+
+        db.data.courses.push(newCourse);
+
+        await db.write();
+
+        return newCourse;
+    }
+
     static async findAll(){
         await db.read();
 
@@ -30,36 +47,51 @@ class CourseRepository {
         return courses;
     }
 
-    static async create(createCourseData) {
+    static async replace(id, replaceCourseData) {
         await db.read();
 
-        const newCourse = {
-            id: uuidv4(),
-            ...createCourseData,
-            createdAt: new Date().toISOString()
+        const courseIndex = db.data.courses.findIndex(course => course.id === id);
+
+        if (courseIndex === -1) {
+            return null;
+        }
+
+        const currentCourse = db.data.courses[courseIndex];
+
+        const replacedCourse = {
+            id: currentCourse.id,
+            ...replaceCourseData,
+            createdAt: currentCourse.createdAt
         };
 
-        db.data.courses.push(newCourse);
+        db.data.courses[courseIndex] = replacedCourse;
 
         await db.write();
 
-        return newCourse;
+        return replacedCourse;
     }
 
     static async update(id, updateCourseData) {
         await db.read();
 
-        const course = db.data.courses.find(course => course.id == id);
+        const courseIndex = db.data.courses.findIndex(course => course.id === id);
 
-        if (!course) {
+        if (courseIndex === -1) {
             return null;
         }
 
-        Object.assign(course, updateCourseData);
+        const currentCourse = db.data.courses[courseIndex];
+
+        const updatedCourse = {
+            ...currentCourse,
+            ...updateCourseData
+        };
+
+        db.data.courses[courseIndex] = updatedCourse;
 
         await db.write();
 
-        return course;
+        return updatedCourse;
     }
 
     static async delete(id) {

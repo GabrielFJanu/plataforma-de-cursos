@@ -2,6 +2,23 @@ import db from '../database/database.js';
 import { v4 as uuidv4 } from 'uuid';
 
 class UserRepository {
+
+    static async create(createUserData) {
+        await db.read();
+
+        const newUser = {
+            id: uuidv4(),
+            ...createUserData,
+            createdAt: new Date().toISOString()
+        };
+
+        db.data.users.push(newUser);
+
+        await db.write();
+
+        return newUser;
+    }
+
     static async findAll(){
         await db.read();
 
@@ -28,22 +45,6 @@ class UserRepository {
 
         const user = db.data.users.find(user => user.email == email);
         return user
-    }
-
-    static async create(createUserData) {
-        await db.read();
-
-        const newUser = {
-            id: uuidv4(),
-            ...createUserData,
-            createdAt: new Date().toISOString()
-        };
-
-        db.data.users.push(newUser);
-
-        await db.write();
-
-        return newUser;
     }
 
     static async replace(id, replaceUserData) {

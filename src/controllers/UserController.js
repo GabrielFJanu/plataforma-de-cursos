@@ -3,6 +3,19 @@ import CourseService from "../services/CourseService.js";
 
 class UserController {
 
+    static async create(req, res, next) {
+        try {
+            const createUserData = req.body;
+
+            const newUserDto = await UserService.create(createUserData);
+
+            res.status(201).json(newUserDto);
+        }
+        catch (error) {
+            next(error);
+        }
+    }
+
     static async getAll(req, res, next) {
         try {
             const usersDto = await UserService.getAll();
@@ -34,19 +47,6 @@ class UserController {
             const coursesDto = await CourseService.getByCreatorId(creatorId);
 
             res.status(200).json(coursesDto);
-        }
-        catch (error) {
-            next(error);
-        }
-    }
-
-    static async create(req, res, next) {
-        try {
-            const createUserData = req.body;
-
-            const newUserDto = await UserService.create(createUserData);
-
-            res.status(201).json(newUserDto);
         }
         catch (error) {
             next(error);

@@ -2,6 +2,19 @@ import CourseService from "../services/CourseService.js";
 
 class CourseController {
 
+    static async create(req, res, next) {
+        try {
+            const createCourseData = req.body;
+
+            const newCourseDto = await CourseService.create(createCourseData);
+
+            res.status(201).json(newCourseDto);
+        }
+        catch (error) {
+            next(error);
+        }
+    }
+
     static async getAll(req, res, next) {
         try {
             const coursesDto = await CourseService.getAll();
@@ -26,13 +39,14 @@ class CourseController {
         }
     }
 
-    static async create(req, res, next) {
+    static async replace(req, res, next) {
         try {
-            const createCourseData = req.body;
+            const id = req.params.id;
+            const replaceCourseData = req.body;
 
-            const newCourseDto = await CourseService.create(createCourseData);
+            const courseDto = await CourseService.replace(id, replaceCourseData);
 
-            res.status(201).json(newCourseDto);
+            res.status(200).json(courseDto);
         }
         catch (error) {
             next(error);

@@ -4,6 +4,20 @@ import UserRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
 
 class UserService {
+
+    static async create(createUserData) {
+        const userWithSameEmail = await UserRepository.findByEmail(createUserData.email);
+
+        if (userWithSameEmail) {
+            throw createHttpError('Esse email já foi cadastrado no sistema', 409);
+        }
+
+        const userFromDb = await UserRepository.create(createUserData);
+
+        const userDto = new UserResponseDto(userFromDb);
+        return userDto;
+    }
+
     static async getAll() {
         const usersFromDb = await UserRepository.findAll();
         const usersDto = usersFromDb.map( userFromDb => new UserResponseDto(userFromDb));
@@ -16,19 +30,6 @@ class UserService {
         if (!userFromDb) {
             throw createHttpError('Usuário não encontrado', 404);
         }
-
-        const userDto = new UserResponseDto(userFromDb);
-        return userDto;
-    }
-
-    static async create(createUserData) {
-        const userWithSameEmail = await UserRepository.findByEmail(createUserData.email);
-
-        if (userWithSameEmail) {
-            throw createHttpError('Esse email já foi cadastrado no sistema', 409);
-        }
-
-        const userFromDb = await UserRepository.create(createUserData);
 
         const userDto = new UserResponseDto(userFromDb);
         return userDto;
