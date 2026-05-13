@@ -16,6 +16,13 @@ class CourseRepository {
         return course;
     }
 
+    static async findByIds(ids) {
+        await db.read();
+
+        const courses = db.data.courses.filter(course => ids.includes(course.id));
+        return courses;
+    }
+
     static async findByCreatorId(creatorId) {
         await db.read();
 

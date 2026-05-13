@@ -16,6 +16,13 @@ class UserRepository {
         return user;
     }
 
+    static async findByIds(ids) {
+        await db.read();
+
+        const users = db.data.users.filter(user => ids.includes(user.id));
+        return users;
+    }
+
     static async create(createUserData) {
         await db.read();
 
