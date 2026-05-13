@@ -23,6 +23,13 @@ class UserRepository {
         return users;
     }
 
+    static async findByEmail(email) {
+        await db.read();
+
+        const user = db.data.users.find(user => user.email == email);
+        return user
+    }
+
     static async create(createUserData) {
         await db.read();
 

@@ -22,6 +22,12 @@ class UserService {
     }
 
     static async create(createUserData) {
+        const userWithSameEmail = await UserRepository.findByEmail(createUserData.email);
+
+        if (userWithSameEmail) {
+            throw createHttpError('Esse email já foi cadastrado no sistema', 409);
+        }
+
         const userFromDb = await UserRepository.create(createUserData);
 
         const userDto = new UserResponseDto(userFromDb);
@@ -37,6 +43,14 @@ class UserService {
 
         if (!userFromDb) {
             throw createHttpError('Usuário não encontrado', 404);
+        }
+
+        if (updateUserData.email !== undefined) {
+            const userWithSameEmail = await UserRepository.findByEmail(updateUserData.email);
+
+            if (userWithSameEmail && userWithSameEmail.id !== id) {
+                throw createHttpError('Esse email já foi cadastrado no sistema', 409);
+            }
         }
 
         const updatedUserFromDb = await UserRepository.update(id, updateUserData);
