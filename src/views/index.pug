@@ -21,6 +21,11 @@ block content
                             p.card-text= course.description 
                             p.card-text
                                 small.text-muted Criado em 
-                                small.text-muted= new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(course.createdAt))
+                                small.text-muted= `${new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(course.createdAt))} `
+                                small.text-muted por 
+                                if course.creator
+                                    small.text-muted= `${course.creator.firstname} ${course.creator.lastname}`
+                                else
+                                    small.text-muted Criador não encontrado
     else 
         p Nenhum curso disponível no momento.

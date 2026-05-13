@@ -3,11 +3,11 @@ import CourseService from "../services/CourseService.js";
 class WebController {
     static async index(req, res, next) {
         try {
-            const coursesDto = await CourseService.getAll();
+            const coursesWithCreatorDto = await CourseService.getAllWithCreator();
 
             res.render('index', {
                 title: 'index',
-                courses: coursesDto
+                courses: coursesWithCreatorDto
             });
         }
         catch (error) {
