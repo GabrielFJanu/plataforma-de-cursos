@@ -1,4 +1,5 @@
 import { UserResponseDto } from "../dtos/userDto.js";
+import CourseRepository from "../repositories/CourseRepository.js";
 import UserRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
 
@@ -49,6 +50,12 @@ class UserService {
 
         if (!userFromDb) {
             throw createHttpError('Usuário não encontrado', 404);
+        }
+
+        const coursesCreatedByUser = await CourseRepository.findByCreatorId(userFromDb.id);
+
+        for (const courseCreatedByUser of coursesCreatedByUser) {
+            await CourseRepository.delete(courseCreatedByUser.id);
         }
 
         await UserRepository.delete(id);
