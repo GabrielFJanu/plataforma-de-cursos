@@ -46,20 +46,51 @@ class UserRepository {
         return newUser;
     }
 
-    static async update(id, updateUserData) {
+    static async replace(id, replaceUserData) {
         await db.read();
 
-        const user = db.data.users.find(user => user.id == id);
+        const userIndex = db.data.users.findIndex(user => user.id === id);
 
-        if (!user) {
+        if (userIndex === -1) {
             return null;
         }
 
-        Object.assign(user, updateUserData);
+        const currentUser = db.data.users[userIndex];
+
+        const replacedUser = {
+            id: currentUser.id,
+            ...replaceUserData,
+            createdAt: currentUser.createdAt
+        };
+
+        db.data.users[userIndex] = replacedUser;
 
         await db.write();
 
-        return user;
+        return replacedUser;
+    }
+
+    static async update(id, updateUserData) {
+        await db.read();
+
+        const userIndex = db.data.users.findIndex(user => user.id === id);
+
+        if (userIndex === -1) {
+            return null;
+        }
+
+        const currentUser = db.data.users[userIndex];
+
+        const updatedUser = {
+            ...currentUser,
+            ...updateUserData
+        };
+
+        db.data.users[userIndex] = updatedUser;
+
+        await db.write();
+
+        return updatedUser;
     }
 
     static async delete(id) {

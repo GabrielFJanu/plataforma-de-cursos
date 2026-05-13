@@ -53,6 +53,20 @@ class UserController {
         }
     }
 
+    static async replace(req, res, next) {
+        try {
+            const id = req.params.id;
+            const replaceUserData = req.body;
+
+            const userDto = await UserService.replace(id, replaceUserData);
+
+            res.status(200).json(userDto);
+        }
+        catch (error) {
+            next(error);
+        }
+    }
+
     static async update(req, res, next) {
         try {
             const id = req.params.id;
