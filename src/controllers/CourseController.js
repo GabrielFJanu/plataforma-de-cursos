@@ -2,9 +2,9 @@ import CourseService from "../services/CourseService.js";
 
 class CourseController {
 
-    static async findAll(req, res, next) {
+    static async getAll(req, res, next) {
         try {
-            const coursesDto = await CourseService.findAll();
+            const coursesDto = await CourseService.getAll();
 
             res.status(200).json(coursesDto);
         }
@@ -13,11 +13,11 @@ class CourseController {
         }
     }
 
-    static async findById(req, res, next) {
+    static async getById(req, res, next) {
         try {
             const id = req.params.id;
         
-            const courseDto = await CourseService.findById(id);
+            const courseDto = await CourseService.getById(id);
 
             res.status(200).json(courseDto)
         }

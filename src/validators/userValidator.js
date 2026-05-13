@@ -1,6 +1,6 @@
 import { body, param, checkExact } from 'express-validator';
 
-export const findUserByIdValidation = checkExact([
+export const getUserByIdValidation = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')

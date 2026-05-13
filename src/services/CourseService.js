@@ -5,14 +5,14 @@ import { createHttpError } from "../utils/createHttpError.js";
 import { extractYoutubeId } from "../utils/extractYoutubeId.js";
 
 class CourseService {
-    static async findAll() {
+    static async getAll() {
         const coursesFromDb = await CourseRepository.findAll();
 
         const coursesDto = coursesFromDb.map(courseFromDb => new CourseResponseDto(courseFromDb));
         return coursesDto
     }
 
-    static async findById(id) {
+    static async getById(id) {
         const courseFromDb = await CourseRepository.findById(id);
 
         if (!courseFromDb) {
@@ -23,7 +23,7 @@ class CourseService {
         return courseDto;
     }
 
-    static async findByCreatorId(creatorId) {
+    static async getByCreatorId(creatorId) {
         const userFromDb = await UserRepository.findById(creatorId);
 
         if (!userFromDb) {

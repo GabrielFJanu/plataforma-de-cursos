@@ -3,13 +3,13 @@ import UserRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
 
 class UserService {
-    static async findAll() {
+    static async getAll() {
         const usersFromDb = await UserRepository.findAll();
         const usersDto = usersFromDb.map( userFromDb => new UserResponseDto(userFromDb));
         return usersDto;
     }
 
-    static async findById(id) {
+    static async getById(id) {
         const userFromDb = await UserRepository.findById(id);
 
         if (!userFromDb) {
