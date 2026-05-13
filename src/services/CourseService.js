@@ -15,7 +15,7 @@ class CourseService {
     static async getAllWithCreator() {
         const coursesFromDb = await CourseRepository.findAll();
 
-        const creatorIds = [... new Set(coursesFromDb.map(courseFromDb => courseFromDb.creatorId))];
+        const creatorIds = [...new Set(coursesFromDb.map(courseFromDb => courseFromDb.creatorId))];
 
         const creatorsFromDb = await UserRepository.findByIds(creatorIds);
 
@@ -25,11 +25,7 @@ class CourseService {
         return coursesWithCreatorDto;
         
         function enrichCoursesWithCreator(courses, creators) {
-            const mapCreatorIdToCreator = new Map();
-            creators.forEach(creator => {
-                mapCreatorIdToCreator.set(creator.id,creator);
-            });
-
+            const mapCreatorIdToCreator = new Map(creators.map(creator => [creator.id, creator]));
             const coursesWithCreator = courses.map(course => ({
                 ...course,
                 creator: mapCreatorIdToCreator.get(course.creatorId) || null
