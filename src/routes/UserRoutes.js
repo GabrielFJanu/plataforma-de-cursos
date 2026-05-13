@@ -10,7 +10,7 @@ userRouter.get('/:id', validateGetUserById, validationErrorHandler, UserControll
 userRouter.post('/', validateCreateUser, validationErrorHandler, UserController.create);
 userRouter.put('/:id', validateReplaceUser, validationErrorHandler, UserController.update);
 userRouter.patch('/:id', validateUpdateUser, validationErrorHandler, UserController.update);
-userRouter.delete('/:id', validateCreateUser, validationErrorHandler, UserController.delete);
+userRouter.delete('/:id', validateDeleteUser, validationErrorHandler, UserController.delete);
 userRouter.get('/:id/courses', validateGetCoursesByCreatorId, validationErrorHandler, UserController.getCoursesByCreatorId);
 
 export default userRouter;
