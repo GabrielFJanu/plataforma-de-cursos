@@ -3,9 +3,9 @@ import CourseService from "../services/CourseService.js";
 
 class UserController {
 
-    static async getAll(req, res, next) {
+    static async findAll(req, res, next) {
         try {
-            const usersDto = await UserService.getAll();
+            const usersDto = await UserService.findAll();
 
             res.status(200).json(usersDto);
         }
@@ -14,13 +14,26 @@ class UserController {
         }
     }
 
-    static async getById(req, res, next) {
+    static async findById(req, res, next) {
         try {
             const id = req.params.id;
         
-            const userDto = await UserService.getById(id);
+            const userDto = await UserService.findById(id);
 
             res.status(200).json(userDto)
+        }
+        catch (error) {
+            next(error);
+        }
+    }
+
+    static async findCoursesById(req, res, next) {
+        try {
+            const id = req.params.id;
+
+            const coursesDto = await CourseService.findByCreatorId(id);
+
+            res.status(200).json(coursesDto);
         }
         catch (error) {
             next(error);
@@ -61,19 +74,6 @@ class UserController {
             await UserService.delete(id);
 
             res.status(204).send();
-        }
-        catch (error) {
-            next(error);
-        }
-    }
-
-    static async getCoursesByUserId(req, res, next) {
-        try {
-            const userId = req.params.id;
-
-            const coursesDto = await CourseService.getByUserId(userId);
-
-            res.status(200).json(coursesDto);
         }
         catch (error) {
             next(error);

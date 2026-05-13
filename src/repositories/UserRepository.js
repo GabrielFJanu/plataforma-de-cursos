@@ -2,14 +2,14 @@ import db from '../database/database.js';
 import { v4 as uuidv4 } from 'uuid';
 
 class UserRepository {
-    static async getAll(){
+    static async findAll(){
         await db.read();
 
         const users = db.data.users;
         return users;
     }
 
-    static async getById(id) {
+    static async findById(id) {
         await db.read();
 
         const user = db.data.users.find(user => user.id == id);

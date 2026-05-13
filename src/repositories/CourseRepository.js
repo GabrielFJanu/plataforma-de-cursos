@@ -2,18 +2,25 @@ import db from '../database/database.js';
 import { v4 as uuidv4 } from 'uuid';
 
 class CourseRepository {
-    static async getAll(){
+    static async findAll(){
         await db.read();
 
         const courses = db.data.courses;
         return courses;
     }
 
-    static async getById(id) {
+    static async findById(id) {
         await db.read();
 
         const course = db.data.courses.find(course => course.id == id);
         return course;
+    }
+
+    static async findByCreatorId(creatorId) {
+        await db.read();
+
+        const courses = db.data.courses.filter(course => course.creatorId == creatorId);
+        return courses;
     }
 
     static async create(createCourseData) {
@@ -54,13 +61,6 @@ class CourseRepository {
         db.data.courses = db.data.courses.filter(course => course.id != id);
 
         await db.write();
-    }
-
-    static async getByUserId(userId) {
-        await db.read();
-
-        const courses = db.data.courses.filter(course => course.creatorId == userId);
-        return courses;
     }
 }
 

@@ -1,19 +1,19 @@
-import { CourseResponseDto } from "../dtos/courseDto.js";
+import { CourseResponseDto, CourseWithCreatorResponseDto } from "../dtos/courseDto.js";
 import CourseRepository from "../repositories/CourseRepository.js";
 import UserRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
 import { extractYoutubeId } from "../utils/extractYoutubeId.js";
 
 class CourseService {
-    static async getAll() {
-        const coursesFromDb = await CourseRepository.getAll();
+    static async findAll() {
+        const coursesFromDb = await CourseRepository.findAll();
 
         const coursesDto = coursesFromDb.map(courseFromDb => new CourseResponseDto(courseFromDb));
         return coursesDto
     }
 
-    static async getById(id) {
-        const courseFromDb = await CourseRepository.getById(id);
+    static async findById(id) {
+        const courseFromDb = await CourseRepository.findById(id);
 
         if (!courseFromDb) {
             throw createHttpError('Curso não encontrado', 404);
@@ -33,7 +33,7 @@ class CourseService {
 
         createCourseData.youtubeId = youtubeId;
 
-        const criador = await UserRepository.getById(createCourseData.creatorId);
+        const criador = await UserRepository.findById(createCourseData.creatorId);
 
         if (!criador) {
             throw createHttpError('Criador não encontrado', 404);
@@ -50,7 +50,7 @@ class CourseService {
             throw createHttpError('Nenhum dado para atualização foi enviado', 400);
         }
 
-        const courseFromDb = await CourseRepository.getById(id);
+        const courseFromDb = await CourseRepository.findById(id);
 
         if (!courseFromDb) {
             throw createHttpError('Curso não encontrado', 404);
@@ -67,7 +67,7 @@ class CourseService {
         }
 
         if (updateCourseData.creatorId !== undefined) {
-            const criador = await UserRepository.getById(updateCourseData.creatorId);
+            const criador = await UserRepository.findById(updateCourseData.creatorId);
 
             if (!criador) {
                 throw createHttpError('Criador não encontrado', 404);
@@ -81,7 +81,7 @@ class CourseService {
     }
 
     static async delete(id) {
-        const courseFromDb = await CourseRepository.getById(id);
+        const courseFromDb = await CourseRepository.findById(id);
 
         if (!courseFromDb) {
             throw createHttpError('Curso não encontrado', 404);
@@ -90,14 +90,14 @@ class CourseService {
         await CourseRepository.delete(id);
     }
 
-    static async getByUserId(userId) {
-        const userFromDb = await UserRepository.getById(userId);
+    static async findByCreatorId(creatorId) {
+        const userFromDb = await UserRepository.findById(creatorId);
 
         if (!userFromDb) {
             throw createHttpError('Usuário não encontrado', 404);
         }
 
-        const coursesFromDb = await CourseRepository.getByUserId(userId);
+        const coursesFromDb = await CourseRepository.findByCreatorId(creatorId);
 
         const coursesDto = coursesFromDb.map(course => new CourseResponseDto(course));
         return coursesDto;

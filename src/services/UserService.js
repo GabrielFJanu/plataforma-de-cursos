@@ -3,14 +3,14 @@ import UserRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
 
 class UserService {
-    static async getAll() {
-        const usersFromDb = await UserRepository.getAll();
+    static async findAll() {
+        const usersFromDb = await UserRepository.findAll();
         const usersDto = usersFromDb.map( userFromDb => new UserResponseDto(userFromDb));
         return usersDto;
     }
 
-    static async getById(id) {
-        const userFromDb = await UserRepository.getById(id);
+    static async findById(id) {
+        const userFromDb = await UserRepository.findById(id);
 
         if (!userFromDb) {
             throw createHttpError('Usuário não encontrado', 404);
@@ -32,7 +32,7 @@ class UserService {
             throw createHttpError('Nenhum dado para atualização foi enviado', 400);
         }
 
-        const userFromDb = await UserRepository.getById(id);
+        const userFromDb = await UserRepository.findById(id);
 
         if (!userFromDb) {
             throw createHttpError('Usuário não encontrado', 404);
@@ -45,7 +45,7 @@ class UserService {
     }
 
     static async delete(id) {
-        const userFromDb = await UserRepository.getById(id);
+        const userFromDb = await UserRepository.findById(id);
 
         if (!userFromDb) {
             throw createHttpError('Usuário não encontrado', 404);
