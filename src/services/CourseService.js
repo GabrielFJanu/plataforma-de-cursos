@@ -23,6 +23,19 @@ class CourseService {
         return courseDto;
     }
 
+    static async findByCreatorId(creatorId) {
+        const userFromDb = await UserRepository.findById(creatorId);
+
+        if (!userFromDb) {
+            throw createHttpError('Usuário não encontrado', 404);
+        }
+
+        const coursesFromDb = await CourseRepository.findByCreatorId(creatorId);
+
+        const coursesDto = coursesFromDb.map(course => new CourseResponseDto(course));
+        return coursesDto;
+    }
+
     static async create(createCourseData) {
 
         const youtubeId = extractYoutubeId(createCourseData.url);
@@ -89,20 +102,6 @@ class CourseService {
 
         await CourseRepository.delete(id);
     }
-
-    static async findByCreatorId(creatorId) {
-        const userFromDb = await UserRepository.findById(creatorId);
-
-        if (!userFromDb) {
-            throw createHttpError('Usuário não encontrado', 404);
-        }
-
-        const coursesFromDb = await CourseRepository.findByCreatorId(creatorId);
-
-        const coursesDto = coursesFromDb.map(course => new CourseResponseDto(course));
-        return coursesDto;
-    }
-
 }
 
 export default CourseService;
