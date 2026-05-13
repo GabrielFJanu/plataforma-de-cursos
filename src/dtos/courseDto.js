@@ -10,3 +10,17 @@ export class CourseResponseDto {
         this.createdAt = courseFromDb.createdAt
     }
 }
+
+export class CourseWithCreatorResponseDto {
+    constructor(courseWithCreatorFromDb) {
+        this.id = courseWithCreatorFromDb.id
+        this.title = courseWithCreatorFromDb.title
+        this.description = courseWithCreatorFromDb.description
+        this.knowledgeArea = courseWithCreatorFromDb.knowledgeArea
+        this.url = courseWithCreatorFromDb.url
+        this.youtubeId = courseWithCreatorFromDb.youtubeId
+        // creatorId omitido
+        this.createdAt = courseWithCreatorFromDb.createdAt
+        this.creator = courseWithCreatorFromDb.creator
+    }
+}
