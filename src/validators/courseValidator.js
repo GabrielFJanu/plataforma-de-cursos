@@ -1,13 +1,13 @@
 import { body, param, checkExact } from 'express-validator';
 
-export const getCourseByIdValidation = checkExact([
+export const validateGetCourseById = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
         .isUUID().withMessage('O ID deve ser um UUID válido')
 ]);
 
-export const createCourseValidation = checkExact([
+export const validateCreateCourse = checkExact([
     body('title')
         .trim()
         .notEmpty().withMessage('O título não deve ser vazio')
@@ -35,7 +35,7 @@ export const createCourseValidation = checkExact([
         .isUUID().withMessage('O ID do usuário criador deve ser um UUID válido')
 ]);
 
-export const fullUpdateCourseValidation = checkExact([
+export const validateReplaceCourse = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
@@ -68,7 +68,7 @@ export const fullUpdateCourseValidation = checkExact([
         .isUUID().withMessage('O ID do usuário criador deve ser um UUID válido')
 ]);
 
-export const partialUpdateCourseValidation = checkExact([
+export const validateUpdateCourse = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
@@ -105,9 +105,4 @@ export const partialUpdateCourseValidation = checkExact([
         .isUUID().withMessage('O ID do usuário criador deve ser um UUID válido')
 ]);
 
-export const deleteCourseValidation = checkExact([
-    param('id')
-        .trim()
-        .notEmpty().withMessage('O ID não deve ser vazio')
-        .isUUID().withMessage('O ID deve ser um UUID válido')
-])
+export const validateDeleteCourse = validateGetCourseById;
