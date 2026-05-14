@@ -17,10 +17,10 @@ app.use('/api/courses', courseRouter);
 app.use('/api/users', userRouter);
 app.use('/', webRouter);
 
-app.use(globalErrorHandler);
-
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, '../public')));
+
+app.use(globalErrorHandler);
 
 export default app;
