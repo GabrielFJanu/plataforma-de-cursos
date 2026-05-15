@@ -6,7 +6,7 @@ export class CourseResponseDto {
         this.knowledgeArea = courseFromDb.knowledgeArea
         this.url = courseFromDb.url
         this.youtubeId = courseFromDb.youtubeId
-        // creatorId omitido
+        this.creatorId = courseFromDb.creatorId
         this.createdAt = courseFromDb.createdAt
     }
 }
@@ -19,7 +19,7 @@ export class CourseWithCreatorResponseDto {
         this.knowledgeArea = courseWithCreatorFromDb.knowledgeArea
         this.url = courseWithCreatorFromDb.url
         this.youtubeId = courseWithCreatorFromDb.youtubeId
-        // creatorId omitido
+        this.creatorId = courseWithCreatorFromDb.creatorId
         this.createdAt = courseWithCreatorFromDb.createdAt
         this.creator = courseWithCreatorFromDb.creator ? { firstname: courseWithCreatorFromDb.creator.firstname, lastname: courseWithCreatorFromDb.creator.lastname } : null
     }
