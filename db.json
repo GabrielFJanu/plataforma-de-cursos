@@ -18,6 +18,15 @@
       "creatorId": "a69ec8df-03fd-4ae4-bd4d-a45fc361875a",
       "youtubeId": "Y9Zw6xOGly0",
       "createdAt": "2026-05-12T01:58:30.818Z"
+    },
+    {
+      "id": "dd4cf1f5-8d46-49ea-8a2c-d52d46ae829d",
+      "title": "Como se tornar um galado no Django",
+      "knowledgeArea": "Programação",
+      "url": "https://youtu.be/6AEvlNgRPNc?list=PL-2EBeDYMIbTLulc9FSoAXhbmXpLq2l5t",
+      "creatorId": "6811f8a0-cf95-4de6-858d-5795f7e89776",
+      "youtubeId": "6AEvlNgRPNc",
+      "createdAt": "2026-05-15T01:35:31.430Z"
     }
   ],
   "users": [
@@ -27,6 +36,13 @@
       "lastname": "Januário",
       "email": "gabrielfreitasj2004@gmail.com",
       "createdAt": "2026-05-12T01:43:12+00:00"
+    },
+    {
+      "id": "6811f8a0-cf95-4de6-858d-5795f7e89776",
+      "firstname": "Fulano",
+      "lastname": "Aipapai da Silva",
+      "email": "aipapito@gmail.com",
+      "createdAt": "2026-05-15T01:35:08.197Z"
     }
   ]
 }
