@@ -1,6 +1,8 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from '../swagger/swagger.js';
 import courseRouter from './routes/courseRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import webRouter from './routes/webRoutes.js';
@@ -16,6 +18,7 @@ app.use(express.json());
 app.use('/api/courses', courseRouter);
 app.use('/api/users', userRouter);
 app.use('/', webRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
