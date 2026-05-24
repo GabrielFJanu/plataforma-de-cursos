@@ -21,13 +21,7 @@ export const validateCreateCourse = checkExact([
         .isString().withMessage('O endereço URL deve ser um texto')
         .trim()
         .notEmpty().withMessage('O endereço URL não deve ser vazio')
-        .isURL().withMessage('O endereço URL deve ser válido'),
-
-    body('creatorId')
-        .isString().withMessage('O ID do usuário criador deve ser um texto')
-        .trim()
-        .notEmpty().withMessage('O ID do usuário criador não deve ser vazio')
-        .isUUID().withMessage('O ID do usuário criador deve ser um UUID válido')
+        .isURL().withMessage('O endereço URL deve ser válido')
 ]);
 
 export const validateGetCourseById = checkExact([
@@ -63,13 +57,7 @@ export const validateReplaceCourse = checkExact([
         .isString().withMessage('O endereço URL deve ser um texto')
         .trim()
         .notEmpty().withMessage('O endereço URL não deve ser vazio')
-        .isURL().withMessage('O endereço URL deve ser válido'),
-
-    body('creatorId')
-        .isString().withMessage('O ID do usuário criador deve ser um texto')
-        .trim()
-        .notEmpty().withMessage('O ID do usuário criador não deve ser vazio')
-        .isUUID().withMessage('O ID do usuário criador deve ser um UUID válido')
+        .isURL().withMessage('O endereço URL deve ser válido')
 ]);
 
 export const validateUpdateCourse = checkExact([
@@ -101,14 +89,7 @@ export const validateUpdateCourse = checkExact([
         .isString().withMessage('O endereço URL deve ser um texto')
         .trim()
         .notEmpty().withMessage('O endereço URL não deve ser vazio')
-        .isURL().withMessage('O endereço URL deve ser válido'),
-
-    body('creatorId')
-        .optional()
-        .isString().withMessage('O ID do usuário criador deve ser um texto')
-        .trim()
-        .notEmpty().withMessage('O ID do usuário criador não deve ser vazio')
-        .isUUID().withMessage('O ID do usuário criador deve ser um UUID válido')
+        .isURL().withMessage('O endereço URL deve ser válido')
 ]);
 
 export const validateDeleteCourse = validateGetCourseById;

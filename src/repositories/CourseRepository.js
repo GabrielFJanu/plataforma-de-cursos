@@ -61,6 +61,7 @@ class CourseRepository {
         const replacedCourse = {
             id: currentCourse.id,
             ...replaceCourseData,
+            creatorId: currentCourse.creatorId,
             createdAt: currentCourse.createdAt
         };
 

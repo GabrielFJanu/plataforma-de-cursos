@@ -16,12 +16,6 @@ class CourseService {
 
         createCourseData.youtubeId = youtubeId;
 
-        const creator = await UserRepository.findById(createCourseData.creatorId);
-
-        if (!creator) {
-            throw createHttpError('Criador não encontrado', 404);
-        }
-
         const courseFromDb = await CourseRepository.create(createCourseData);
 
         const courseDto = new CourseResponseDto(courseFromDb);
@@ -96,12 +90,6 @@ class CourseService {
 
         replaceCourseData.youtubeId = youtubeId;
 
-        const creator = await UserRepository.findById(replaceCourseData.creatorId);
-
-        if (!creator) {
-            throw createHttpError('Criador não encontrado', 404);
-        }
-
         const updatedCourseFromDb = await CourseRepository.replace(id, replaceCourseData);
 
         const updatedCourseDto = new CourseResponseDto(updatedCourseFromDb);
@@ -127,14 +115,6 @@ class CourseService {
             }
 
             updateCourseData.youtubeId = youtubeId;
-        }
-
-        if (updateCourseData.creatorId !== undefined) {
-            const creator = await UserRepository.findById(updateCourseData.creatorId);
-
-            if (!creator) {
-                throw createHttpError('Criador não encontrado', 404);
-            }
         }
 
         const updatedCourseFromDb = await CourseRepository.update(id, updateCourseData);
