@@ -4,6 +4,7 @@ export class UserResponseDto {
         this.firstname = userFromDb.firstname
         this.lastname = userFromDb.lastname
         this.email = userFromDb.email
+        // password foi omitido
         this.createdAt = userFromDb.createdAt
     }
 }

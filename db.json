@@ -35,6 +35,7 @@
       "firstname": "Gabriel",
       "lastname": "Januário",
       "email": "gabrielfreitasj2004@gmail.com",
+      "password": "123",
       "createdAt": "2026-05-12T01:43:12+00:00"
     },
     {
@@ -42,6 +43,7 @@
       "firstname": "Fulano",
       "lastname": "Aipapai da Silva",
       "email": "aipapito@gmail.com",
+      "password": "456",
       "createdAt": "2026-05-15T01:35:08.197Z"
     }
   ]

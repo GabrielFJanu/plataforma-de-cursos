@@ -1,7 +1,7 @@
 import { validationResult } from 'express-validator';
 import { createHttpError } from '../utils/createHttpError.js';
 
-export const validationErrorHandler = (req, res, next) => {
+const handleValidationError = (req, res, next) => {
     const validationErrors = validationResult(req);
 
     if (!validationErrors.isEmpty()) {
@@ -19,3 +19,5 @@ export const validationErrorHandler = (req, res, next) => {
 
     next();
 };
+
+export default handleValidationError;

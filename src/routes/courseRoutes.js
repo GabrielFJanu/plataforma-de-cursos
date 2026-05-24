@@ -1,7 +1,7 @@
 import { Router } from "express";
 import CourseController from "../controllers/CourseController.js";
 import { validateCreateCourse, validateGetCourseById, validateReplaceCourse, validateUpdateCourse, validateDeleteCourse } from "../validators/courseValidator.js";
-import { validationErrorHandler } from "../middlewares/validatorMiddleware.js";
+import handleValidationError from "../middlewares/validatorMiddleware.js";
 
 const courseRouter = Router();
 
@@ -44,7 +44,7 @@ const courseRouter = Router();
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.post('/', validateCreateCourse, validationErrorHandler, CourseController.create);
+courseRouter.post('/', validateCreateCourse, handleValidationError, CourseController.create);
 
 /**
  * @swagger
@@ -111,7 +111,7 @@ courseRouter.get('/', CourseController.getAll);
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.get('/:id', validateGetCourseById, validationErrorHandler, CourseController.getById);
+courseRouter.get('/:id', validateGetCourseById, handleValidationError, CourseController.getById);
 
 /**
  * @swagger
@@ -159,7 +159,7 @@ courseRouter.get('/:id', validateGetCourseById, validationErrorHandler, CourseCo
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.put('/:id', validateReplaceCourse, validationErrorHandler, CourseController.replace);
+courseRouter.put('/:id', validateReplaceCourse, handleValidationError, CourseController.replace);
 
 /**
  * @swagger
@@ -207,7 +207,7 @@ courseRouter.put('/:id', validateReplaceCourse, validationErrorHandler, CourseCo
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.patch('/:id', validateUpdateCourse, validationErrorHandler, CourseController.update);
+courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, CourseController.update);
 
 /**
  * @swagger
@@ -245,6 +245,6 @@ courseRouter.patch('/:id', validateUpdateCourse, validationErrorHandler, CourseC
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.delete('/:id', validateDeleteCourse, validationErrorHandler, CourseController.delete);
+courseRouter.delete('/:id', validateDeleteCourse, handleValidationError, CourseController.delete);
 
 export default courseRouter;
