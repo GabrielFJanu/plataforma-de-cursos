@@ -6,7 +6,7 @@ import { extractYoutubeId } from "../utils/extractYoutubeId.js";
 
 class CourseService {
 
-    static async create(createCourseData) {
+    static async create(createCourseData, creatorId) {
 
         const youtubeId = extractYoutubeId(createCourseData.url);
         
@@ -14,9 +14,13 @@ class CourseService {
             throw createHttpError('URL do YouTube inválida', 400);
         }
 
-        createCourseData.youtubeId = youtubeId;
+        const courseToCreate = {
+            ...createCourseData,
+            youtubeId,
+            creatorId
+        };
 
-        const courseFromDb = await CourseRepository.create(createCourseData);
+        const courseFromDb = await CourseRepository.create(courseToCreate);
 
         const courseDto = new CourseResponseDto(courseFromDb);
         return courseDto;
@@ -88,9 +92,12 @@ class CourseService {
             throw createHttpError('URL do YouTube inválida', 400);
         }
 
-        replaceCourseData.youtubeId = youtubeId;
+        const courseToReplace = {
+            ...replaceCourseData,
+            youtubeId
+        };
 
-        const updatedCourseFromDb = await CourseRepository.replace(id, replaceCourseData);
+        const updatedCourseFromDb = await CourseRepository.replace(id, courseToReplace);
 
         const updatedCourseDto = new CourseResponseDto(updatedCourseFromDb);
         return updatedCourseDto;
@@ -107,6 +114,8 @@ class CourseService {
             throw createHttpError('Curso não encontrado', 404);
         }
 
+        const courseToUpdate = { ...updateCourseData };
+
         if (updateCourseData.url !== undefined) {
             const youtubeId = extractYoutubeId(updateCourseData.url);
         
@@ -114,10 +123,10 @@ class CourseService {
                 throw createHttpError('URL do YouTube inválida', 400);
             }
 
-            updateCourseData.youtubeId = youtubeId;
+            courseToUpdate.youtubeId = youtubeId;
         }
 
-        const updatedCourseFromDb = await CourseRepository.update(id, updateCourseData);
+        const updatedCourseFromDb = await CourseRepository.update(id, courseToUpdate);
 
         const updatedCourseDto = new CourseResponseDto(updatedCourseFromDb);
         return updatedCourseDto;

@@ -4,12 +4,10 @@ class CourseController {
 
     static async create(req, res, next) {
         try {
-            const createCourseData = {
-                ...req.body,
-                creatorId: req.user.id
-            };
+            const createCourseData = req.body;
+            const creatorId = req.user.id;
 
-            const newCourseDto = await CourseService.create(createCourseData);
+            const newCourseDto = await CourseService.create(createCourseData, creatorId);
 
             res.status(201).json(newCourseDto);
         }
