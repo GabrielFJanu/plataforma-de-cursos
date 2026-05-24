@@ -7,6 +7,15 @@ const options = {
             title: "Plataforma de Cursos",
             version: "1.0.0",
             description: ""
+        },
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: "http",
+                    scheme: "bearer",
+                    bearerFormat: "JWT"
+                }
+            }
         }
     },
     apis: ["./src/routes/*.js", "./swagger/schemas/*.js"],

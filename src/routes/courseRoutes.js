@@ -12,6 +12,8 @@ const courseRouter = Router();
  *     summary: Cria um novo curso
  *     tags:
  *       - Courses
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -31,8 +33,8 @@ const courseRouter = Router();
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
- *       404:
- *         description: Criador do curso nao encontrado
+ *       401:
+ *         description: Token ausente, invalido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -53,6 +55,8 @@ courseRouter.post('/', validateCreateCourse, handleValidationError, CourseContro
  *     summary: Lista todos os cursos
  *     tags:
  *       - Courses
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Lista de cursos retornada com sucesso
@@ -62,6 +66,12 @@ courseRouter.post('/', validateCreateCourse, handleValidationError, CourseContro
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Course'
+ *       401:
+ *         description: Token ausente, invalido ou expirado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       500:
  *         description: Erro interno do servidor
  *         content:
@@ -78,6 +88,8 @@ courseRouter.get('/', CourseController.getAll);
  *     summary: Busca um curso pelo ID
  *     tags:
  *       - Courses
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -94,6 +106,12 @@ courseRouter.get('/', CourseController.getAll);
  *               $ref: '#/components/schemas/Course'
  *       400:
  *         description: ID invalido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Token ausente, invalido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -120,6 +138,8 @@ courseRouter.get('/:id', validateGetCourseById, handleValidationError, CourseCon
  *     summary: Substitui todos os dados de um curso
  *     tags:
  *       - Courses
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -146,8 +166,14 @@ courseRouter.get('/:id', validateGetCourseById, handleValidationError, CourseCon
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Token ausente, invalido ou expirado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: Curso ou criador nao encontrado
+ *         description: Curso nao encontrado
  *         content:
  *           application/json:
  *             schema:
@@ -168,6 +194,8 @@ courseRouter.put('/:id', validateReplaceCourse, handleValidationError, CourseCon
  *     summary: Atualiza parcialmente um curso
  *     tags:
  *       - Courses
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -194,8 +222,14 @@ courseRouter.put('/:id', validateReplaceCourse, handleValidationError, CourseCon
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Token ausente, invalido ou expirado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: Curso ou criador nao encontrado
+ *         description: Curso nao encontrado
  *         content:
  *           application/json:
  *             schema:
@@ -216,6 +250,8 @@ courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, CourseCo
  *     summary: Remove um curso
  *     tags:
  *       - Courses
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -228,6 +264,12 @@ courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, CourseCo
  *         description: Curso removido com sucesso
  *       400:
  *         description: ID invalido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Token ausente, invalido ou expirado
  *         content:
  *           application/json:
  *             schema:

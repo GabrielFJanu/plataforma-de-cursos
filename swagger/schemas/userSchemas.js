@@ -30,6 +30,7 @@
  *       required:
  *         - firstname
  *         - email
+ *         - password
  *       properties:
  *         firstname:
  *           type: string
@@ -41,6 +42,10 @@
  *           type: string
  *           format: email
  *           example: gabriel@email.com
+ *         password:
+ *           type: string
+ *           format: password
+ *           example: senha123
  *     UpdateUserRequest:
  *       type: object
  *       properties:
@@ -54,4 +59,8 @@
  *           type: string
  *           format: email
  *           example: gabriel.novo@email.com
+ *         password:
+ *           type: string
+ *           format: password
+ *           example: novasenha123
  */

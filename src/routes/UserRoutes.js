@@ -12,6 +12,8 @@ const userRouter = Router();
  *     summary: Cria um novo usuario
  *     tags:
  *       - Users
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -27,6 +29,12 @@ const userRouter = Router();
  *               $ref: '#/components/schemas/User'
  *       400:
  *         description: Dados invalidos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Token ausente, invalido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -53,6 +61,8 @@ userRouter.post('/', validateCreateUser, handleValidationError, UserController.c
  *     summary: Lista todos os usuarios
  *     tags:
  *       - Users
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Lista de usuarios retornada com sucesso
@@ -62,6 +72,12 @@ userRouter.post('/', validateCreateUser, handleValidationError, UserController.c
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/User'
+ *       401:
+ *         description: Token ausente, invalido ou expirado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       500:
  *         description: Erro interno do servidor
  *         content:
@@ -78,6 +94,8 @@ userRouter.get('/', UserController.getAll);
  *     summary: Busca um usuario pelo ID
  *     tags:
  *       - Users
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -94,6 +112,12 @@ userRouter.get('/', UserController.getAll);
  *               $ref: '#/components/schemas/User'
  *       400:
  *         description: ID invalido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Token ausente, invalido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -120,6 +144,8 @@ userRouter.get('/:id', validateGetUserById, handleValidationError, UserControlle
  *     summary: Substitui todos os dados de um usuario
  *     tags:
  *       - Users
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -142,6 +168,12 @@ userRouter.get('/:id', validateGetUserById, handleValidationError, UserControlle
  *               $ref: '#/components/schemas/User'
  *       400:
  *         description: Dados invalidos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Token ausente, invalido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -174,6 +206,8 @@ userRouter.put('/:id', validateReplaceUser, handleValidationError, UserControlle
  *     summary: Atualiza parcialmente um usuario
  *     tags:
  *       - Users
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -196,6 +230,12 @@ userRouter.put('/:id', validateReplaceUser, handleValidationError, UserControlle
  *               $ref: '#/components/schemas/User'
  *       400:
  *         description: Dados invalidos ou corpo vazio
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Token ausente, invalido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -228,6 +268,8 @@ userRouter.patch('/:id', validateUpdateUser, handleValidationError, UserControll
  *     summary: Remove um usuario
  *     tags:
  *       - Users
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -240,6 +282,12 @@ userRouter.patch('/:id', validateUpdateUser, handleValidationError, UserControll
  *         description: Usuario removido com sucesso
  *       400:
  *         description: ID invalido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Token ausente, invalido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -266,6 +314,8 @@ userRouter.delete('/:id', validateDeleteUser, handleValidationError, UserControl
  *     summary: Lista os cursos criados por um usuario
  *     tags:
  *       - Users
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -284,6 +334,12 @@ userRouter.delete('/:id', validateDeleteUser, handleValidationError, UserControl
  *                 $ref: '#/components/schemas/Course'
  *       400:
  *         description: ID invalido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Token ausente, invalido ou expirado
  *         content:
  *           application/json:
  *             schema:

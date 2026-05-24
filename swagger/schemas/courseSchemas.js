@@ -41,7 +41,6 @@
  *         - title
  *         - knowledgeArea
  *         - url
- *         - creatorId
  *       properties:
  *         title:
  *           type: string
@@ -56,10 +55,6 @@
  *           type: string
  *           format: uri
  *           example: https://www.youtube.com/watch?v=Y9Zw6xOGly0
- *         creatorId:
- *           type: string
- *           format: uuid
- *           example: a69ec8df-03fd-4ae4-bd4d-a45fc361875a
  *     UpdateCourseRequest:
  *       type: object
  *       properties:
@@ -76,8 +71,4 @@
  *           type: string
  *           format: uri
  *           example: https://youtu.be/Y9Zw6xOGly0
- *         creatorId:
- *           type: string
- *           format: uuid
- *           example: a69ec8df-03fd-4ae4-bd4d-a45fc361875a
  */
