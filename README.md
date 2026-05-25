@@ -48,8 +48,8 @@ Exemplo de corpo da requisicao:
 
 ```json
 {
-  "firstname": "Gabriel",
-  "lastname": "Januario",
+  "firstName": "Gabriel",
+  "lastName": "Januario",
   "email": "gabriel@email.com"
 }
 ```

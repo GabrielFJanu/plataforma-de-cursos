@@ -1,12 +1,12 @@
 import { body, param, checkExact } from 'express-validator';
 
 export const validateCreateUser = checkExact([
-    body('firstname')
+    body('firstName')
         .isString().withMessage('O nome deve ser um texto')
         .trim()
         .notEmpty().withMessage('O nome não deve ser vazio'),
 
-    body('lastname')
+    body('lastName')
         .optional()
         .isString().withMessage('O sobrenome deve ser um texto')
         .trim()
@@ -43,12 +43,12 @@ export const validateReplaceUser = checkExact([
         .notEmpty().withMessage('O ID não deve ser vazio')
         .isUUID().withMessage('O ID deve ser um UUID válido'),
 
-    body('firstname')
+    body('firstName')
         .isString().withMessage('O nome deve ser um texto')
         .trim()
         .notEmpty().withMessage('O nome não deve ser vazio'),
 
-    body('lastname')
+    body('lastName')
         .optional()
         .isString().withMessage('O sobrenome deve ser um texto')
         .trim()
@@ -78,13 +78,13 @@ export const validateUpdateUser = checkExact([
         .notEmpty().withMessage('O ID não deve ser vazio')
         .isUUID().withMessage('O ID deve ser um UUID válido'),
 
-    body('firstname')
+    body('firstName')
         .optional()
         .isString().withMessage('O nome deve ser um texto')
         .trim()
         .notEmpty().withMessage('O nome não deve ser vazio'),
 
-    body('lastname')
+    body('lastName')
         .optional()
         .isString().withMessage('O sobrenome deve ser um texto')
         .trim()

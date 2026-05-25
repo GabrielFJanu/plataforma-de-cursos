@@ -1,4 +1,4 @@
-import { UserResponseDto } from "../dtos/userDto.js";
+import { UserResponseDto } from "../dtos/UserDto.js";
 import CourseRepository from "../repositories/CourseRepository.js";
 import UserRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";

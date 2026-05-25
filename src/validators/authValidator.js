@@ -14,12 +14,12 @@ export const validateLogin = checkExact([
 ]);
 
 export const validateRegister = checkExact([
-    body('firstname')
+    body('firstName')
         .isString().withMessage('O nome deve ser um texto')
         .trim()
         .notEmpty().withMessage('O nome não deve ser vazio'),
 
-    body('lastname')
+    body('lastName')
         .optional()
         .isString().withMessage('O sobrenome deve ser um texto')
         .trim()

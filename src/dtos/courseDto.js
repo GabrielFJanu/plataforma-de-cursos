@@ -21,6 +21,6 @@ export class CourseWithCreatorResponseDto {
         this.youtubeId = courseWithCreatorFromDb.youtubeId
         this.creatorId = courseWithCreatorFromDb.creatorId
         this.createdAt = courseWithCreatorFromDb.createdAt
-        this.creator = courseWithCreatorFromDb.creator ? { firstname: courseWithCreatorFromDb.creator.firstname, lastname: courseWithCreatorFromDb.creator.lastname } : null
+        this.creator = courseWithCreatorFromDb.creator ? { firstName: courseWithCreatorFromDb.creator.firstName, lastName: courseWithCreatorFromDb.creator.lastName } : null
     }
 }

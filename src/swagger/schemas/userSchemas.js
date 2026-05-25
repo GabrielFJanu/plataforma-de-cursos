@@ -11,10 +11,10 @@
  *       properties:
  *         id:
  *           $ref: '#/components/schemas/UserId'
- *         firstname:
+ *         firstName:
  *           type: string
  *           example: Gabriel
- *         lastname:
+ *         lastName:
  *           type: string
  *           example: Januario
  *         email:
@@ -28,15 +28,15 @@
  *     CreateUserRequest:
  *       type: object
  *       required:
- *         - firstname
+ *         - firstName
  *         - email
  *         - password
  *         - role
  *       properties:
- *         firstname:
+ *         firstName:
  *           type: string
  *           example: Gabriel
- *         lastname:
+ *         lastName:
  *           type: string
  *           example: Januario
  *         email:
@@ -56,10 +56,10 @@
  *     UpdateUserRequest:
  *       type: object
  *       properties:
- *         firstname:
+ *         firstName:
  *           type: string
  *           example: Gabriel
- *         lastname:
+ *         lastName:
  *           type: string
  *           example: Januario
  *         email:

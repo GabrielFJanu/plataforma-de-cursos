@@ -19,14 +19,14 @@
  *     RegisterRequest:
  *       type: object
  *       required:
- *         - firstname
+ *         - firstName
  *         - email
  *         - password
  *       properties:
- *         firstname:
+ *         firstName:
  *           type: string
  *           example: Gabriel
- *         lastname:
+ *         lastName:
  *           type: string
  *           example: Januario
  *         email:

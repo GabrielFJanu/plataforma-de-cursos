@@ -1,8 +1,8 @@
 export class UserResponseDto {
     constructor(userFromDb) {
         this.id = userFromDb.id
-        this.firstname = userFromDb.firstname
-        this.lastname = userFromDb.lastname
+        this.firstName = userFromDb.firstName
+        this.lastName = userFromDb.lastName
         this.email = userFromDb.email
         // password foi omitido
         // role foi omitido

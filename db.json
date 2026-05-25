@@ -32,8 +32,8 @@
   "users": [
     {
       "id": "a69ec8df-03fd-4ae4-bd4d-a45fc361875a",
-      "firstname": "Gabriel",
-      "lastname": "Januário",
+      "firstName": "Gabriel",
+      "lastName": "Januário",
       "email": "gabrielfreitasj2004@gmail.com",
       "password": "12345678",
       "role": "admin",
@@ -41,8 +41,8 @@
     },
     {
       "id": "6811f8a0-cf95-4de6-858d-5795f7e89776",
-      "firstname": "Fulano",
-      "lastname": "Aipapai da Silva",
+      "firstName": "Fulano",
+      "lastName": "Aipapai da Silva",
       "email": "aipapito@gmail.com",
       "password": "87654321",
       "role": "user",
