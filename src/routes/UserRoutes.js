@@ -40,6 +40,12 @@ const userRouter = Router();
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Acesso negado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       409:
  *         description: Email ja cadastrado no sistema
  *         content:
@@ -75,6 +81,12 @@ userRouter.post('/', authorize('admin'), validateCreateUser, handleValidationErr
  *                 $ref: '#/components/schemas/User'
  *       401:
  *         description: Token ausente, invalido ou expirado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Acesso negado
  *         content:
  *           application/json:
  *             schema:
@@ -119,6 +131,12 @@ userRouter.get('/', authorize('admin'), UserController.getAll);
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Token ausente, invalido ou expirado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Acesso negado
  *         content:
  *           application/json:
  *             schema:
@@ -175,6 +193,12 @@ userRouter.get('/:id', authorize('admin'), validateGetUserById, handleValidation
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Token ausente, invalido ou expirado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Acesso negado
  *         content:
  *           application/json:
  *             schema:
@@ -241,6 +265,12 @@ userRouter.put('/:id', authorize('admin'), validateReplaceUser, handleValidation
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Acesso negado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Usuario nao encontrado
  *         content:
@@ -289,6 +319,12 @@ userRouter.patch('/:id', authorize('admin'), validateUpdateUser, handleValidatio
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Token ausente, invalido ou expirado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Acesso negado
  *         content:
  *           application/json:
  *             schema:

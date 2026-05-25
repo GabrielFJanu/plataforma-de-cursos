@@ -58,7 +58,7 @@ authRouter.post('/login', validateLogin, handleValidationError, AuthController.l
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/CreateUserRequest'
+ *             $ref: '#/components/schemas/RegisterRequest'
  *     responses:
  *       201:
  *         description: Usuario cadastrado com sucesso

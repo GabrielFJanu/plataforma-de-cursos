@@ -31,6 +31,7 @@
  *         - firstname
  *         - email
  *         - password
+ *         - role
  *       properties:
  *         firstname:
  *           type: string
@@ -46,6 +47,12 @@
  *           type: string
  *           format: password
  *           example: senha123
+ *         role:
+ *           type: string
+ *           enum:
+ *             - user
+ *             - admin
+ *           example: user
  *     UpdateUserRequest:
  *       type: object
  *       properties:
@@ -63,4 +70,10 @@
  *           type: string
  *           format: password
  *           example: novasenha123
+ *         role:
+ *           type: string
+ *           enum:
+ *             - user
+ *             - admin
+ *           example: admin
  */
