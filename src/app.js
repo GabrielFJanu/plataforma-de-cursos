@@ -1,14 +1,14 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
-import authenticate from './middlewares/authMiddleware.js';
+import { authenticate } from './middlewares/authMiddleware.js';
 import authRouter from './routes/authRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import courseRouter from './routes/courseRoutes.js';
 import swaggerUi from 'swagger-ui-express';
-import swaggerSpec from '../swagger/swagger.js';
+import swaggerSpec from './swagger/swagger.js';
 import webRouter from './routes/webRoutes.js';
-import handleGlobalError from './middlewares/errorMiddleware.js';
+import { handleGlobalError } from './middlewares/errorMiddleware.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

@@ -18,7 +18,8 @@ class AuthService {
         }
 
         const payload = {
-            id: userFromDb.id
+            id: userFromDb.id,
+            role: userFromDb.role
         }
 
         const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
@@ -26,7 +27,11 @@ class AuthService {
     }
 
     static async register(registerData) {
-        return UserService.create(registerData);
+        const registerDataWithRole = {
+            ...registerData,
+            role: "user"
+        }
+        return UserService.create(registerDataWithRole);
     }
 }
 

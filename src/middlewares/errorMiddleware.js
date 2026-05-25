@@ -1,4 +1,4 @@
-const handleGlobalError = (error, req, res, next) => {
+export function handleGlobalError(error, req, res, next) {
     console.error("ERRO:", error.message);
 
     const statusCode = error.statusCode || 500;
@@ -9,5 +9,3 @@ const handleGlobalError = (error, req, res, next) => {
         errors: error.errors || []
     });
 };
-
-export default handleGlobalError;

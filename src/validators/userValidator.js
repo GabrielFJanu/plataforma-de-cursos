@@ -21,7 +21,13 @@ export const validateCreateUser = checkExact([
     body('password')
         .isString().withMessage('A senha deve ser um texto')
         .notEmpty().withMessage('A senha não deve ser vazia')
-        .isLength({ min: 8, max: 72 }).withMessage('A senha deve ter entre 8 e 72 caracteres')
+        .isLength({ min: 8, max: 72 }).withMessage('A senha deve ter entre 8 e 72 caracteres'),
+
+    body('role')
+        .isString().withMessage('O papel do usuário deve ser um texto')
+        .trim()
+        .notEmpty().withMessage('O papel do usuário não deve ser vazio')
+        .isIn(['user', 'admin']).withMessage('O papel do usuário deve ser user ou admin')
 ]);
 
 export const validateGetUserById = checkExact([
@@ -57,7 +63,13 @@ export const validateReplaceUser = checkExact([
     body('password')
         .isString().withMessage('A senha deve ser um texto')
         .notEmpty().withMessage('A senha não deve ser vazia')
-        .isLength({ min: 8, max: 72 }).withMessage('A senha deve ter entre 8 e 72 caracteres')
+        .isLength({ min: 8, max: 72 }).withMessage('A senha deve ter entre 8 e 72 caracteres'),
+
+    body('role')
+        .isString().withMessage('O papel do usuário deve ser um texto')
+        .trim()
+        .notEmpty().withMessage('O papel do usuário não deve ser vazio')
+        .isIn(['user', 'admin']).withMessage('O papel do usuário deve ser user ou admin')
 ]);
 
 export const validateUpdateUser = checkExact([
@@ -89,7 +101,14 @@ export const validateUpdateUser = checkExact([
         .optional()
         .isString().withMessage('A senha deve ser um texto')
         .notEmpty().withMessage('A senha não deve ser vazia')
-        .isLength({ min: 8, max: 72 }).withMessage('A senha deve ter entre 8 e 72 caracteres')
+        .isLength({ min: 8, max: 72 }).withMessage('A senha deve ter entre 8 e 72 caracteres'),
+
+    body('role')
+        .optional()
+        .isString().withMessage('O papel do usuário deve ser um texto')
+        .trim()
+        .notEmpty().withMessage('O papel do usuário não deve ser vazio')
+        .isIn(['user', 'admin']).withMessage('O papel do usuário deve ser user ou admin')
 ]);
 
 export const validateDeleteUser = validateGetUserById;

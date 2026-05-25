@@ -1,7 +1,7 @@
 import { Router } from "express";
 import CourseController from "../controllers/CourseController.js";
 import { validateCreateCourse, validateGetCourseById, validateReplaceCourse, validateUpdateCourse, validateDeleteCourse } from "../validators/courseValidator.js";
-import handleValidationError from "../middlewares/validatorMiddleware.js";
+import { handleValidationError } from "../middlewares/validatorMiddleware.js";
 
 const courseRouter = Router();
 

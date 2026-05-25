@@ -5,6 +5,7 @@ export class UserResponseDto {
         this.lastname = userFromDb.lastname
         this.email = userFromDb.email
         // password foi omitido
+        // role foi omitido
         this.createdAt = userFromDb.createdAt
     }
 }

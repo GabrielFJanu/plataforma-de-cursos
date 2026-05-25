@@ -3,7 +3,7 @@ import { createHttpError } from "../utils/createHttpError.js";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-const authenticate = (req, res, next) => {
+export function authenticate(req, res, next) {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
@@ -36,5 +36,3 @@ const authenticate = (req, res, next) => {
         next();
     });
 }
-
-export default authenticate;
