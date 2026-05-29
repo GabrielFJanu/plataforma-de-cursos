@@ -30,18 +30,18 @@ Acesse:
 http://localhost:3000
 ```
 
-## Como criar um curso
+## Autenticacao
 
-Para criar um curso, primeiro e necessario cadastrar um usuario, pois todo curso precisa estar ligado a um criador.
+As rotas da API usam token JWT no formato `Bearer Token`, exceto as rotas de autenticacao.
 
-### 1. Crie um usuario
+### 1. Cadastre um usuario
 
 O email informado nao pode estar cadastrado no sistema ainda.
 
 Envie uma requisicao `POST` para:
 
 ```text
-/api/users
+/api/auth/register
 ```
 
 Exemplo de corpo da requisicao:
@@ -50,13 +50,37 @@ Exemplo de corpo da requisicao:
 {
   "firstName": "Gabriel",
   "lastName": "Januario",
-  "email": "gabriel@email.com"
+  "email": "gabriel@email.com",
+  "password": "senha123"
 }
 ```
 
-A resposta vai retornar um usuario com `id`. Guarde esse valor, porque ele sera usado como `creatorId` ao criar o curso.
+### 2. Faca login
 
-### 2. Crie um curso usando o ID do usuario
+Envie uma requisicao `POST` para:
+
+```text
+/api/auth/login
+```
+
+Exemplo de corpo da requisicao:
+
+```json
+{
+  "email": "gabriel@email.com",
+  "password": "senha123"
+}
+```
+
+A resposta retorna um token. Use esse token no header das proximas requisicoes:
+
+```text
+Authorization: Bearer seu-token
+```
+
+## Como criar um curso
+
+Para criar um curso, e necessario estar autenticado. O usuario do token sera registrado automaticamente como criador do curso.
 
 Envie uma requisicao `POST` para:
 
@@ -71,14 +95,26 @@ Exemplo de corpo da requisicao:
   "title": "Curso de JavaScript",
   "description": "Introducao ao JavaScript para iniciantes",
   "knowledgeArea": "Programacao",
-  "url": "https://www.youtube.com/watch?v=VIDEO_ID",
-  "creatorId": "id-do-usuario-criado"
+  "url": "https://www.youtube.com/watch?v=VIDEO_ID"
 }
 ```
 
-O sistema valida se o usuario existe e extrai automaticamente o ID do video do YouTube para exibir o curso na pagina inicial.
+O sistema extrai automaticamente o ID do video do YouTube para exibir o curso na pagina inicial.
+
+## Autorizacao
+
+- Rotas de usuarios sao restritas a usuarios com papel `admin`, exceto a listagem de cursos por usuario.
+- Qualquer usuario autenticado pode listar, buscar e criar cursos.
+- Apenas o criador do curso ou um usuario `admin` pode substituir, atualizar ou remover um curso.
 
 ## Rotas principais
+
+### Auth
+
+| Metodo | Rota | Descricao |
+| --- | --- | --- |
+| POST | `/api/auth/register` | Cadastra usuario comum |
+| POST | `/api/auth/login` | Autentica usuario e retorna token |
 
 ### Usuarios
 
@@ -99,9 +135,9 @@ O sistema valida se o usuario existe e extrai automaticamente o ID do video do Y
 | GET | `/api/courses` | Lista cursos |
 | POST | `/api/courses` | Cria curso |
 | GET | `/api/courses/:id` | Busca curso por ID |
-| PUT | `/api/courses/:id` | Substitui curso |
-| PATCH | `/api/courses/:id` | Atualiza curso |
-| DELETE | `/api/courses/:id` | Remove curso |
+| PUT | `/api/courses/:id` | Substitui curso, permitido para criador ou admin |
+| PATCH | `/api/courses/:id` | Atualiza curso, permitido para criador ou admin |
+| DELETE | `/api/courses/:id` | Remove curso, permitido para criador ou admin |
 
 ## Observacoes
 

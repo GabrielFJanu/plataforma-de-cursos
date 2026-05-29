@@ -2,6 +2,7 @@ import { Router } from "express";
 import CourseController from "../controllers/CourseController.js";
 import { validateCreateCourse, validateGetCourseById, validateReplaceCourse, validateUpdateCourse, validateDeleteCourse } from "../validators/courseValidator.js";
 import { handleValidationError } from "../middlewares/validatorMiddleware.js";
+import { authorizeCourseCreatorOrAdmin } from "../middlewares/permissionMiddleware.js";
 
 const courseRouter = Router();
 
@@ -116,6 +117,12 @@ courseRouter.get('/', CourseController.getAll);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Acesso negado. Apenas o criador do curso ou um admin pode substituir o curso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Curso nao encontrado
  *         content:
@@ -172,6 +179,12 @@ courseRouter.get('/:id', validateGetCourseById, handleValidationError, CourseCon
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Acesso negado. Apenas o criador do curso ou um admin pode substituir o curso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Curso nao encontrado
  *         content:
@@ -185,7 +198,7 @@ courseRouter.get('/:id', validateGetCourseById, handleValidationError, CourseCon
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.put('/:id', validateReplaceCourse, handleValidationError, CourseController.replace);
+courseRouter.put('/:id', validateReplaceCourse, handleValidationError, authorizeCourseCreatorOrAdmin, CourseController.replace);
 
 /**
  * @swagger
@@ -228,6 +241,12 @@ courseRouter.put('/:id', validateReplaceCourse, handleValidationError, CourseCon
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Acesso negado. Apenas o criador do curso ou um admin pode atualizar o curso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Curso nao encontrado
  *         content:
@@ -241,7 +260,7 @@ courseRouter.put('/:id', validateReplaceCourse, handleValidationError, CourseCon
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, CourseController.update);
+courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, authorizeCourseCreatorOrAdmin, CourseController.update);
 
 /**
  * @swagger
@@ -274,6 +293,12 @@ courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, CourseCo
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Acesso negado. Apenas o criador do curso ou um admin pode remover o curso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Curso nao encontrado
  *         content:
@@ -287,6 +312,6 @@ courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, CourseCo
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.delete('/:id', validateDeleteCourse, handleValidationError, CourseController.delete);
+courseRouter.delete('/:id', validateDeleteCourse, handleValidationError, authorizeCourseCreatorOrAdmin, CourseController.delete);
 
 export default courseRouter;
