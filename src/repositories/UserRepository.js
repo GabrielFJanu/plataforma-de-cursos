@@ -29,7 +29,7 @@ class UserRepository {
     static async findById(id) {
         await db.read();
 
-        const user = db.data.users.find(user => user.id == id);
+        const user = db.data.users.find(user => user.id === id);
         return user;
     }
 
@@ -43,7 +43,7 @@ class UserRepository {
     static async findByEmail(email) {
         await db.read();
 
-        const user = db.data.users.find(user => user.email == email);
+        const user = db.data.users.find(user => user.email === email);
         return user
     }
 
@@ -97,7 +97,7 @@ class UserRepository {
     static async delete(id) {
         await db.read();
 
-        db.data.users = db.data.users.filter(user => user.id != id);
+        db.data.users = db.data.users.filter(user => user.id !== id);
 
         await db.write();
     }

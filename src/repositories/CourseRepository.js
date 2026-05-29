@@ -29,7 +29,7 @@ class CourseRepository {
     static async findById(id) {
         await db.read();
 
-        const course = db.data.courses.find(course => course.id == id);
+        const course = db.data.courses.find(course => course.id === id);
         return course;
     }
 
@@ -43,7 +43,7 @@ class CourseRepository {
     static async findByCreatorId(creatorId) {
         await db.read();
 
-        const courses = db.data.courses.filter(course => course.creatorId == creatorId);
+        const courses = db.data.courses.filter(course => course.creatorId === creatorId);
         return courses;
     }
 
@@ -98,7 +98,7 @@ class CourseRepository {
     static async delete(id) {
         await db.read();
 
-        db.data.courses = db.data.courses.filter(course => course.id != id);
+        db.data.courses = db.data.courses.filter(course => course.id !== id);
 
         await db.write();
     }
