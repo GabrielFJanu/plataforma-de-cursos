@@ -2,6 +2,7 @@ import UserRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
 import jwt from "jsonwebtoken";
 import UserService from "./UserService.js";
+import bcrypt from "bcrypt";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -13,7 +14,8 @@ class AuthService {
             throw createHttpError('Credenciais inválidas', 401);
         }
 
-        if (userFromDb.password !== loginData.password) {
+        const isValidPassword = await bcrypt.compare(loginData.password, userFromDb.password);
+        if (!isValidPassword) {
             throw createHttpError('Credenciais inválidas', 401);
         }
 
