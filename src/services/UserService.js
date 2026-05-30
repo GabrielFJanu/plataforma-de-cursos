@@ -13,7 +13,7 @@ class UserService {
             throw createHttpError('Esse username já foi cadastrado no sistema', 409);
         }
 
-        const saltRounds = process.env.BCRYPT_SALT_ROUNDS || 10;
+        const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
         const hashedPassword = await bcrypt.hash(createUserData.password, saltRounds);
         const userToCreate = { ...createUserData, password: hashedPassword};
 
@@ -53,7 +53,7 @@ class UserService {
             throw createHttpError('Esse username já foi cadastrado no sistema', 409);
         }
 
-        const saltRounds = process.env.BCRYPT_SALT_ROUNDS || 10;
+        const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
         const hashedPassword = await bcrypt.hash(replaceUserData.password, saltRounds);
         const userToReplace = {
             ...replaceUserData,
@@ -88,7 +88,7 @@ class UserService {
 
         const userToUpdate = { ...updateUserData };
         if (updateUserData.password !== undefined) {
-            const saltRounds = process.env.BCRYPT_SALT_ROUNDS || 10;
+            const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
             const hashedPassword = await bcrypt.hash(updateUserData.password, saltRounds);
             userToUpdate.password = hashedPassword;
         }
