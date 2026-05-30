@@ -20,7 +20,7 @@ class AuthService {
         }
 
         const payload = {
-            id: userFromDb.id,
+            _id: userFromDb._id.toString(),
             role: userFromDb.role
         }
 

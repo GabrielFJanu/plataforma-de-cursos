@@ -1,4 +1,5 @@
 import { body, param, checkExact } from 'express-validator';
+import { ObjectId } from 'mongodb';
 
 export const validateCreateCourse = checkExact([
     body('title')
@@ -28,14 +29,14 @@ export const validateGetCourseById = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
-        .isUUID().withMessage('O ID deve ser um UUID válido')
+        .custom(id => ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido')
 ]);
 
 export const validateReplaceCourse = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
-        .isUUID().withMessage('O ID deve ser um UUID válido'),
+        .custom(id => ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido'),
 
     body('title')
         .isString().withMessage('O título deve ser um texto')
@@ -64,7 +65,7 @@ export const validateUpdateCourse = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
-        .isUUID().withMessage('O ID deve ser um UUID válido'),
+        .custom(id => ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido'),
 
     body('title')
         .optional()

@@ -1,4 +1,4 @@
-import { CourseResponseDto, CourseWithCreatorResponseDto } from "../dtos/CourseDto.js";
+import { CourseResponseDto, CourseWithCreatorResponseDto } from "../dtos/courseDto.js";
 import courseRepository from "../repositories/CourseRepository.js";
 import userRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
@@ -36,7 +36,7 @@ class CourseService {
     async getAllWithCreator() {
         const coursesFromDb = await courseRepository.findAll();
 
-        const creatorIds = [...new Set(coursesFromDb.map(courseFromDb => courseFromDb.creatorId))];
+        const creatorIds = [...new Set(coursesFromDb.map(courseFromDb => courseFromDb.creatorId.toString()))];
 
         const creatorsFromDb = await userRepository.findByIds(creatorIds);
 
@@ -46,10 +46,10 @@ class CourseService {
         return coursesWithCreatorDto;
         
         function enrichCoursesWithCreator(courses, creators) {
-            const mapCreatorIdToCreator = new Map(creators.map(creator => [creator.id, creator]));
+            const mapCreatorIdToCreator = new Map(creators.map(creator => [creator._id.toString(), creator]));
             const coursesWithCreator = courses.map(course => ({
                 ...course,
-                creator: mapCreatorIdToCreator.get(course.creatorId) || null
+                creator: mapCreatorIdToCreator.get(course.creatorId.toString()) || null
             }));
             return coursesWithCreator;
         }

@@ -4,12 +4,11 @@
  *   schemas:
  *     CourseId:
  *       type: string
- *       format: uuid
- *       example: 6cbff579-cf9c-40ac-a424-2a51c008c509
+ *       example: 665a8e7d3f2c9d001f7b1235
  *     Course:
  *       type: object
  *       properties:
- *         id:
+ *         _id:
  *           $ref: '#/components/schemas/CourseId'
  *         title:
  *           type: string
@@ -29,8 +28,7 @@
  *           example: 3CKCOYvqZIk
  *         creatorId:
  *           type: string
- *           format: uuid
- *           example: a69ec8df-03fd-4ae4-bd4d-a45fc361875a
+ *           example: 665a8e7d3f2c9d001f7b1234
  *         createdAt:
  *           type: string
  *           format: date-time

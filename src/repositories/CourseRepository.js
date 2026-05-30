@@ -8,7 +8,12 @@ class CourseRepository {
     }
 
     async create(createCourseData) {
-        const result = await this.getCollection().insertOne(createCourseData);
+        const courseToCreate = {
+            ...createCourseData,
+            createdAt: new Date().toISOString()
+        };
+
+        const result = await this.getCollection().insertOne(courseToCreate);
         return await this.findById(result.insertedId);
     }
 
@@ -30,11 +35,22 @@ class CourseRepository {
     }
 
     async replace(id, replaceCourseData) {
-        const result = await this.getCollection().replaceOne(
+        const currentCourse = await this.findById(id);
+
+        if (!currentCourse) {
+            return null;
+        }
+
+        await this.getCollection().replaceOne(
             { _id: new ObjectId(id) },
-            replaceCourseData
+            {
+                ...replaceCourseData,
+                creatorId: currentCourse.creatorId,
+                createdAt: currentCourse.createdAt
+            }
         );
-        return await this.findById(result.insertedId);
+
+        return await this.findById(id);
     }
 
     async update(id, updateCourseData) {
@@ -42,7 +58,12 @@ class CourseRepository {
             { _id: new ObjectId(id) },
             { $set: updateCourseData }
         );
-        return await this.findById(result.insertedId);
+
+        if (result.matchedCount === 0) {
+            return null;
+        }
+
+        return await this.findById(id);
     }
 
     async delete(id) {

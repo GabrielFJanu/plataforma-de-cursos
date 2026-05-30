@@ -4,12 +4,11 @@
  *   schemas:
  *     UserId:
  *       type: string
- *       format: uuid
- *       example: a69ec8df-03fd-4ae4-bd4d-a45fc361875a
+ *       example: 665a8e7d3f2c9d001f7b1234
  *     User:
  *       type: object
  *       properties:
- *         id:
+ *         _id:
  *           $ref: '#/components/schemas/UserId'
  *         username:
  *           type: string

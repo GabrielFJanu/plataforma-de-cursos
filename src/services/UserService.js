@@ -1,4 +1,4 @@
-import { UserResponseDto } from "../dtos/UserDto.js";
+import { UserResponseDto } from "../dtos/userDto.js";
 import courseRepository from "../repositories/CourseRepository.js";
 import userRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
@@ -49,7 +49,7 @@ class UserService {
 
         const userWithSameUsername = await userRepository.findByUsername(replaceUserData.username);
 
-        if (userWithSameUsername && userWithSameUsername.id !== id) {
+        if (userWithSameUsername && userWithSameUsername._id.toString() !== id) {
             throw createHttpError('Esse username já foi cadastrado no sistema', 409);
         }
 
@@ -77,7 +77,7 @@ class UserService {
         if (updateUserData.username !== undefined) {
             const userWithSameUsername = await userRepository.findByUsername(updateUserData.username);
 
-            if (userWithSameUsername && userWithSameUsername.id !== id) {
+            if (userWithSameUsername && userWithSameUsername._id.toString() !== id) {
                 throw createHttpError('Esse username já foi cadastrado no sistema', 409);
             }
         }
@@ -102,10 +102,10 @@ class UserService {
             throw createHttpError('Usuário não encontrado', 404);
         }
 
-        const coursesCreatedByUser = await courseRepository.findByCreatorId(userFromDb.id);
+        const coursesCreatedByUser = await courseRepository.findByCreatorId(userFromDb._id.toString());
 
         for (const courseCreatedByUser of coursesCreatedByUser) {
-            await courseRepository.delete(courseCreatedByUser.id);
+            await courseRepository.delete(courseCreatedByUser._id.toString());
         }
 
         await userRepository.delete(id);

@@ -1,6 +1,6 @@
 export class UserResponseDto {
     constructor(userFromDb) {
-        this.id = userFromDb.id
+        this._id = userFromDb._id.toString()
         this.username = userFromDb.username
         // password foi omitido
         // role foi omitido

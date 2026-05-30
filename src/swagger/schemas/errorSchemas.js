@@ -21,5 +21,5 @@
  *                 example: id
  *               message:
  *                 type: string
- *                 example: O ID deve ser um UUID valido
+ *                 example: O ID deve ser um ObjectId valido
  */

@@ -5,7 +5,7 @@ class CourseController {
     async create(req, res, next) {
         try {
             const createCourseData = req.body;
-            const creatorId = req.user.id;
+            const creatorId = req.user._id;
 
             const newCourseDto = await courseService.create(createCourseData, creatorId);
 
