@@ -1,107 +1,50 @@
-import db from '../database/database.js';
-import { v4 as uuidv4 } from 'uuid';
+import { getDB } from '../config/database.js';
+import { ObjectId } from 'mongodb';
 
 class CourseRepository {
 
-    static async create(createCourseData) {
-        await db.read();
-
-        const newCourse = {
-            id: uuidv4(),
-            ...createCourseData,
-            createdAt: new Date().toISOString()
-        };
-
-        db.data.courses.push(newCourse);
-
-        await db.write();
-
-        return newCourse;
+    constructor() {
+        this.collection = getDB().collection('Courses');
     }
 
-    static async findAll(){
-        await db.read();
-
-        const courses = db.data.courses;
-        return courses;
+    async create(createCourseData) {
+        return await this.collection.insertOne(createCourseData);
     }
 
-    static async findById(id) {
-        await db.read();
-
-        const course = db.data.courses.find(course => course.id === id);
-        return course;
+    async findAll(){
+        return await this.collection.find({}).toArray();
     }
 
-    static async findByIds(ids) {
-        await db.read();
-
-        const courses = db.data.courses.filter(course => ids.includes(course.id));
-        return courses;
+    async findById(id) {
+        return await this.collection.findOne({ _id: new ObjectId(id) });
     }
 
-    static async findByCreatorId(creatorId) {
-        await db.read();
-
-        const courses = db.data.courses.filter(course => course.creatorId === creatorId);
-        return courses;
+    async findByIds(ids) {
+        const objectIds = ids.map(id => new ObjectId(id));
+        return await this.collection.find({ _id: { $in: objectIds } }).toArray();
     }
 
-    static async replace(id, replaceCourseData) {
-        await db.read();
-
-        const courseIndex = db.data.courses.findIndex(course => course.id === id);
-
-        if (courseIndex === -1) {
-            return null;
-        }
-
-        const currentCourse = db.data.courses[courseIndex];
-
-        const replacedCourse = {
-            id: currentCourse.id,
-            ...replaceCourseData,
-            creatorId: currentCourse.creatorId,
-            createdAt: currentCourse.createdAt
-        };
-
-        db.data.courses[courseIndex] = replacedCourse;
-
-        await db.write();
-
-        return replacedCourse;
+    async findByCreatorId(creatorId) {
+        return await this.collection.find({ creatorId: creatorId }).toArray();
     }
 
-    static async update(id, updateCourseData) {
-        await db.read();
-
-        const courseIndex = db.data.courses.findIndex(course => course.id === id);
-
-        if (courseIndex === -1) {
-            return null;
-        }
-
-        const currentCourse = db.data.courses[courseIndex];
-
-        const updatedCourse = {
-            ...currentCourse,
-            ...updateCourseData
-        };
-
-        db.data.courses[courseIndex] = updatedCourse;
-
-        await db.write();
-
-        return updatedCourse;
+    async replace(id, replaceCourseData) {
+        return await this.collection.replaceOne(
+            { _id: new ObjectId(id) },
+            replaceCourseData
+        );
     }
 
-    static async delete(id) {
-        await db.read();
+    async update(id, updateCourseData) {
+        return await this.collection.updateOne(
+            { _id: new ObjectId(id) },
+            { $set: updateCourseData }
+        );
+    }
 
-        db.data.courses = db.data.courses.filter(course => course.id !== id);
-
-        await db.write();
+    async delete(id) {
+        return await this.collection.deleteOne({ _id: new ObjectId(id) });
     }
 }
 
-export default CourseRepository
+export default new CourseRepository();
