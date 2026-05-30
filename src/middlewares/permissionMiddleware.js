@@ -1,5 +1,5 @@
-import { createHttpError } from "../utils/createHttpError.js";
 import courseRepository from "../repositories/CourseRepository.js";
+import { createHttpError } from "../utils/createHttpError.js";
 
 export function authorize(...allowedRoles) {
     return (req, res, next) => {

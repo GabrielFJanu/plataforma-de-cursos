@@ -1,4 +1,5 @@
 import { validationResult } from 'express-validator';
+
 import { createHttpError } from '../utils/createHttpError.js';
 
 export function handleValidationError(req, res, next) {

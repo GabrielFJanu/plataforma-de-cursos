@@ -1,5 +1,6 @@
-import { getDB } from '../config/database.js';
 import { ObjectId } from 'mongodb';
+
+import { getDB } from '../config/database.js';
 
 class CourseRepository {
 

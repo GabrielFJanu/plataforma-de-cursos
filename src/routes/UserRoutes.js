@@ -1,8 +1,16 @@
 import { Router } from "express";
+
 import userController from "../controllers/UserController.js";
-import { validateCreateUser, validateGetUserById, validateReplaceUser, validateUpdateUser, validateDeleteUser, validateGetCoursesByCreatorId } from "../validators/userValidator.js";
-import { handleValidationError } from "../middlewares/validatorMiddleware.js";
 import { authorize } from "../middlewares/permissionMiddleware.js";
+import { handleValidationError } from "../middlewares/validatorMiddleware.js";
+import {
+    validateCreateUser,
+    validateDeleteUser,
+    validateGetCoursesByCreatorId,
+    validateGetUserById,
+    validateReplaceUser,
+    validateUpdateUser
+} from "../validators/userValidator.js";
 
 const userRouter = Router();
 

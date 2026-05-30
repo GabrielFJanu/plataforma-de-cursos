@@ -1,7 +1,8 @@
 import { Router } from "express";
+
+import { handleValidationError } from "../middlewares/validatorMiddleware.js";
 import { validateLogin, validateRegister } from "../validators/authValidator.js";
 import authController from "../controllers/AuthController.js";
-import { handleValidationError } from "../middlewares/validatorMiddleware.js";
 
 const authRouter = Router();
 

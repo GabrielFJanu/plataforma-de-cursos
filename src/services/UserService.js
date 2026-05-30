@@ -1,8 +1,9 @@
+import bcrypt from "bcrypt";
+
 import { UserResponseDto } from "../dtos/userDto.js";
 import courseRepository from "../repositories/CourseRepository.js";
 import userRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
-import bcrypt from "bcrypt";
 
 class UserService {
 

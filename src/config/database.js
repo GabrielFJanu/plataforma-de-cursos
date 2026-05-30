@@ -1,11 +1,11 @@
-import { MongoClient } from 'mongodb';
 import 'dotenv/config';
+import { MongoClient } from 'mongodb';
 
 const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
 
 let db;
-const connectDB = async () => {
+export async function connectDB() {
     try {
         await client.connect();
         db = client.db('PlataformaDeCursos');
@@ -15,6 +15,4 @@ const connectDB = async () => {
     }
 };
 
-const getDB = () => db;
-
-export { connectDB, getDB };
+export function getDB(){ return db; }

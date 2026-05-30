@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+
 import { createHttpError } from "../utils/createHttpError.js";
 
 const JWT_SECRET = process.env.JWT_SECRET;

@@ -1,8 +1,9 @@
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
 import userRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
-import jwt from "jsonwebtoken";
 import userService from "./UserService.js";
-import bcrypt from "bcrypt";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 

@@ -1,8 +1,15 @@
 import { Router } from "express";
+
 import courseController from "../controllers/CourseController.js";
-import { validateCreateCourse, validateGetCourseById, validateReplaceCourse, validateUpdateCourse, validateDeleteCourse } from "../validators/courseValidator.js";
-import { handleValidationError } from "../middlewares/validatorMiddleware.js";
 import { authorizeCourseCreatorOrAdmin } from "../middlewares/permissionMiddleware.js";
+import { handleValidationError } from "../middlewares/validatorMiddleware.js";
+import {
+    validateCreateCourse,
+    validateDeleteCourse,
+    validateGetCourseById,
+    validateReplaceCourse,
+    validateUpdateCourse
+} from "../validators/courseValidator.js";
 
 const courseRouter = Router();
 
