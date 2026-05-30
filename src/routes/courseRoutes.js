@@ -1,5 +1,5 @@
 import { Router } from "express";
-import CourseController from "../controllers/CourseController.js";
+import courseController from "../controllers/CourseController.js";
 import { validateCreateCourse, validateGetCourseById, validateReplaceCourse, validateUpdateCourse, validateDeleteCourse } from "../validators/courseValidator.js";
 import { handleValidationError } from "../middlewares/validatorMiddleware.js";
 import { authorizeCourseCreatorOrAdmin } from "../middlewares/permissionMiddleware.js";
@@ -47,7 +47,7 @@ const courseRouter = Router();
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.post('/', validateCreateCourse, handleValidationError, CourseController.create);
+courseRouter.post('/', validateCreateCourse, handleValidationError, courseController.create);
 
 /**
  * @swagger
@@ -80,7 +80,7 @@ courseRouter.post('/', validateCreateCourse, handleValidationError, CourseContro
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.get('/', CourseController.getAll);
+courseRouter.get('/', courseController.getAll);
 
 /**
  * @swagger
@@ -136,7 +136,7 @@ courseRouter.get('/', CourseController.getAll);
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.get('/:id', validateGetCourseById, handleValidationError, CourseController.getById);
+courseRouter.get('/:id', validateGetCourseById, handleValidationError, courseController.getById);
 
 /**
  * @swagger
@@ -198,7 +198,7 @@ courseRouter.get('/:id', validateGetCourseById, handleValidationError, CourseCon
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.put('/:id', validateReplaceCourse, handleValidationError, authorizeCourseCreatorOrAdmin, CourseController.replace);
+courseRouter.put('/:id', validateReplaceCourse, handleValidationError, authorizeCourseCreatorOrAdmin, courseController.replace);
 
 /**
  * @swagger
@@ -260,7 +260,7 @@ courseRouter.put('/:id', validateReplaceCourse, handleValidationError, authorize
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, authorizeCourseCreatorOrAdmin, CourseController.update);
+courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, authorizeCourseCreatorOrAdmin, courseController.update);
 
 /**
  * @swagger
@@ -312,6 +312,6 @@ courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, authoriz
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-courseRouter.delete('/:id', validateDeleteCourse, handleValidationError, authorizeCourseCreatorOrAdmin, CourseController.delete);
+courseRouter.delete('/:id', validateDeleteCourse, handleValidationError, authorizeCourseCreatorOrAdmin, courseController.delete);
 
 export default courseRouter;

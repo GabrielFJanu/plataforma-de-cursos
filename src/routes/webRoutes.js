@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import WebController from '../controllers/WebController.js';
+import webController from '../controllers/WebController.js';
 
 const webRouter = Router();
 
-webRouter.get('/', WebController.index);
+webRouter.get('/', webController.index);
 
 export default webRouter;

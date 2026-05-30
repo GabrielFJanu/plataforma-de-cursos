@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { validateLogin, validateRegister } from "../validators/authValidator.js";
-import AuthController from "../controllers/AuthController.js";
+import authController from "../controllers/AuthController.js";
 import { handleValidationError } from "../middlewares/validatorMiddleware.js";
 
 const authRouter = Router();
@@ -44,7 +44,7 @@ const authRouter = Router();
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-authRouter.post('/login', validateLogin, handleValidationError, AuthController.login);
+authRouter.post('/login', validateLogin, handleValidationError, authController.login);
 
 /**
  * @swagger
@@ -85,6 +85,6 @@ authRouter.post('/login', validateLogin, handleValidationError, AuthController.l
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-authRouter.post('/register', validateRegister, handleValidationError, AuthController.register);
+authRouter.post('/register', validateRegister, handleValidationError, authController.register);
 
 export default authRouter;

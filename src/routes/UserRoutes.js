@@ -1,5 +1,5 @@
 import { Router } from "express";
-import UserController from "../controllers/UserController.js";
+import userController from "../controllers/UserController.js";
 import { validateCreateUser, validateGetUserById, validateReplaceUser, validateUpdateUser, validateDeleteUser, validateGetCoursesByCreatorId } from "../validators/userValidator.js";
 import { handleValidationError } from "../middlewares/validatorMiddleware.js";
 import { authorize } from "../middlewares/permissionMiddleware.js";
@@ -59,7 +59,7 @@ const userRouter = Router();
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-userRouter.post('/', authorize('admin'), validateCreateUser, handleValidationError, UserController.create);
+userRouter.post('/', authorize('admin'), validateCreateUser, handleValidationError, userController.create);
 
 /**
  * @swagger
@@ -98,7 +98,7 @@ userRouter.post('/', authorize('admin'), validateCreateUser, handleValidationErr
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-userRouter.get('/', authorize('admin'), UserController.getAll);
+userRouter.get('/', authorize('admin'), userController.getAll);
 
 /**
  * @swagger
@@ -154,7 +154,7 @@ userRouter.get('/', authorize('admin'), UserController.getAll);
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-userRouter.get('/:id', authorize('admin'), validateGetUserById, handleValidationError, UserController.getById);
+userRouter.get('/:id', authorize('admin'), validateGetUserById, handleValidationError, userController.getById);
 
 /**
  * @swagger
@@ -222,7 +222,7 @@ userRouter.get('/:id', authorize('admin'), validateGetUserById, handleValidation
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-userRouter.put('/:id', authorize('admin'), validateReplaceUser, handleValidationError, UserController.replace);
+userRouter.put('/:id', authorize('admin'), validateReplaceUser, handleValidationError, userController.replace);
 
 /**
  * @swagger
@@ -290,7 +290,7 @@ userRouter.put('/:id', authorize('admin'), validateReplaceUser, handleValidation
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-userRouter.patch('/:id', authorize('admin'), validateUpdateUser, handleValidationError, UserController.update);
+userRouter.patch('/:id', authorize('admin'), validateUpdateUser, handleValidationError, userController.update);
 
 /**
  * @swagger
@@ -342,7 +342,7 @@ userRouter.patch('/:id', authorize('admin'), validateUpdateUser, handleValidatio
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-userRouter.delete('/:id', authorize('admin'), validateDeleteUser, handleValidationError, UserController.delete);
+userRouter.delete('/:id', authorize('admin'), validateDeleteUser, handleValidationError, userController.delete);
 
 /**
  * @swagger
@@ -394,6 +394,6 @@ userRouter.delete('/:id', authorize('admin'), validateDeleteUser, handleValidati
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-userRouter.get('/:id/courses', validateGetCoursesByCreatorId, handleValidationError, UserController.getCoursesByCreatorId);
+userRouter.get('/:id/courses', validateGetCoursesByCreatorId, handleValidationError, userController.getCoursesByCreatorId);
 
 export default userRouter;

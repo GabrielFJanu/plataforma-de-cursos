@@ -1,11 +1,11 @@
-import AuthService from "../services/AuthService.js";
+import authService from "../services/AuthService.js";
 
 class AuthController {
-    static async login(req, res, next) {
+    async login(req, res, next) {
         try {
             const loginData = req.body;
 
-            const token = await AuthService.login(loginData);
+            const token = await authService.login(loginData);
 
             res.status(200).json({ token });
         }
@@ -14,11 +14,11 @@ class AuthController {
         }
     }
 
-    static async register(req, res, next) {
+    async register(req, res, next) {
         try {
             const registerData = req.body;
 
-            const userDto = await AuthService.register(registerData);
+            const userDto = await authService.register(registerData);
 
             res.status(201).json(userDto);
         }
@@ -28,4 +28,4 @@ class AuthController {
     }
 }
 
-export default AuthController;
+export default new AuthController();

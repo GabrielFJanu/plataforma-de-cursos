@@ -1,9 +1,9 @@
-import CourseService from "../services/CourseService.js";
+import courseService from "../services/CourseService.js";
 
 class WebController {
-    static async index(req, res, next) {
+    async index(req, res, next) {
         try {
-            const coursesWithCreatorDto = await CourseService.getAllWithCreator();
+            const coursesWithCreatorDto = await courseService.getAllWithCreator();
 
             res.render('index', {
                 title: 'index',
@@ -16,4 +16,4 @@ class WebController {
     }
 }
 
-export default WebController;
+export default new WebController();

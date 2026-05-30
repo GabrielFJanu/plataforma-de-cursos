@@ -1,14 +1,14 @@
-import UserRepository from "../repositories/UserRepository.js";
+import userRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
 import jwt from "jsonwebtoken";
-import UserService from "./UserService.js";
+import userService from "./UserService.js";
 import bcrypt from "bcrypt";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
 class AuthService {
-    static async login(loginData) {
-        const userFromDb = await UserRepository.findByEmail(loginData.email);
+    async login(loginData) {
+        const userFromDb = await userRepository.findByEmail(loginData.email);
 
         if (!userFromDb) {
             throw createHttpError('Credenciais inválidas', 401);
@@ -28,13 +28,13 @@ class AuthService {
         return token
     }
 
-    static async register(registerData) {
+    async register(registerData) {
         const registerDataWithRole = {
             ...registerData,
             role: "user"
         }
-        return UserService.create(registerDataWithRole);
+        return userService.create(registerDataWithRole);
     }
 }
 
-export default AuthService;
+export default new AuthService();

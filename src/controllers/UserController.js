@@ -1,13 +1,13 @@
-import UserService from "../services/UserService.js";
-import CourseService from "../services/CourseService.js";
+import userService from "../services/UserService.js";
+import courseService from "../services/CourseService.js";
 
 class UserController {
 
-    static async create(req, res, next) {
+    async create(req, res, next) {
         try {
             const createUserData = req.body;
 
-            const newUserDto = await UserService.create(createUserData);
+            const newUserDto = await userService.create(createUserData);
 
             res.status(201).json(newUserDto);
         }
@@ -16,9 +16,9 @@ class UserController {
         }
     }
 
-    static async getAll(req, res, next) {
+    async getAll(req, res, next) {
         try {
-            const usersDto = await UserService.getAll();
+            const usersDto = await userService.getAll();
 
             res.status(200).json(usersDto);
         }
@@ -27,11 +27,11 @@ class UserController {
         }
     }
 
-    static async getById(req, res, next) {
+    async getById(req, res, next) {
         try {
             const id = req.params.id;
         
-            const userDto = await UserService.getById(id);
+            const userDto = await userService.getById(id);
 
             res.status(200).json(userDto)
         }
@@ -40,11 +40,11 @@ class UserController {
         }
     }
 
-    static async getCoursesByCreatorId(req, res, next) {
+    async getCoursesByCreatorId(req, res, next) {
         try {
             const creatorId = req.params.id;
 
-            const coursesDto = await CourseService.getByCreatorId(creatorId);
+            const coursesDto = await courseService.getByCreatorId(creatorId);
 
             res.status(200).json(coursesDto);
         }
@@ -53,12 +53,12 @@ class UserController {
         }
     }
 
-    static async replace(req, res, next) {
+    async replace(req, res, next) {
         try {
             const id = req.params.id;
             const replaceUserData = req.body;
 
-            const userDto = await UserService.replace(id, replaceUserData);
+            const userDto = await userService.replace(id, replaceUserData);
 
             res.status(200).json(userDto);
         }
@@ -67,12 +67,12 @@ class UserController {
         }
     }
 
-    static async update(req, res, next) {
+    async update(req, res, next) {
         try {
             const id = req.params.id;
             const updateUserData = req.body;
 
-            const userDto = await UserService.update(id, updateUserData);
+            const userDto = await userService.update(id, updateUserData);
 
             res.status(200).json(userDto);
         }
@@ -81,11 +81,11 @@ class UserController {
         }
     }
 
-    static async delete(req, res, next) {
+    async delete(req, res, next) {
         try {
             const id = req.params.id;
 
-            await UserService.delete(id);
+            await userService.delete(id);
 
             res.status(204).send();
         }
@@ -95,4 +95,4 @@ class UserController {
     }
 }
 
-export default UserController
+export default new UserController();

@@ -1,5 +1,5 @@
 import { createHttpError } from "../utils/createHttpError.js";
-import CourseRepository from "../repositories/CourseRepository.js";
+import courseRepository from "../repositories/CourseRepository.js";
 
 export function authorize(...allowedRoles) {
     return (req, res, next) => {
@@ -23,7 +23,7 @@ export async function authorizeCourseCreatorOrAdmin(req, res, next) {
         }
 
         const courseId = req.params.id;
-        const courseFromDb = await CourseRepository.findById(courseId);
+        const courseFromDb = await courseRepository.findById(courseId);
 
         if (!courseFromDb) {
             throw createHttpError('Curso não encontrado', 404);
