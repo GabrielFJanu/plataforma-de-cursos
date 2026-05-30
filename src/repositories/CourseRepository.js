@@ -10,6 +10,7 @@ class CourseRepository {
     async create(createCourseData) {
         const courseToCreate = {
             ...createCourseData,
+            creatorId: new ObjectId(createCourseData.creatorId),
             createdAt: new Date().toISOString()
         };
 
@@ -31,7 +32,7 @@ class CourseRepository {
     }
 
     async findByCreatorId(creatorId) {
-        return await this.getCollection().find({ creatorId: creatorId }).toArray();
+        return await this.getCollection().find({ creatorId: new ObjectId(creatorId) }).toArray();
     }
 
     async replace(id, replaceCourseData) {
