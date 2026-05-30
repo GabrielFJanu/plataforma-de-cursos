@@ -55,7 +55,11 @@ class UserService {
 
         const saltRounds = process.env.BCRYPT_SALT_ROUNDS || 10;
         const hashedPassword = await bcrypt.hash(replaceUserData.password, saltRounds);
-        const userToReplace = { ...replaceUserData, password: hashedPassword};
+        const userToReplace = {
+            ...replaceUserData,
+            password: hashedPassword,
+            createdAt: userFromDb.createdAt
+        };
 
         const replacedUserFromDb = await userRepository.replace(id, userToReplace);
 

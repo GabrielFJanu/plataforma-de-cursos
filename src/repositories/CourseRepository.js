@@ -36,21 +36,10 @@ class CourseRepository {
     }
 
     async replace(id, replaceCourseData) {
-        const currentCourse = await this.findById(id);
-
-        if (!currentCourse) {
-            return null;
-        }
-
         await this.getCollection().replaceOne(
             { _id: new ObjectId(id) },
-            {
-                ...replaceCourseData,
-                creatorId: currentCourse.creatorId,
-                createdAt: currentCourse.createdAt
-            }
+            replaceCourseData
         );
-
         return await this.findById(id);
     }
 
@@ -59,11 +48,6 @@ class CourseRepository {
             { _id: new ObjectId(id) },
             { $set: updateCourseData }
         );
-
-        if (result.matchedCount === 0) {
-            return null;
-        }
-
         return await this.findById(id);
     }
 

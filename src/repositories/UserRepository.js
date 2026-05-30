@@ -35,20 +35,10 @@ class UserRepository {
     }
 
     async replace(id, replaceUserData) {
-        const currentUser = await this.findById(id);
-
-        if (!currentUser) {
-            return null;
-        }
-
         await this.getCollection().replaceOne(
             { _id: new ObjectId(id) },
-            {
-                ...replaceUserData,
-                createdAt: currentUser.createdAt
-            }
+            replaceUserData
         );
-
         return await this.findById(id);
     }
 
@@ -57,11 +47,6 @@ class UserRepository {
             { _id: new ObjectId(id) },
             { $set: updateUserData }
         );
-
-        if (result.matchedCount === 0) {
-            return null;
-        }
-
         return await this.findById(id);
     }
 

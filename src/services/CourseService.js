@@ -94,7 +94,9 @@ class CourseService {
 
         const courseToReplace = {
             ...replaceCourseData,
-            youtubeId
+            youtubeId,
+            creatorId: courseFromDb.creatorId,
+            createdAt: courseFromDb.createdAt
         };
 
         const updatedCourseFromDb = await courseRepository.replace(id, courseToReplace);
