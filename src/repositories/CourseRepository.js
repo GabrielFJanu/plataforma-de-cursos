@@ -8,7 +8,8 @@ class CourseRepository {
     }
 
     async create(createCourseData) {
-        return await this.getCollection().insertOne(createCourseData);
+        const result = await this.getCollection().insertOne(createCourseData);
+        return await this.findById(result.insertedId);
     }
 
     async findAll(){
@@ -29,17 +30,19 @@ class CourseRepository {
     }
 
     async replace(id, replaceCourseData) {
-        return await this.getCollection().replaceOne(
+        const result = await this.getCollection().replaceOne(
             { _id: new ObjectId(id) },
             replaceCourseData
         );
+        return await this.findById(result.insertedId);
     }
 
     async update(id, updateCourseData) {
-        return await this.getCollection().updateOne(
+        const result = await this.getCollection().updateOne(
             { _id: new ObjectId(id) },
             { $set: updateCourseData }
         );
+        return await this.findById(result.insertedId);
     }
 
     async delete(id) {

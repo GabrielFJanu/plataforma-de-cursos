@@ -8,7 +8,8 @@ class UserRepository {
     }
 
     async create(createUserData) {
-        return await this.getCollection().insertOne(createUserData);
+        const result = await this.getCollection().insertOne(createUserData);
+        return await this.findById(result.insertedId);
     }
 
     async findAll(){
@@ -29,17 +30,19 @@ class UserRepository {
     }
 
     async replace(id, replaceUserData) {
-        return await this.getCollection().replaceOne(
+        const result = await this.getCollection().replaceOne(
             { _id: new ObjectId(id) },
             replaceUserData
         );
+        return await this.findById(result.insertedId);
     }
 
     async update(id, updateUserData) {
-        return await this.getCollection().updateOne(
+        const result = await this.getCollection().updateOne(
             { _id: new ObjectId(id) },
             { $set: updateUserData }
         );
+        return await this.findById(result.insertedId);
     }
 
     async delete(id) {
