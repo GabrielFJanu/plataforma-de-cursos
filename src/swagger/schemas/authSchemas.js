@@ -5,13 +5,12 @@
  *     LoginRequest:
  *       type: object
  *       required:
- *         - email
+ *         - username
  *         - password
  *       properties:
- *         email:
+ *         username:
  *           type: string
- *           format: email
- *           example: gabriel@email.com
+ *           example: gabriel
  *         password:
  *           type: string
  *           format: password
@@ -19,20 +18,12 @@
  *     RegisterRequest:
  *       type: object
  *       required:
- *         - firstName
- *         - email
+ *         - username
  *         - password
  *       properties:
- *         firstName:
+ *         username:
  *           type: string
- *           example: Gabriel
- *         lastName:
- *           type: string
- *           example: Januario
- *         email:
- *           type: string
- *           format: email
- *           example: gabriel@email.com
+ *           example: gabriel
  *         password:
  *           type: string
  *           format: password

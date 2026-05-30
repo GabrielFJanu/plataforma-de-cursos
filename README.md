@@ -36,7 +36,7 @@ As rotas da API usam token JWT no formato `Bearer Token`, exceto as rotas de aut
 
 ### 1. Cadastre um usuario
 
-O email informado nao pode estar cadastrado no sistema ainda.
+O username informado nao pode estar cadastrado no sistema ainda.
 
 Envie uma requisicao `POST` para:
 
@@ -48,9 +48,7 @@ Exemplo de corpo da requisicao:
 
 ```json
 {
-  "firstName": "Gabriel",
-  "lastName": "Januario",
-  "email": "gabriel@email.com",
+  "username": "gabriel",
   "password": "senha123"
 }
 ```
@@ -67,7 +65,7 @@ Exemplo de corpo da requisicao:
 
 ```json
 {
-  "email": "gabriel@email.com",
+  "username": "gabriel",
   "password": "senha123"
 }
 ```

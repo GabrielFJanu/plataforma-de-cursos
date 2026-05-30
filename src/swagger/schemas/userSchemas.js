@@ -11,16 +11,9 @@
  *       properties:
  *         id:
  *           $ref: '#/components/schemas/UserId'
- *         firstName:
+ *         username:
  *           type: string
- *           example: Gabriel
- *         lastName:
- *           type: string
- *           example: Januario
- *         email:
- *           type: string
- *           format: email
- *           example: gabriel@email.com
+ *           example: gabriel
  *         createdAt:
  *           type: string
  *           format: date-time
@@ -28,21 +21,13 @@
  *     CreateUserRequest:
  *       type: object
  *       required:
- *         - firstName
- *         - email
+ *         - username
  *         - password
  *         - role
  *       properties:
- *         firstName:
+ *         username:
  *           type: string
- *           example: Gabriel
- *         lastName:
- *           type: string
- *           example: Januario
- *         email:
- *           type: string
- *           format: email
- *           example: gabriel@email.com
+ *           example: gabriel
  *         password:
  *           type: string
  *           format: password
@@ -56,16 +41,9 @@
  *     UpdateUserRequest:
  *       type: object
  *       properties:
- *         firstName:
+ *         username:
  *           type: string
- *           example: Gabriel
- *         lastName:
- *           type: string
- *           example: Januario
- *         email:
- *           type: string
- *           format: email
- *           example: gabriel.novo@email.com
+ *           example: gabriel_novo
  *         password:
  *           type: string
  *           format: password

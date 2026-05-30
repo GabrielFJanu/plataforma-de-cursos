@@ -7,10 +7,10 @@ import bcrypt from "bcrypt";
 class UserService {
 
     async create(createUserData) {
-        const userWithSameEmail = await userRepository.findByEmail(createUserData.email);
+        const userWithSameUsername = await userRepository.findByUsername(createUserData.username);
 
-        if (userWithSameEmail) {
-            throw createHttpError('Esse email já foi cadastrado no sistema', 409);
+        if (userWithSameUsername) {
+            throw createHttpError('Esse username já foi cadastrado no sistema', 409);
         }
 
         const saltRounds = process.env.BCRYPT_SALT_ROUNDS || 10;
@@ -47,10 +47,10 @@ class UserService {
             throw createHttpError('Usuário não encontrado', 404);
         }
 
-        const userWithSameEmail = await userRepository.findByEmail(replaceUserData.email);
+        const userWithSameUsername = await userRepository.findByUsername(replaceUserData.username);
 
-        if (userWithSameEmail && userWithSameEmail.id !== id) {
-            throw createHttpError('Esse email já foi cadastrado no sistema', 409);
+        if (userWithSameUsername && userWithSameUsername.id !== id) {
+            throw createHttpError('Esse username já foi cadastrado no sistema', 409);
         }
 
         const saltRounds = process.env.BCRYPT_SALT_ROUNDS || 10;
@@ -74,11 +74,11 @@ class UserService {
             throw createHttpError('Usuário não encontrado', 404);
         }
 
-        if (updateUserData.email !== undefined) {
-            const userWithSameEmail = await userRepository.findByEmail(updateUserData.email);
+        if (updateUserData.username !== undefined) {
+            const userWithSameUsername = await userRepository.findByUsername(updateUserData.username);
 
-            if (userWithSameEmail && userWithSameEmail.id !== id) {
-                throw createHttpError('Esse email já foi cadastrado no sistema', 409);
+            if (userWithSameUsername && userWithSameUsername.id !== id) {
+                throw createHttpError('Esse username já foi cadastrado no sistema', 409);
             }
         }
 

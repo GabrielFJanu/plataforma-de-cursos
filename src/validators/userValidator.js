@@ -1,22 +1,11 @@
 import { body, param, checkExact } from 'express-validator';
 
 export const validateCreateUser = checkExact([
-    body('firstName')
-        .isString().withMessage('O nome deve ser um texto')
+    body('username')
+        .isString().withMessage('O username deve ser um texto')
         .trim()
-        .notEmpty().withMessage('O nome não deve ser vazio'),
-
-    body('lastName')
-        .optional()
-        .isString().withMessage('O sobrenome deve ser um texto')
-        .trim()
-        .notEmpty().withMessage('O sobrenome não deve ser vazio'),
-
-    body('email')
-        .isString().withMessage('O email deve ser um texto')
-        .trim()
-        .notEmpty().withMessage('O email não deve ser vazio')
-        .isEmail().withMessage('O email deve ser válido'),
+        .notEmpty().withMessage('O username não deve ser vazio')
+        .isLength({ min: 3, max: 30 }).withMessage('O username deve ter entre 3 e 30 caracteres'),
 
     body('password')
         .isString().withMessage('A senha deve ser um texto')
@@ -43,22 +32,11 @@ export const validateReplaceUser = checkExact([
         .notEmpty().withMessage('O ID não deve ser vazio')
         .isUUID().withMessage('O ID deve ser um UUID válido'),
 
-    body('firstName')
-        .isString().withMessage('O nome deve ser um texto')
+    body('username')
+        .isString().withMessage('O username deve ser um texto')
         .trim()
-        .notEmpty().withMessage('O nome não deve ser vazio'),
-
-    body('lastName')
-        .optional()
-        .isString().withMessage('O sobrenome deve ser um texto')
-        .trim()
-        .notEmpty().withMessage('O sobrenome não pode ser vazio'),
-
-    body('email')
-        .isString().withMessage('O email deve ser um texto')
-        .trim()
-        .notEmpty().withMessage('O email não deve ser vazio')
-        .isEmail().withMessage('O email deve ser válido'),
+        .notEmpty().withMessage('O username não deve ser vazio')
+        .isLength({ min: 3, max: 30 }).withMessage('O username deve ter entre 3 e 30 caracteres'),
 
     body('password')
         .isString().withMessage('A senha deve ser um texto')
@@ -78,24 +56,12 @@ export const validateUpdateUser = checkExact([
         .notEmpty().withMessage('O ID não deve ser vazio')
         .isUUID().withMessage('O ID deve ser um UUID válido'),
 
-    body('firstName')
+    body('username')
         .optional()
-        .isString().withMessage('O nome deve ser um texto')
+        .isString().withMessage('O username deve ser um texto')
         .trim()
-        .notEmpty().withMessage('O nome não deve ser vazio'),
-
-    body('lastName')
-        .optional()
-        .isString().withMessage('O sobrenome deve ser um texto')
-        .trim()
-        .notEmpty().withMessage('O sobrenome não pode ser vazio'),
-
-    body('email')
-        .optional()
-        .isString().withMessage('O email deve ser um texto')
-        .trim()
-        .notEmpty().withMessage('O email não deve ser vazio')
-        .isEmail().withMessage('O email deve ser válido'),
+        .notEmpty().withMessage('O username não deve ser vazio')
+        .isLength({ min: 3, max: 30 }).withMessage('O username deve ter entre 3 e 30 caracteres'),
 
     body('password')
         .optional()

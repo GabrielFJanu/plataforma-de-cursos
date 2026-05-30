@@ -32,18 +32,14 @@
   "users": [
     {
       "id": "a69ec8df-03fd-4ae4-bd4d-a45fc361875a",
-      "firstName": "Gabriel",
-      "lastName": "Januário",
-      "email": "gabrielfreitasj2004@gmail.com",
+      "username": "gabrielfreitasj2004",
       "password": "$2b$10$PulmoxUWLG.LzK0muArcyeHgYABVHxAI1Vek9C0L9TL5yU0OMAdzG",
       "role": "admin",
       "createdAt": "2026-05-12T01:43:12+00:00"
     },
     {
       "id": "6811f8a0-cf95-4de6-858d-5795f7e89776",
-      "firstName": "Fulano",
-      "lastName": "Aipapai da Silva",
-      "email": "aipapito@gmail.com",
+      "username": "aipapito",
       "password": "$2b$10$bCfk8rUZ1rf1XZ3.ZH5PHePnz8YvT0ko66v1UfgkdaSYLLBTBQpHe",
       "role": "user",
       "createdAt": "2026-05-15T01:35:08.197Z"

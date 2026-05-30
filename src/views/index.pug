@@ -24,7 +24,7 @@ block content
                                 small.text-muted= `${new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(course.createdAt))} `
                                 small.text-muted por 
                                 if course.creator
-                                    small.text-muted= `${course.creator.firstName} ${course.creator.lastName}`
+                                    small.text-muted= course.creator.username
                                 else
                                     small.text-muted Criador não encontrado
     else 

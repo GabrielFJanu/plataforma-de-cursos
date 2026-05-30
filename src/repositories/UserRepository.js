@@ -25,8 +25,8 @@ class UserRepository {
         return await this.getCollection().find({ _id: { $in: objectIds } }).toArray();
     }
 
-    async findByEmail(email) {
-        return await this.getCollection().findOne({ email: email });
+    async findByUsername(username) {
+        return await this.getCollection().findOne({ username: username });
     }
 
     async replace(id, replaceUserData) {

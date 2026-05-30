@@ -73,7 +73,7 @@ authRouter.post('/login', validateLogin, handleValidationError, authController.l
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       409:
- *         description: Email ja cadastrado no sistema
+ *         description: Username ja cadastrado no sistema
  *         content:
  *           application/json:
  *             schema:

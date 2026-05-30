@@ -47,7 +47,7 @@ const userRouter = Router();
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       409:
- *         description: Email ja cadastrado no sistema
+ *         description: Username ja cadastrado no sistema
  *         content:
  *           application/json:
  *             schema:
@@ -210,7 +210,7 @@ userRouter.get('/:id', authorize('admin'), validateGetUserById, handleValidation
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       409:
- *         description: Email ja cadastrado no sistema
+ *         description: Username ja cadastrado no sistema
  *         content:
  *           application/json:
  *             schema:
@@ -278,7 +278,7 @@ userRouter.put('/:id', authorize('admin'), validateReplaceUser, handleValidation
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       409:
- *         description: Email ja cadastrado no sistema
+ *         description: Username ja cadastrado no sistema
  *         content:
  *           application/json:
  *             schema:
