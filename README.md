@@ -6,9 +6,13 @@ Projeto backend em Node.js para cadastrar usuarios e cursos em video. A API perm
 
 - Node.js
 - Express
+- MongoDB
+- MongoDB Node.js Driver
+- JWT
+- bcrypt
 - Pug
-- LowDB
 - express-validator
+- Swagger
 
 ## Como executar
 
@@ -139,7 +143,7 @@ O sistema extrai automaticamente o ID do video do YouTube para exibir o curso na
 
 ## Observacoes
 
-- O banco local fica no arquivo `db.json`.
 - A porta padrao do servidor e `3000`.
 - A pagina `/` mostra os cursos cadastrados.
 - Ao remover um usuario, os cursos criados por ele tambem sao removidos.
+- Os IDs recebidos em parametros de rota devem ser ObjectIds validos.
