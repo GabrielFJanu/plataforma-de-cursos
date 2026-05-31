@@ -1,58 +1,36 @@
-import { ObjectId } from 'mongodb';
-
-import { getDB } from '../config/database.js';
+import User from '../models/userModel.js';
 
 class UserRepository {
-
-    getCollection() {
-        return getDB().collection('Users');
-    }
-
     async create(createUserData) {
-        const userToCreate = {
-            ...createUserData,
-            createdAt: new Date().toISOString()
-        };
-
-        const result = await this.getCollection().insertOne(userToCreate);
-        return await this.findById(result.insertedId);
+        return await User.create(createUserData);
     }
 
     async findAll(){
-        return await this.getCollection().find({}).toArray();
+        return await User.find();
     }
 
     async findById(id) {
-        return await this.getCollection().findOne({ _id: new ObjectId(id) });
+        return await User.findById(id);
     }
 
     async findByIds(ids) {
-        const objectIds = ids.map(id => new ObjectId(id));
-        return await this.getCollection().find({ _id: { $in: objectIds } }).toArray();
+        return await User.find({ _id: { $in: ids }});
     }
 
     async findByUsername(username) {
-        return await this.getCollection().findOne({ username: username });
+        return await User.findOne({ username: username });
     }
 
     async replace(id, replaceUserData) {
-        await this.getCollection().replaceOne(
-            { _id: new ObjectId(id) },
-            replaceUserData
-        );
-        return await this.findById(id);
+        return await User.findByIdAndReplace(id, replaceUserData);
     }
 
     async update(id, updateUserData) {
-        const result = await this.getCollection().updateOne(
-            { _id: new ObjectId(id) },
-            { $set: updateUserData }
-        );
-        return await this.findById(id);
+        return await User.findByIdAndUpdate(id, updateUserData, { new: true });
     }
 
     async delete(id) {
-        return await this.getCollection().deleteOne({ _id: new ObjectId(id) });
+        return await User.findByIdAndDelete(id);
     }
 }
 

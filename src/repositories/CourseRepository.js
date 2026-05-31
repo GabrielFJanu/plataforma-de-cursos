@@ -1,59 +1,36 @@
-import { ObjectId } from 'mongodb';
-
-import { getDB } from '../config/database.js';
+import Course from '../models/courseModel.js';
 
 class CourseRepository {
-
-    getCollection() {
-        return getDB().collection('Courses');
-    }
-
     async create(createCourseData) {
-        const courseToCreate = {
-            ...createCourseData,
-            creatorId: new ObjectId(createCourseData.creatorId),
-            createdAt: new Date().toISOString()
-        };
-
-        const result = await this.getCollection().insertOne(courseToCreate);
-        return await this.findById(result.insertedId);
+        return await Course.create(createCourseData);
     }
 
     async findAll(){
-        return await this.getCollection().find({}).toArray();
+        return await Course.find();
     }
 
     async findById(id) {
-        return await this.getCollection().findOne({ _id: new ObjectId(id) });
+        return await Course.findById(id);
     }
 
     async findByIds(ids) {
-        const objectIds = ids.map(id => new ObjectId(id));
-        return await this.getCollection().find({ _id: { $in: objectIds } }).toArray();
+        return await Course.find({ _id: { $in: ids }});
     }
 
     async findByCreatorId(creatorId) {
-        return await this.getCollection().find({ creatorId: new ObjectId(creatorId) }).toArray();
+        return await Course.find({ creatorId: creatorId });
     }
 
     async replace(id, replaceCourseData) {
-        await this.getCollection().replaceOne(
-            { _id: new ObjectId(id) },
-            replaceCourseData
-        );
-        return await this.findById(id);
+        return await Course.findByIdAndReplace(id, replaceCourseData);
     }
 
     async update(id, updateCourseData) {
-        const result = await this.getCollection().updateOne(
-            { _id: new ObjectId(id) },
-            { $set: updateCourseData }
-        );
-        return await this.findById(id);
+        return await Course.findByIdAndUpdate(id, updateCourseData, { new: true });
     }
 
     async delete(id) {
-        return await this.getCollection().deleteOne({ _id: new ObjectId(id) });
+        return await Course.findByIdAndDelete(id);
     }
 }
 
