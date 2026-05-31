@@ -57,7 +57,7 @@
  *           example: Curso introdutorio de JavaScript para backend
  *         knowledgeArea:
  *           type: string
- *           example: ProgramaÃ§Ã£o
+ *           example: Programação
  *         url:
  *           type: string
  *           format: uri
@@ -73,7 +73,7 @@
  *           example: Curso atualizado de JavaScript para backend
  *         knowledgeArea:
  *           type: string
- *           example: ProgramaÃ§Ã£o
+ *           example: Programação
  *         url:
  *           type: string
  *           format: uri

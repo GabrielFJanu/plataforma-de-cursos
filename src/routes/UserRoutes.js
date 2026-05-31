@@ -18,7 +18,7 @@ const userRouter = Router();
  * @swagger
  * /api/users:
  *   post:
- *     summary: Cria um novo usuÃ¡rio
+ *     summary: Cria um novo usuário
  *     tags:
  *       - Users
  *     security:
@@ -31,19 +31,19 @@ const userRouter = Router();
  *             $ref: '#/components/schemas/CreateUserRequest'
  *     responses:
  *       201:
- *         description: UsuÃ¡rio criado com sucesso
+ *         description: Usuário criado com sucesso
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       400:
- *         description: Dados invÃ¡lidos
+ *         description: Dados inválidos
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Token ausente, invÃ¡lido ou expirado
+ *         description: Token ausente, inválido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -55,7 +55,7 @@ const userRouter = Router();
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       409:
- *         description: Username jÃ¡ cadastrado no sistema
+ *         description: Username já cadastrado no sistema
  *         content:
  *           application/json:
  *             schema:
@@ -73,14 +73,14 @@ userRouter.post('/', authorize('admin'), validateCreateUser, handleValidationErr
  * @swagger
  * /api/users:
  *   get:
- *     summary: Lista todos os usuÃ¡rios
+ *     summary: Lista todos os usuários
  *     tags:
  *       - Users
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Lista de usuÃ¡rios retornada com sucesso
+ *         description: Lista de usuários retornada com sucesso
  *         content:
  *           application/json:
  *             schema:
@@ -88,7 +88,7 @@ userRouter.post('/', authorize('admin'), validateCreateUser, handleValidationErr
  *               items:
  *                 $ref: '#/components/schemas/User'
  *       401:
- *         description: Token ausente, invÃ¡lido ou expirado
+ *         description: Token ausente, inválido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -112,7 +112,7 @@ userRouter.get('/', authorize('admin'), userController.getAll);
  * @swagger
  * /api/users/{id}:
  *   get:
- *     summary: Busca um usuÃ¡rio pelo ID
+ *     summary: Busca um usuário pelo ID
  *     tags:
  *       - Users
  *     security:
@@ -123,22 +123,22 @@ userRouter.get('/', authorize('admin'), userController.getAll);
  *         required: true
  *         schema:
  *           $ref: '#/components/schemas/UserId'
- *         description: ID do usuÃ¡rio
+ *         description: ID do usuário
  *     responses:
  *       200:
- *         description: UsuÃ¡rio encontrado com sucesso
+ *         description: Usuário encontrado com sucesso
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       400:
- *         description: ID invÃ¡lido
+ *         description: ID inválido
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Token ausente, invÃ¡lido ou expirado
+ *         description: Token ausente, inválido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -150,7 +150,7 @@ userRouter.get('/', authorize('admin'), userController.getAll);
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: UsuÃ¡rio nÃ£o encontrado
+ *         description: Usuário não encontrado
  *         content:
  *           application/json:
  *             schema:
@@ -168,7 +168,7 @@ userRouter.get('/:id', authorize('admin'), validateGetUserById, handleValidation
  * @swagger
  * /api/users/{id}:
  *   put:
- *     summary: Substitui todos os dados de um usuÃ¡rio
+ *     summary: Substitui todos os dados de um usuário
  *     tags:
  *       - Users
  *     security:
@@ -179,7 +179,7 @@ userRouter.get('/:id', authorize('admin'), validateGetUserById, handleValidation
  *         required: true
  *         schema:
  *           $ref: '#/components/schemas/UserId'
- *         description: ID do usuÃ¡rio
+ *         description: ID do usuário
  *     requestBody:
  *       required: true
  *       content:
@@ -188,19 +188,19 @@ userRouter.get('/:id', authorize('admin'), validateGetUserById, handleValidation
  *             $ref: '#/components/schemas/CreateUserRequest'
  *     responses:
  *       200:
- *         description: UsuÃ¡rio substituÃ­do com sucesso
+ *         description: Usuário substituído com sucesso
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       400:
- *         description: Dados invÃ¡lidos
+ *         description: Dados inválidos
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Token ausente, invÃ¡lido ou expirado
+ *         description: Token ausente, inválido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -212,13 +212,13 @@ userRouter.get('/:id', authorize('admin'), validateGetUserById, handleValidation
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: UsuÃ¡rio nÃ£o encontrado
+ *         description: Usuário não encontrado
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       409:
- *         description: Username jÃ¡ cadastrado no sistema
+ *         description: Username já cadastrado no sistema
  *         content:
  *           application/json:
  *             schema:
@@ -236,7 +236,7 @@ userRouter.put('/:id', authorize('admin'), validateReplaceUser, handleValidation
  * @swagger
  * /api/users/{id}:
  *   patch:
- *     summary: Atualiza parcialmente um usuÃ¡rio
+ *     summary: Atualiza parcialmente um usuário
  *     tags:
  *       - Users
  *     security:
@@ -247,7 +247,7 @@ userRouter.put('/:id', authorize('admin'), validateReplaceUser, handleValidation
  *         required: true
  *         schema:
  *           $ref: '#/components/schemas/UserId'
- *         description: ID do usuÃ¡rio
+ *         description: ID do usuário
  *     requestBody:
  *       required: true
  *       content:
@@ -256,19 +256,19 @@ userRouter.put('/:id', authorize('admin'), validateReplaceUser, handleValidation
  *             $ref: '#/components/schemas/UpdateUserRequest'
  *     responses:
  *       200:
- *         description: UsuÃ¡rio atualizado com sucesso
+ *         description: Usuário atualizado com sucesso
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       400:
- *         description: Dados invÃ¡lidos ou corpo vazio
+ *         description: Dados inválidos ou corpo vazio
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Token ausente, invÃ¡lido ou expirado
+ *         description: Token ausente, inválido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -280,13 +280,13 @@ userRouter.put('/:id', authorize('admin'), validateReplaceUser, handleValidation
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: UsuÃ¡rio nÃ£o encontrado
+ *         description: Usuário não encontrado
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       409:
- *         description: Username jÃ¡ cadastrado no sistema
+ *         description: Username já cadastrado no sistema
  *         content:
  *           application/json:
  *             schema:
@@ -304,7 +304,7 @@ userRouter.patch('/:id', authorize('admin'), validateUpdateUser, handleValidatio
  * @swagger
  * /api/users/{id}:
  *   delete:
- *     summary: Remove um usuÃ¡rio
+ *     summary: Remove um usuário
  *     tags:
  *       - Users
  *     security:
@@ -315,18 +315,18 @@ userRouter.patch('/:id', authorize('admin'), validateUpdateUser, handleValidatio
  *         required: true
  *         schema:
  *           $ref: '#/components/schemas/UserId'
- *         description: ID do usuÃ¡rio
+ *         description: ID do usuário
  *     responses:
  *       204:
- *         description: UsuÃ¡rio removido com sucesso
+ *         description: Usuário removido com sucesso
  *       400:
- *         description: ID invÃ¡lido
+ *         description: ID inválido
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Token ausente, invÃ¡lido ou expirado
+ *         description: Token ausente, inválido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -338,7 +338,7 @@ userRouter.patch('/:id', authorize('admin'), validateUpdateUser, handleValidatio
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: UsuÃ¡rio nÃ£o encontrado
+ *         description: Usuário não encontrado
  *         content:
  *           application/json:
  *             schema:
@@ -356,7 +356,7 @@ userRouter.delete('/:id', authorize('admin'), validateDeleteUser, handleValidati
  * @swagger
  * /api/users/{id}/courses:
  *   get:
- *     summary: Lista os cursos criados por um usuÃ¡rio
+ *     summary: Lista os cursos criados por um usuário
  *     tags:
  *       - Users
  *     security:
@@ -367,10 +367,10 @@ userRouter.delete('/:id', authorize('admin'), validateDeleteUser, handleValidati
  *         required: true
  *         schema:
  *           $ref: '#/components/schemas/UserId'
- *         description: ID do usuÃ¡rio criador
+ *         description: ID do usuário criador
  *     responses:
  *       200:
- *         description: Lista de cursos do usuÃ¡rio retornada com sucesso
+ *         description: Lista de cursos do usuário retornada com sucesso
  *         content:
  *           application/json:
  *             schema:
@@ -378,19 +378,19 @@ userRouter.delete('/:id', authorize('admin'), validateDeleteUser, handleValidati
  *               items:
  *                 $ref: '#/components/schemas/Course'
  *       400:
- *         description: ID invÃ¡lido
+ *         description: ID inválido
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Token ausente, invÃ¡lido ou expirado
+ *         description: Token ausente, inválido ou expirado
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: UsuÃ¡rio nÃ£o encontrado
+ *         description: Usuário não encontrado
  *         content:
  *           application/json:
  *             schema:

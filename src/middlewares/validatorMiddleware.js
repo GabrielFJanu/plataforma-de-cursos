@@ -7,7 +7,7 @@ export function handleValidationError(req, res, next) {
 
     if (!validationErrors.isEmpty()) {
         const error = createHttpError(
-            'Erro de validaÃ§Ã£o',
+            'Erro de validação',
             400,
             validationErrors.array().map(error => ({
                 field: error.path,

@@ -12,12 +12,12 @@ class AuthService {
         const userFromDb = await userRepository.findByUsername(loginData.username);
 
         if (!userFromDb) {
-            throw createHttpError('Credenciais invÃ¡lidas', 401);
+            throw createHttpError('Credenciais inválidas', 401);
         }
 
         const isValidPassword = await bcrypt.compare(loginData.password, userFromDb.password);
         if (!isValidPassword) {
-            throw createHttpError('Credenciais invÃ¡lidas', 401);
+            throw createHttpError('Credenciais inválidas', 401);
         }
 
         const payload = {

@@ -10,7 +10,7 @@ const authRouter = Router();
  * @swagger
  * /api/auth/login:
  *   post:
- *     summary: Autentica um usuÃ¡rio
+ *     summary: Autentica um usuário
  *     tags:
  *       - Auth
  *     requestBody:
@@ -21,19 +21,19 @@ const authRouter = Router();
  *             $ref: '#/components/schemas/LoginRequest'
  *     responses:
  *       200:
- *         description: UsuÃ¡rio autenticado com sucesso
+ *         description: Usuário autenticado com sucesso
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/AuthTokenResponse'
  *       400:
- *         description: Dados invÃ¡lidos
+ *         description: Dados inválidos
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Credenciais invÃ¡lidas
+ *         description: Credenciais inválidas
  *         content:
  *           application/json:
  *             schema:
@@ -51,7 +51,7 @@ authRouter.post('/login', validateLogin, handleValidationError, authController.l
  * @swagger
  * /api/auth/register:
  *   post:
- *     summary: Cadastra um novo usuÃ¡rio
+ *     summary: Cadastra um novo usuário
  *     tags:
  *       - Auth
  *     requestBody:
@@ -62,19 +62,19 @@ authRouter.post('/login', validateLogin, handleValidationError, authController.l
  *             $ref: '#/components/schemas/RegisterRequest'
  *     responses:
  *       201:
- *         description: UsuÃ¡rio cadastrado com sucesso
+ *         description: Usuário cadastrado com sucesso
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       400:
- *         description: Dados invÃ¡lidos
+ *         description: Dados inválidos
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       409:
- *         description: Username jÃ¡ cadastrado no sistema
+ *         description: Username já cadastrado no sistema
  *         content:
  *           application/json:
  *             schema:

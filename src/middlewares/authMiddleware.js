@@ -8,7 +8,7 @@ export function authenticate(req, res, next) {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        const error = createHttpError('Token nÃ£o fornecido', 401);
+        const error = createHttpError('Token não fornecido', 401);
         return next(error);
     }
 
@@ -28,7 +28,7 @@ export function authenticate(req, res, next) {
 
     jwt.verify(token, JWT_SECRET, (jwtError, decoded) => {
         if (jwtError) {
-            const error = createHttpError('Token invÃ¡lido ou expirado', 401);
+            const error = createHttpError('Token inválido ou expirado', 401);
             return next(error);
         }
 

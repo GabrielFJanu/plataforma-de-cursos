@@ -10,7 +10,7 @@
  *           example: false
  *         message:
  *           type: string
- *           example: Erro de vÃ¡lidacao
+ *           example: Erro de validação
  *         errors:
  *           type: array
  *           items:
@@ -21,5 +21,5 @@
  *                 example: id
  *               message:
  *                 type: string
- *                 example: O ID deve ser um ObjectId vÃ¡lido
+ *                 example: O ID deve ser um ObjectId válido
  */

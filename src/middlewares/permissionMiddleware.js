@@ -26,7 +26,7 @@ export async function authorizeCourseCreatorOrAdmin(req, res, next) {
         const courseFromDb = await courseRepository.findById(courseId);
 
         if (!courseFromDb) {
-            throw createHttpError('Curso nÃ£o encontrado', 404);
+            throw createHttpError('Curso não encontrado', 404);
         }
 
         if (courseFromDb.creator._id.toString() !== req.user._id) {

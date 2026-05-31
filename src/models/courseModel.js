@@ -3,7 +3,7 @@
 const courseSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: [true, 'TÃ­tulo Ã© obrigatÃ³rio'],
+        required: [true, 'Título é obrigatório'],
         trim: true
     },
     description: {
@@ -12,23 +12,23 @@ const courseSchema = new mongoose.Schema({
     },
     knowledgeArea: {
         type: String,
-        required: [true, 'Ãrea do conhecimento Ã© obrigatÃ³ria'],
+        required: [true, 'Área do conhecimento é obrigatória'],
         trim: true
     },
     url: {
         type: String,
-        required: [true, 'URL Ã© obrigatÃ³ria'],
+        required: [true, 'URL é obrigatória'],
         trim: true
     },
     youtubeId: {
         type: String,
-        required: [true, 'ID do YouTube Ã© obrigatÃ³rio'],
+        required: [true, 'ID do YouTube é obrigatório'],
         trim: true
     },
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: [true, 'Criador Ã© obrigatÃ³rio']
+        required: [true, 'Criador é obrigatório']
     }
 }, {
     timestamps: true

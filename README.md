@@ -147,5 +147,5 @@ Nas respostas da API, o campo `creator` do curso retorna os dados básicos do us
 - A porta padrão do servidor e `3000`.
 - A página `/` mostra os cursos cadastrados.
 - Ao remover um usuário, os cursos criados por ele também são removidos.
-- Os IDs recebidos em parametros de rota devem ser ObjectIds válidos.
+- Os IDs recebidos em parâmetros de rota devem ser ObjectIds válidos.
 - `PUT` espera o corpo completo do recurso; `PATCH` aceita atualização parcial.
