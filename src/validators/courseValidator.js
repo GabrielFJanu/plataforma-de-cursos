@@ -1,5 +1,5 @@
 import { body, param, checkExact } from 'express-validator';
-import { ObjectId } from 'mongodb';
+import mongoose from 'mongoose';
 
 export const validateCreateCourse = checkExact([
     body('title')
@@ -29,14 +29,14 @@ export const validateGetCourseById = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
-        .custom(id => ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido')
+        .custom(id => mongoose.Types.ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido')
 ]);
 
 export const validateReplaceCourse = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
-        .custom(id => ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido'),
+        .custom(id => mongoose.Types.ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido'),
 
     body('title')
         .isString().withMessage('O título deve ser um texto')
@@ -65,7 +65,7 @@ export const validateUpdateCourse = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
-        .custom(id => ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido'),
+        .custom(id => mongoose.Types.ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido'),
 
     body('title')
         .optional()

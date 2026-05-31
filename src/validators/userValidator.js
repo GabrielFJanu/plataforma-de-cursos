@@ -1,5 +1,5 @@
 import { body, param, checkExact } from 'express-validator';
-import { ObjectId } from 'mongodb';
+import mongoose from 'mongoose';
 
 export const validateCreateUser = checkExact([
     body('username')
@@ -24,14 +24,14 @@ export const validateGetUserById = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
-        .custom(id => ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido')
+        .custom(id => mongoose.Types.ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido')
 ]);
 
 export const validateReplaceUser = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
-        .custom(id => ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido'),
+        .custom(id => mongoose.Types.ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido'),
 
     body('username')
         .isString().withMessage('O username deve ser um texto')
@@ -55,7 +55,7 @@ export const validateUpdateUser = checkExact([
     param('id')
         .trim()
         .notEmpty().withMessage('O ID não deve ser vazio')
-        .custom(id => ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido'),
+        .custom(id => mongoose.Types.ObjectId.isValid(id)).withMessage('O ID deve ser um ObjectId válido'),
 
     body('username')
         .optional()
