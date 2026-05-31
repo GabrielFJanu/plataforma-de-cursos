@@ -17,6 +17,10 @@
  *           type: string
  *           format: date-time
  *           example: 2026-05-12T01:43:12.000Z
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ *           example: 2026-05-12T02:05:20.000Z
  *     CreateUserRequest:
  *       type: object
  *       required:

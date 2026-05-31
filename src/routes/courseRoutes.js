@@ -124,12 +124,6 @@ courseRouter.get('/', courseController.getAll);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
- *       403:
- *         description: Acesso negado. Apenas o criador do curso ou um admin pode substituir o curso
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Curso nao encontrado
  *         content:

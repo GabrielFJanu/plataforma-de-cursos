@@ -38,6 +38,10 @@
  *           type: string
  *           format: date-time
  *           example: 2026-05-12T01:44:03.000Z
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ *           example: 2026-05-12T02:10:30.000Z
  *     CreateCourseRequest:
  *       type: object
  *       required:
