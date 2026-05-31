@@ -1,4 +1,4 @@
-import { CourseResponseDto, CourseWithCreatorResponseDto } from "../dtos/courseDto.js";
+import { CourseResponseDto } from "../dtos/courseDto.js";
 import courseRepository from "../repositories/CourseRepository.js";
 import userRepository from "../repositories/UserRepository.js";
 import { createHttpError } from "../utils/createHttpError.js";
@@ -31,28 +31,6 @@ class CourseService {
 
         const coursesDto = coursesFromDb.map(courseFromDb => new CourseResponseDto(courseFromDb));
         return coursesDto
-    }
-
-    async getAllWithCreator() {
-        const coursesFromDb = await courseRepository.findAll();
-
-        const creatorObjectIds = [...new Set(coursesFromDb.map(courseFromDb => courseFromDb.creator.toString()))];
-
-        const creatorsFromDb = await userRepository.findByIds(creatorObjectIds);
-
-        const coursesWithCreatorFromDb = enrichCoursesWithCreator(coursesFromDb, creatorsFromDb);
-
-        const coursesWithCreatorDto = coursesWithCreatorFromDb.map(courseWithCreatorFromDb => new CourseWithCreatorResponseDto(courseWithCreatorFromDb));
-        return coursesWithCreatorDto;
-        
-        function enrichCoursesWithCreator(courses, creators) {
-            const mapCreatorToCreator = new Map(creators.map(creator => [creator._id.toString(), creator]));
-            const coursesWithCreator = courses.map(course => ({
-                ...course,
-                creator: mapCreatorToCreator.get(course.creator.toString()) || null
-            }));
-            return coursesWithCreator;
-        }
     }
 
     async getById(id) {
@@ -95,7 +73,7 @@ class CourseService {
         const courseToReplace = {
             ...replaceCourseData,
             youtubeId,
-            creator: courseFromDb.creator,
+            creator: courseFromDb.creator._id,
             createdAt: courseFromDb.createdAt
         };
 

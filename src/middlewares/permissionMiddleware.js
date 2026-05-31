@@ -29,7 +29,7 @@ export async function authorizeCourseCreatorOrAdmin(req, res, next) {
             throw createHttpError('Curso não encontrado', 404);
         }
 
-        if (courseFromDb.creator.toString() !== req.user._id) {
+        if (courseFromDb.creator._id.toString() !== req.user._id) {
             throw createHttpError('Acesso negado', 403);
         }
 

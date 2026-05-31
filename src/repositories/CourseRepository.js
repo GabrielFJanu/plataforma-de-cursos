@@ -2,31 +2,28 @@ import Course from '../models/courseModel.js';
 
 class CourseRepository {
     async create(createCourseData) {
-        return await Course.create(createCourseData);
+        const course = await Course.create(createCourseData);
+        return await course.populate('creator');
     }
 
     async findAll(){
-        return await Course.find();
+        return await Course.find().populate('creator');
     }
 
     async findById(id) {
-        return await Course.findById(id);
-    }
-
-    async findByIds(ids) {
-        return await Course.find({ _id: { $in: ids }});
+        return await Course.findById(id).populate('creator');
     }
 
     async findByCreator(creator) {
-        return await Course.find({ creator: creator });
+        return await Course.find({ creator: creator }).populate('creator');
     }
 
     async replace(id, replaceCourseData) {
-        return await Course.findByIdAndReplace(id, replaceCourseData);
+        return await Course.findByIdAndReplace(id, replaceCourseData, { new: true }).populate('creator');
     }
 
     async update(id, updateCourseData) {
-        return await Course.findByIdAndUpdate(id, updateCourseData, { new: true });
+        return await Course.findByIdAndUpdate(id, updateCourseData, { new: true }).populate('creator');
     }
 
     async delete(id) {
