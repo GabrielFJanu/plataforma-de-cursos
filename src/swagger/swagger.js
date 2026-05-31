@@ -6,7 +6,7 @@ const options = {
         info: {
             title: "Plataforma de Cursos",
             version: "1.0.0",
-            description: "API para autenticacao, cadastro de usuarios e gerenciamento de cursos em video."
+            description: "API para autenticação, cadastro de usuários e gerenciamento de cursos em vídeo."
         },
         components: {
             securitySchemes: {
