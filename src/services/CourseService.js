@@ -9,9 +9,9 @@ class CourseService {
     async create(createCourseData, creator) {
 
         const youtubeId = extractYoutubeId(createCourseData.url);
-        
+
         if (!youtubeId) {
-            throw createHttpError('URL do YouTube inválida', 400);
+            throw createHttpError('URL do YouTube invalida', 400);
         }
 
         const courseToCreate = {
@@ -37,7 +37,7 @@ class CourseService {
         const courseFromDb = await courseRepository.findById(id);
 
         if (!courseFromDb) {
-            throw createHttpError('Curso não encontrado', 404);
+            throw createHttpError('Curso nao encontrado', 404);
         }
 
         const courseDto = new CourseResponseDto(courseFromDb);
@@ -48,7 +48,7 @@ class CourseService {
         const userFromDb = await userRepository.findById(creator);
 
         if (!userFromDb) {
-            throw createHttpError('Usuário não encontrado', 404);
+            throw createHttpError('Usuario nao encontrado', 404);
         }
 
         const coursesFromDb = await courseRepository.findByCreator(creator);
@@ -61,13 +61,13 @@ class CourseService {
         const courseFromDb = await courseRepository.findById(id);
 
         if (!courseFromDb) {
-            throw createHttpError('Curso não encontrado', 404);
+            throw createHttpError('Curso nao encontrado', 404);
         }
 
         const youtubeId = extractYoutubeId(replaceCourseData.url);
-    
+
         if (!youtubeId) {
-            throw createHttpError('URL do YouTube inválida', 400);
+            throw createHttpError('URL do YouTube invalida', 400);
         }
 
         const courseToReplace = {
@@ -85,22 +85,16 @@ class CourseService {
 
     async update(id, updateCourseData) {
         if (Object.keys(updateCourseData).length === 0) {
-            throw createHttpError('Nenhum dado para atualização foi enviado', 400);
-        }
-
-        const courseFromDb = await courseRepository.findById(id);
-
-        if (!courseFromDb) {
-            throw createHttpError('Curso não encontrado', 404);
+            throw createHttpError('Nenhum dado para atualizacao foi enviado', 400);
         }
 
         const courseToUpdate = { ...updateCourseData };
 
         if (updateCourseData.url !== undefined) {
             const youtubeId = extractYoutubeId(updateCourseData.url);
-        
+
             if (!youtubeId) {
-                throw createHttpError('URL do YouTube inválida', 400);
+                throw createHttpError('URL do YouTube invalida', 400);
             }
 
             courseToUpdate.youtubeId = youtubeId;
@@ -108,18 +102,20 @@ class CourseService {
 
         const updatedCourseFromDb = await courseRepository.update(id, courseToUpdate);
 
+        if (!updatedCourseFromDb) {
+            throw createHttpError('Curso nao encontrado', 404);
+        }
+
         const updatedCourseDto = new CourseResponseDto(updatedCourseFromDb);
         return updatedCourseDto;
     }
 
     async delete(id) {
-        const courseFromDb = await courseRepository.findById(id);
+        const deletedCourseFromDb = await courseRepository.delete(id);
 
-        if (!courseFromDb) {
-            throw createHttpError('Curso não encontrado', 404);
+        if (!deletedCourseFromDb) {
+            throw createHttpError('Curso nao encontrado', 404);
         }
-
-        await courseRepository.delete(id);
     }
 }
 

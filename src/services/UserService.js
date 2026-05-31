@@ -11,12 +11,12 @@ class UserService {
         const userWithSameUsername = await userRepository.findByUsername(createUserData.username);
 
         if (userWithSameUsername) {
-            throw createHttpError('Esse username já foi cadastrado no sistema', 409);
+            throw createHttpError('Esse username ja foi cadastrado no sistema', 409);
         }
 
         const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
         const hashedPassword = await bcrypt.hash(createUserData.password, saltRounds);
-        const userToCreate = { ...createUserData, password: hashedPassword};
+        const userToCreate = { ...createUserData, password: hashedPassword };
 
         const userFromDb = await userRepository.create(userToCreate);
 
@@ -26,7 +26,7 @@ class UserService {
 
     async getAll() {
         const usersFromDb = await userRepository.findAll();
-        const usersDto = usersFromDb.map( userFromDb => new UserResponseDto(userFromDb));
+        const usersDto = usersFromDb.map(userFromDb => new UserResponseDto(userFromDb));
         return usersDto;
     }
 
@@ -34,7 +34,7 @@ class UserService {
         const userFromDb = await userRepository.findById(id);
 
         if (!userFromDb) {
-            throw createHttpError('Usuário não encontrado', 404);
+            throw createHttpError('Usuario nao encontrado', 404);
         }
 
         const userDto = new UserResponseDto(userFromDb);
@@ -45,13 +45,13 @@ class UserService {
         const userFromDb = await userRepository.findById(id);
 
         if (!userFromDb) {
-            throw createHttpError('Usuário não encontrado', 404);
+            throw createHttpError('Usuario nao encontrado', 404);
         }
 
         const userWithSameUsername = await userRepository.findByUsername(replaceUserData.username);
 
         if (userWithSameUsername && userWithSameUsername._id.toString() !== id) {
-            throw createHttpError('Esse username já foi cadastrado no sistema', 409);
+            throw createHttpError('Esse username ja foi cadastrado no sistema', 409);
         }
 
         const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
@@ -70,20 +70,14 @@ class UserService {
 
     async update(id, updateUserData) {
         if (Object.keys(updateUserData).length === 0) {
-            throw createHttpError('Nenhum dado para atualização foi enviado', 400);
-        }
-
-        const userFromDb = await userRepository.findById(id);
-
-        if (!userFromDb) {
-            throw createHttpError('Usuário não encontrado', 404);
+            throw createHttpError('Nenhum dado para atualizacao foi enviado', 400);
         }
 
         if (updateUserData.username !== undefined) {
             const userWithSameUsername = await userRepository.findByUsername(updateUserData.username);
 
             if (userWithSameUsername && userWithSameUsername._id.toString() !== id) {
-                throw createHttpError('Esse username já foi cadastrado no sistema', 409);
+                throw createHttpError('Esse username ja foi cadastrado no sistema', 409);
             }
         }
 
@@ -96,6 +90,10 @@ class UserService {
 
         const updatedUserFromDb = await userRepository.update(id, userToUpdate);
 
+        if (!updatedUserFromDb) {
+            throw createHttpError('Usuario nao encontrado', 404);
+        }
+
         const updatedUserDto = new UserResponseDto(updatedUserFromDb);
         return updatedUserDto;
     }
@@ -104,7 +102,7 @@ class UserService {
         const userFromDb = await userRepository.findById(id);
 
         if (!userFromDb) {
-            throw createHttpError('Usuário não encontrado', 404);
+            throw createHttpError('Usuario nao encontrado', 404);
         }
 
         const coursesCreatedByUser = await courseRepository.findByCreator(userFromDb._id.toString());
