@@ -18,11 +18,18 @@ class UserRepository {
     }
 
     async replace(id, replaceUserData) {
-        return await User.findByIdAndReplace(id, replaceUserData, { new: true });
+        return await User.findOneAndReplace(
+            { _id: id },
+            replaceUserData,
+            {
+                new: true,
+                runValidators: true
+            }
+        );
     }
 
     async update(id, updateUserData) {
-        return await User.findByIdAndUpdate(id, updateUserData, { new: true });
+        return await User.findByIdAndUpdate(id, updateUserData, { new: true, runValidators: true });
     }
 
     async delete(id) {

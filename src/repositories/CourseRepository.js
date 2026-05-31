@@ -19,11 +19,18 @@ class CourseRepository {
     }
 
     async replace(id, replaceCourseData) {
-        return await Course.findByIdAndReplace(id, replaceCourseData, { new: true }).populate('creator');
+        return await Course.findOneAndReplace(
+            { _id: id },
+            replaceCourseData,
+            {
+                new: true,
+                runValidators: true
+            }
+        ).populate('creator');
     }
 
     async update(id, updateCourseData) {
-        return await Course.findByIdAndUpdate(id, updateCourseData, { new: true }).populate('creator');
+        return await Course.findByIdAndUpdate(id, updateCourseData, { new: true, runValidators: true }).populate('creator');
     }
 
     async delete(id) {

@@ -7,9 +7,10 @@ export class CourseResponseDto {
         this.url = courseFromDb.url;
         this.youtubeId = courseFromDb.youtubeId;
         this.createdAt = courseFromDb.createdAt;
+        this.updatedAt = courseFromDb.updatedAt;
 
         this.creator = {
-            _id = courseFromDb.creator._id.toString(),
+            _id: courseFromDb.creator._id.toString(),
             username: courseFromDb.creator.username
         };
     }

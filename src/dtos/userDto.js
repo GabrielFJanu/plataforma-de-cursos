@@ -5,5 +5,6 @@ export class UserResponseDto {
         // password foi omitido
         // role foi omitido
         this.createdAt = userFromDb.createdAt
+        this.updatedAt = userFromDb.updatedAt;
     }
 }
