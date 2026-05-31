@@ -1,4 +1,4 @@
-import courseService from "../services/CourseService.js";
+﻿import courseService from '../services/CourseService.js';
 
 class WebController {
     async index(req, res, next) {

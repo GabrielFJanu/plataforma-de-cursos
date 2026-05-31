@@ -1,4 +1,4 @@
-import swaggerJSDoc from 'swagger-jsdoc';
+﻿import swaggerJSDoc from 'swagger-jsdoc';
 
 const options = {
     definition: {
@@ -6,7 +6,7 @@ const options = {
         info: {
             title: "Plataforma de Cursos",
             version: "1.0.0",
-            description: "API para autenticação, cadastro de usuários e gerenciamento de cursos em vídeo."
+            description: "API para autenticaÃ§Ã£o, cadastro de usuÃ¡rios e gerenciamento de cursos em vÃ­deo."
         },
         components: {
             securitySchemes: {
@@ -22,3 +22,4 @@ const options = {
 };
 const swaggerSpec = swaggerJSDoc(options);
 export default swaggerSpec;
+

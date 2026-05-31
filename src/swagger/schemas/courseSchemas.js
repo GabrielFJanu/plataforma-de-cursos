@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @swagger
  * components:
  *   schemas:
@@ -57,7 +57,7 @@
  *           example: Curso introdutorio de JavaScript para backend
  *         knowledgeArea:
  *           type: string
- *           example: Programação
+ *           example: ProgramaÃ§Ã£o
  *         url:
  *           type: string
  *           format: uri
@@ -73,9 +73,10 @@
  *           example: Curso atualizado de JavaScript para backend
  *         knowledgeArea:
  *           type: string
- *           example: Programação
+ *           example: ProgramaÃ§Ã£o
  *         url:
  *           type: string
  *           format: uri
  *           example: https://youtu.be/Y9Zw6xOGly0
  */
+

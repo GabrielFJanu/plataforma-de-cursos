@@ -1,4 +1,4 @@
-import Course from '../models/courseModel.js';
+﻿import Course from '../models/courseModel.js';
 
 class CourseRepository {
     async create(createCourseData) {

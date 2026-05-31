@@ -1,9 +1,9 @@
-import bcrypt from "bcrypt";
+﻿import bcrypt from 'bcrypt';
 
-import { UserResponseDto } from "../dtos/userDto.js";
-import courseRepository from "../repositories/CourseRepository.js";
-import userRepository from "../repositories/UserRepository.js";
-import { createHttpError } from "../utils/createHttpError.js";
+import { UserResponseDto } from '../dtos/userDto.js';
+import courseRepository from '../repositories/CourseRepository.js';
+import userRepository from '../repositories/UserRepository.js';
+import { createHttpError } from '../utils/createHttpError.js';
 
 class UserService {
 
@@ -11,7 +11,7 @@ class UserService {
         const userWithSameUsername = await userRepository.findByUsername(createUserData.username);
 
         if (userWithSameUsername) {
-            throw createHttpError('Esse username já foi cadastrado no sistema', 409);
+            throw createHttpError('Esse username jÃ¡ foi cadastrado no sistema', 409);
         }
 
         const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
@@ -34,7 +34,7 @@ class UserService {
         const userFromDb = await userRepository.findById(id);
 
         if (!userFromDb) {
-            throw createHttpError('Usuário não encontrado', 404);
+            throw createHttpError('UsuÃ¡rio nÃ£o encontrado', 404);
         }
 
         const userDto = new UserResponseDto(userFromDb);
@@ -45,13 +45,13 @@ class UserService {
         const userFromDb = await userRepository.findById(id);
 
         if (!userFromDb) {
-            throw createHttpError('Usuário não encontrado', 404);
+            throw createHttpError('UsuÃ¡rio nÃ£o encontrado', 404);
         }
 
         const userWithSameUsername = await userRepository.findByUsername(replaceUserData.username);
 
         if (userWithSameUsername && userWithSameUsername._id.toString() !== id) {
-            throw createHttpError('Esse username já foi cadastrado no sistema', 409);
+            throw createHttpError('Esse username jÃ¡ foi cadastrado no sistema', 409);
         }
 
         const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
@@ -70,14 +70,14 @@ class UserService {
 
     async update(id, updateUserData) {
         if (Object.keys(updateUserData).length === 0) {
-            throw createHttpError('Nenhum dado para atualização foi enviado', 400);
+            throw createHttpError('Nenhum dado para atualizaÃ§Ã£o foi enviado', 400);
         }
 
         if (updateUserData.username !== undefined) {
             const userWithSameUsername = await userRepository.findByUsername(updateUserData.username);
 
             if (userWithSameUsername && userWithSameUsername._id.toString() !== id) {
-                throw createHttpError('Esse username já foi cadastrado no sistema', 409);
+                throw createHttpError('Esse username jÃ¡ foi cadastrado no sistema', 409);
             }
         }
 
@@ -91,7 +91,7 @@ class UserService {
         const updatedUserFromDb = await userRepository.update(id, userToUpdate);
 
         if (!updatedUserFromDb) {
-            throw createHttpError('Usuário não encontrado', 404);
+            throw createHttpError('UsuÃ¡rio nÃ£o encontrado', 404);
         }
 
         const updatedUserDto = new UserResponseDto(updatedUserFromDb);
@@ -102,7 +102,7 @@ class UserService {
         const userFromDb = await userRepository.findById(id);
 
         if (!userFromDb) {
-            throw createHttpError('Usuário não encontrado', 404);
+            throw createHttpError('UsuÃ¡rio nÃ£o encontrado', 404);
         }
 
         const coursesCreatedByUser = await courseRepository.findByCreator(userFromDb._id.toString());

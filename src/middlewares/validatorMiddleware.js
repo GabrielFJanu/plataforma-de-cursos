@@ -1,4 +1,4 @@
-import { validationResult } from 'express-validator';
+﻿import { validationResult } from 'express-validator';
 
 import { createHttpError } from '../utils/createHttpError.js';
 
@@ -7,7 +7,7 @@ export function handleValidationError(req, res, next) {
 
     if (!validationErrors.isEmpty()) {
         const error = createHttpError(
-            'Erro de validação',
+            'Erro de validaÃ§Ã£o',
             400,
             validationErrors.array().map(error => ({
                 field: error.path,

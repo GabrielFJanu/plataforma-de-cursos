@@ -1,8 +1,8 @@
-import { Router } from "express";
+﻿import { Router } from 'express';
 
-import { handleValidationError } from "../middlewares/validatorMiddleware.js";
-import { validateLogin, validateRegister } from "../validators/authValidator.js";
-import authController from "../controllers/AuthController.js";
+import { handleValidationError } from '../middlewares/validatorMiddleware.js';
+import { validateLogin, validateRegister } from '../validators/authValidator.js';
+import authController from '../controllers/AuthController.js';
 
 const authRouter = Router();
 
@@ -10,7 +10,7 @@ const authRouter = Router();
  * @swagger
  * /api/auth/login:
  *   post:
- *     summary: Autentica um usuário
+ *     summary: Autentica um usuÃ¡rio
  *     tags:
  *       - Auth
  *     requestBody:
@@ -21,19 +21,19 @@ const authRouter = Router();
  *             $ref: '#/components/schemas/LoginRequest'
  *     responses:
  *       200:
- *         description: Usuário autenticado com sucesso
+ *         description: UsuÃ¡rio autenticado com sucesso
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/AuthTokenResponse'
  *       400:
- *         description: Dados inválidos
+ *         description: Dados invÃ¡lidos
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Credenciais inválidas
+ *         description: Credenciais invÃ¡lidas
  *         content:
  *           application/json:
  *             schema:
@@ -51,7 +51,7 @@ authRouter.post('/login', validateLogin, handleValidationError, authController.l
  * @swagger
  * /api/auth/register:
  *   post:
- *     summary: Cadastra um novo usuário
+ *     summary: Cadastra um novo usuÃ¡rio
  *     tags:
  *       - Auth
  *     requestBody:
@@ -62,19 +62,19 @@ authRouter.post('/login', validateLogin, handleValidationError, authController.l
  *             $ref: '#/components/schemas/RegisterRequest'
  *     responses:
  *       201:
- *         description: Usuário cadastrado com sucesso
+ *         description: UsuÃ¡rio cadastrado com sucesso
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       400:
- *         description: Dados inválidos
+ *         description: Dados invÃ¡lidos
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       409:
- *         description: Username já cadastrado no sistema
+ *         description: Username jÃ¡ cadastrado no sistema
  *         content:
  *           application/json:
  *             schema:

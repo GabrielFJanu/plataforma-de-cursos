@@ -1,4 +1,4 @@
-export class UserResponseDto {
+﻿export class UserResponseDto {
     constructor(userFromDb) {
         this._id = userFromDb._id.toString()
         this.username = userFromDb.username
@@ -8,3 +8,4 @@ export class UserResponseDto {
         this.updatedAt = userFromDb.updatedAt;
     }
 }
+

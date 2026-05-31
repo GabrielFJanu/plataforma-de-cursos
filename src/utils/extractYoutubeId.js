@@ -1,4 +1,4 @@
-export function extractYoutubeId(url) {
+﻿export function extractYoutubeId(url) {
     try {
         const parsedUrl = new URL(url);
         const hostname = parsedUrl.hostname.replace(/^www\./, '');
@@ -27,3 +27,4 @@ export function extractYoutubeId(url) {
 function isValidYoutubeId(youtubeId) {
     return /^[a-zA-Z0-9_-]{11}$/.test(youtubeId);
 }
+

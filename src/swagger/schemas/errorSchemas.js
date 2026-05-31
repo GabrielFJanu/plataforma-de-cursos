@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @swagger
  * components:
  *   schemas:
@@ -10,7 +10,7 @@
  *           example: false
  *         message:
  *           type: string
- *           example: Erro de válidacao
+ *           example: Erro de vÃ¡lidacao
  *         errors:
  *           type: array
  *           items:
@@ -21,5 +21,5 @@
  *                 example: id
  *               message:
  *                 type: string
- *                 example: O ID deve ser um ObjectId válido
+ *                 example: O ID deve ser um ObjectId vÃ¡lido
  */

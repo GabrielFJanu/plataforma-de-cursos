@@ -1,4 +1,4 @@
-export class CourseResponseDto {
+﻿export class CourseResponseDto {
     constructor(courseFromDb) {
         this._id = courseFromDb._id.toString();
         this.title = courseFromDb.title;

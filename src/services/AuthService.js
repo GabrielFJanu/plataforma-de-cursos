@@ -1,9 +1,9 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+﻿import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
-import userRepository from "../repositories/UserRepository.js";
-import { createHttpError } from "../utils/createHttpError.js";
-import userService from "./UserService.js";
+import userRepository from '../repositories/UserRepository.js';
+import { createHttpError } from '../utils/createHttpError.js';
+import userService from './UserService.js';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -12,12 +12,12 @@ class AuthService {
         const userFromDb = await userRepository.findByUsername(loginData.username);
 
         if (!userFromDb) {
-            throw createHttpError('Credenciais inválidas', 401);
+            throw createHttpError('Credenciais invÃ¡lidas', 401);
         }
 
         const isValidPassword = await bcrypt.compare(loginData.password, userFromDb.password);
         if (!isValidPassword) {
-            throw createHttpError('Credenciais inválidas', 401);
+            throw createHttpError('Credenciais invÃ¡lidas', 401);
         }
 
         const payload = {

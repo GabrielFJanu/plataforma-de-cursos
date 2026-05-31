@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+﻿import mongoose from 'mongoose';
 
 const courseSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: [true, 'Título é obrigatório'],
+        required: [true, 'TÃ­tulo Ã© obrigatÃ³rio'],
         trim: true
     },
     description: {
@@ -12,23 +12,23 @@ const courseSchema = new mongoose.Schema({
     },
     knowledgeArea: {
         type: String,
-        required: [true, 'Área do conhecimento é obrigatória'],
+        required: [true, 'Ãrea do conhecimento Ã© obrigatÃ³ria'],
         trim: true
     },
     url: {
         type: String,
-        required: [true, 'URL é obrigatória'],
+        required: [true, 'URL Ã© obrigatÃ³ria'],
         trim: true
     },
     youtubeId: {
         type: String,
-        required: [true, 'ID do YouTube é obrigatório'],
+        required: [true, 'ID do YouTube Ã© obrigatÃ³rio'],
         trim: true
     },
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: [true, 'Criador é obrigatório']
+        required: [true, 'Criador Ã© obrigatÃ³rio']
     }
 }, {
     timestamps: true

@@ -1,8 +1,8 @@
-import { Router } from "express";
+﻿import { Router } from 'express';
 
-import courseController from "../controllers/CourseController.js";
-import { authorizeCourseCreatorOrAdmin } from "../middlewares/permissionMiddleware.js";
-import { handleValidationError } from "../middlewares/validatorMiddleware.js";
+import courseController from '../controllers/CourseController.js';
+import { authorizeCourseCreatorOrAdmin } from '../middlewares/permissionMiddleware.js';
+import { handleValidationError } from '../middlewares/validatorMiddleware.js';
 import {
     validateCreateCourse,
     validateDeleteCourse,
@@ -36,13 +36,13 @@ const courseRouter = Router();
  *             schema:
  *               $ref: '#/components/schemas/Course'
  *       400:
- *         description: Dados inválidos ou URL do YouTube inválida
+ *         description: Dados invÃ¡lidos ou URL do YouTube invÃ¡lida
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Token ausente, inválido ou expirado
+ *         description: Token ausente, invÃ¡lido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -75,7 +75,7 @@ courseRouter.post('/', validateCreateCourse, handleValidationError, courseContro
  *               items:
  *                 $ref: '#/components/schemas/Course'
  *       401:
- *         description: Token ausente, inválido ou expirado
+ *         description: Token ausente, invÃ¡lido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -113,19 +113,19 @@ courseRouter.get('/', courseController.getAll);
  *             schema:
  *               $ref: '#/components/schemas/Course'
  *       400:
- *         description: ID inválido
+ *         description: ID invÃ¡lido
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Token ausente, inválido ou expirado
+ *         description: Token ausente, invÃ¡lido ou expirado
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: Curso não encontrado
+ *         description: Curso nÃ£o encontrado
  *         content:
  *           application/json:
  *             schema:
@@ -163,19 +163,19 @@ courseRouter.get('/:id', validateGetCourseById, handleValidationError, courseCon
  *             $ref: '#/components/schemas/CreateCourseRequest'
  *     responses:
  *       200:
- *         description: Curso substituído com sucesso
+ *         description: Curso substituÃ­do com sucesso
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Course'
  *       400:
- *         description: Dados inválidos ou URL do YouTube inválida
+ *         description: Dados invÃ¡lidos ou URL do YouTube invÃ¡lida
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Token ausente, inválido ou expirado
+ *         description: Token ausente, invÃ¡lido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -187,7 +187,7 @@ courseRouter.get('/:id', validateGetCourseById, handleValidationError, courseCon
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: Curso não encontrado
+ *         description: Curso nÃ£o encontrado
  *         content:
  *           application/json:
  *             schema:
@@ -231,13 +231,13 @@ courseRouter.put('/:id', validateReplaceCourse, handleValidationError, authorize
  *             schema:
  *               $ref: '#/components/schemas/Course'
  *       400:
- *         description: Dados inválidos, corpo vazio ou URL do YouTube inválida
+ *         description: Dados invÃ¡lidos, corpo vazio ou URL do YouTube invÃ¡lida
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Token ausente, inválido ou expirado
+ *         description: Token ausente, invÃ¡lido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -249,7 +249,7 @@ courseRouter.put('/:id', validateReplaceCourse, handleValidationError, authorize
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: Curso não encontrado
+ *         description: Curso nÃ£o encontrado
  *         content:
  *           application/json:
  *             schema:
@@ -283,13 +283,13 @@ courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, authoriz
  *       204:
  *         description: Curso removido com sucesso
  *       400:
- *         description: ID inválido
+ *         description: ID invÃ¡lido
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Token ausente, inválido ou expirado
+ *         description: Token ausente, invÃ¡lido ou expirado
  *         content:
  *           application/json:
  *             schema:
@@ -301,7 +301,7 @@ courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, authoriz
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: Curso não encontrado
+ *         description: Curso nÃ£o encontrado
  *         content:
  *           application/json:
  *             schema:
@@ -316,3 +316,4 @@ courseRouter.patch('/:id', validateUpdateCourse, handleValidationError, authoriz
 courseRouter.delete('/:id', validateDeleteCourse, handleValidationError, authorizeCourseCreatorOrAdmin, courseController.delete);
 
 export default courseRouter;
+
