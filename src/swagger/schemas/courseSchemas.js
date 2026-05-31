@@ -27,8 +27,13 @@
  *           type: string
  *           example: 3CKCOYvqZIk
  *         creator:
- *           type: string
- *           example: 665a8e7d3f2c9d001f7b1234
+ *           type: object
+ *           properties:
+ *             _id:
+ *               $ref: '#/components/schemas/UserId'
+ *             username:
+ *               type: string
+ *               example: gabriel
  *         createdAt:
  *           type: string
  *           format: date-time

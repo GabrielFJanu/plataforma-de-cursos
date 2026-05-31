@@ -7,7 +7,7 @@ Projeto backend em Node.js para cadastrar usuarios e cursos em video. A API perm
 - Node.js
 - Express
 - MongoDB
-- MongoDB Node.js Driver
+- Mongoose
 - JWT
 - bcrypt
 - Pug
@@ -102,6 +102,7 @@ Exemplo de corpo da requisicao:
 ```
 
 O sistema extrai automaticamente o ID do video do YouTube para exibir o curso na pagina inicial.
+Nas respostas da API, o campo `creator` do curso retorna os dados basicos do usuario criador.
 
 ## Autorizacao
 
@@ -125,8 +126,8 @@ O sistema extrai automaticamente o ID do video do YouTube para exibir o curso na
 | GET | `/api/users` | Lista usuarios |
 | POST | `/api/users` | Cria usuario |
 | GET | `/api/users/:id` | Busca usuario por ID |
-| PUT | `/api/users/:id` | Substitui usuario |
-| PATCH | `/api/users/:id` | Atualiza usuario |
+| PUT | `/api/users/:id` | Substitui todos os dados do usuario |
+| PATCH | `/api/users/:id` | Atualiza parcialmente o usuario |
 | DELETE | `/api/users/:id` | Remove usuario |
 | GET | `/api/users/:id/courses` | Lista cursos de um usuario |
 
@@ -137,8 +138,8 @@ O sistema extrai automaticamente o ID do video do YouTube para exibir o curso na
 | GET | `/api/courses` | Lista cursos |
 | POST | `/api/courses` | Cria curso |
 | GET | `/api/courses/:id` | Busca curso por ID |
-| PUT | `/api/courses/:id` | Substitui curso, permitido para criador ou admin |
-| PATCH | `/api/courses/:id` | Atualiza curso, permitido para criador ou admin |
+| PUT | `/api/courses/:id` | Substitui todos os dados do curso, permitido para criador ou admin |
+| PATCH | `/api/courses/:id` | Atualiza parcialmente o curso, permitido para criador ou admin |
 | DELETE | `/api/courses/:id` | Remove curso, permitido para criador ou admin |
 
 ## Observacoes
@@ -147,3 +148,4 @@ O sistema extrai automaticamente o ID do video do YouTube para exibir o curso na
 - A pagina `/` mostra os cursos cadastrados.
 - Ao remover um usuario, os cursos criados por ele tambem sao removidos.
 - Os IDs recebidos em parametros de rota devem ser ObjectIds validos.
+- `PUT` espera o corpo completo do recurso; `PATCH` aceita atualizacao parcial.
