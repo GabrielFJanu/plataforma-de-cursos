@@ -107,7 +107,7 @@ class UserService {
             throw createHttpError('Usuário não encontrado', 404);
         }
 
-        const coursesCreatedByUser = await courseRepository.findByCreatorId(userFromDb._id.toString());
+        const coursesCreatedByUser = await courseRepository.findByCreator(userFromDb._id.toString());
 
         for (const courseCreatedByUser of coursesCreatedByUser) {
             await courseRepository.delete(courseCreatedByUser._id.toString());

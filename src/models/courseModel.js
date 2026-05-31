@@ -25,7 +25,7 @@ const courseSchema = new mongoose.Schema({
         required: [true, 'ID do YouTube e obrigatorio'],
         trim: true
     },
-    creatorId: {
+    creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: [true, 'Criador e obrigatorio']

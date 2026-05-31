@@ -6,7 +6,7 @@ import { handleValidationError } from "../middlewares/validatorMiddleware.js";
 import {
     validateCreateUser,
     validateDeleteUser,
-    validateGetCoursesByCreatorId,
+    validateGetCoursesByCreator,
     validateGetUserById,
     validateReplaceUser,
     validateUpdateUser
@@ -402,6 +402,6 @@ userRouter.delete('/:id', authorize('admin'), validateDeleteUser, handleValidati
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-userRouter.get('/:id/courses', validateGetCoursesByCreatorId, handleValidationError, userController.getCoursesByCreatorId);
+userRouter.get('/:id/courses', validateGetCoursesByCreator, handleValidationError, userController.getCoursesByCreator);
 
 export default userRouter;

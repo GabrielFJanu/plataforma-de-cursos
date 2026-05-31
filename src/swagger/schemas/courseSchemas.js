@@ -26,7 +26,7 @@
  *         youtubeId:
  *           type: string
  *           example: 3CKCOYvqZIk
- *         creatorId:
+ *         creator:
  *           type: string
  *           example: 665a8e7d3f2c9d001f7b1234
  *         createdAt:

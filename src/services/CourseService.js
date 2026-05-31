@@ -6,7 +6,7 @@ import { extractYoutubeId } from "../utils/extractYoutubeId.js";
 
 class CourseService {
 
-    async create(createCourseData, creatorId) {
+    async create(createCourseData, creator) {
 
         const youtubeId = extractYoutubeId(createCourseData.url);
         
@@ -17,7 +17,7 @@ class CourseService {
         const courseToCreate = {
             ...createCourseData,
             youtubeId,
-            creatorId
+            creator
         };
 
         const courseFromDb = await courseRepository.create(courseToCreate);
@@ -36,9 +36,9 @@ class CourseService {
     async getAllWithCreator() {
         const coursesFromDb = await courseRepository.findAll();
 
-        const creatorIds = [...new Set(coursesFromDb.map(courseFromDb => courseFromDb.creatorId.toString()))];
+        const creatorObjectIds = [...new Set(coursesFromDb.map(courseFromDb => courseFromDb.creator.toString()))];
 
-        const creatorsFromDb = await userRepository.findByIds(creatorIds);
+        const creatorsFromDb = await userRepository.findByIds(creatorObjectIds);
 
         const coursesWithCreatorFromDb = enrichCoursesWithCreator(coursesFromDb, creatorsFromDb);
 
@@ -46,10 +46,10 @@ class CourseService {
         return coursesWithCreatorDto;
         
         function enrichCoursesWithCreator(courses, creators) {
-            const mapCreatorIdToCreator = new Map(creators.map(creator => [creator._id.toString(), creator]));
+            const mapCreatorToCreator = new Map(creators.map(creator => [creator._id.toString(), creator]));
             const coursesWithCreator = courses.map(course => ({
                 ...course,
-                creator: mapCreatorIdToCreator.get(course.creatorId.toString()) || null
+                creator: mapCreatorToCreator.get(course.creator.toString()) || null
             }));
             return coursesWithCreator;
         }
@@ -66,14 +66,14 @@ class CourseService {
         return courseDto;
     }
 
-    async getByCreatorId(creatorId) {
-        const userFromDb = await userRepository.findById(creatorId);
+    async getByCreator(creator) {
+        const userFromDb = await userRepository.findById(creator);
 
         if (!userFromDb) {
             throw createHttpError('Usuário não encontrado', 404);
         }
 
-        const coursesFromDb = await courseRepository.findByCreatorId(creatorId);
+        const coursesFromDb = await courseRepository.findByCreator(creator);
 
         const coursesDto = coursesFromDb.map(course => new CourseResponseDto(course));
         return coursesDto;
@@ -95,7 +95,7 @@ class CourseService {
         const courseToReplace = {
             ...replaceCourseData,
             youtubeId,
-            creatorId: courseFromDb.creatorId,
+            creator: courseFromDb.creator,
             createdAt: courseFromDb.createdAt
         };
 

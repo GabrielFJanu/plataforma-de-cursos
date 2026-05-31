@@ -80,4 +80,4 @@ export const validateUpdateUser = checkExact([
 
 export const validateDeleteUser = validateGetUserById;
 
-export const validateGetCoursesByCreatorId = validateGetUserById;
+export const validateGetCoursesByCreator = validateGetUserById;

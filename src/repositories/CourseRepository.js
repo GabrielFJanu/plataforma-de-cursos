@@ -17,8 +17,8 @@ class CourseRepository {
         return await Course.find({ _id: { $in: ids }});
     }
 
-    async findByCreatorId(creatorId) {
-        return await Course.find({ creatorId: creatorId });
+    async findByCreator(creator) {
+        return await Course.find({ creator: creator });
     }
 
     async replace(id, replaceCourseData) {

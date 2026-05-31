@@ -40,11 +40,11 @@ class UserController {
         }
     }
 
-    async getCoursesByCreatorId(req, res, next) {
+    async getCoursesByCreator(req, res, next) {
         try {
-            const creatorId = req.params.id;
+            const creator = req.params.id;
 
-            const coursesDto = await courseService.getByCreatorId(creatorId);
+            const coursesDto = await courseService.getByCreator(creator);
 
             res.status(200).json(coursesDto);
         }
