@@ -22,14 +22,21 @@ class UserRepository {
             { _id: id },
             replaceUserData,
             {
-                new: true,
+                returnDocument: 'after',
                 runValidators: true
             }
         );
     }
 
     async update(id, updateUserData) {
-        return await User.findByIdAndUpdate(id, updateUserData, { new: true, runValidators: true });
+        return await User.findByIdAndUpdate(
+            id,
+            updateUserData,
+            {
+                returnDocument: 'after',
+                runValidators: true
+            }
+        );
     }
 
     async delete(id) {

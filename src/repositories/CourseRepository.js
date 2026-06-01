@@ -23,14 +23,21 @@ class CourseRepository {
             { _id: id },
             replaceCourseData,
             {
-                new: true,
+                returnDocument: 'after',
                 runValidators: true
             }
         ).populate('creator');
     }
 
     async update(id, updateCourseData) {
-        return await Course.findByIdAndUpdate(id, updateCourseData, { new: true, runValidators: true }).populate('creator');
+        return await Course.findByIdAndUpdate(
+            id,
+            updateCourseData,
+            {
+                returnDocument: 'after',
+                runValidators: true
+            }
+        ).populate('creator');
     }
 
     async delete(id) {
