@@ -1,16 +1,9 @@
-iframe {
-    height: 100%;
-    width: 100%;
-    border-radius: 6px;
-}
-
 .logo-icon {
-    position: relative;
-    top: -10px;
+    height: 42px;
+    width: 42px;
+    object-fit: contain;
 }
 
-.logo-text {
-    font-weight: 550;
-    font-family: cambria;
-    font-size: 40px;
+.card {
+    border-radius: 8px;
 }

@@ -1,31 +1,33 @@
-extends layouts/layout.pug 
+extends layouts/layout.pug
 
 block content
-    h3.m-4 Cursos disponíveis
+    div.container
+        h1.h2.font-weight-bold.mb-4 Cursos disponiveis
 
-    if courses.length > 0
-        each course in courses
-            div.card.bg-light.m-4(style="max-width: 640px;")
-                div.row.no-gutters
-                    div.col-md-6
-                        iframe(
-                            src=`https://www.youtube.com/embed/${course.youtubeId}`,
-                            title= course.title,
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-                            referrerpolicy="strict-origin-when-cross-origin"
-                        )
-                    div.col-md-6
-                        div.card-body
-                            p.card-text.badge.badge-secondary= course.knowledgeArea
-                            h5.card-title= course.title
-                            p.card-text= course.description 
-                            p.card-text
-                                small.text-muted Criado em 
-                                small.text-muted= `${new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(course.createdAt))} `
-                                small.text-muted por 
-                                if course.creator
-                                    small.text-muted= course.creator.username
-                                else
-                                    small.text-muted Criador não encontrado
-    else 
-        p Nenhum curso disponível no momento.
+        if courses.length > 0
+            div.row
+                each course in courses
+                    div.col-md-6.col-lg-4.mb-4
+                        article.card.h-100.border-0.shadow-sm
+                            div.embed-responsive.embed-responsive-16by9
+                                iframe.embed-responsive-item(
+                                    src=`https://www.youtube.com/embed/${course.youtubeId}`,
+                                    title= course.title,
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+                                    referrerpolicy="strict-origin-when-cross-origin",
+                                    allowfullscreen
+                                )
+                            div.card-body.d-flex.flex-column
+                                span.badge.badge-primary.align-self-start.mb-3= course.knowledgeArea
+                                h2.h5.card-title.font-weight-bold= course.title
+                                p.card-text.text-muted= course.description
+                                footer.mt-auto.pt-3.border-top.small.text-muted.d-flex.flex-wrap
+                                    span.mr-2= `${new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(course.createdAt))}`
+                                    if course.creator
+                                        span= `por ${course.creator.username}`
+                                    else
+                                        span Criador nao encontrado
+        else
+            div.bg-white.border.rounded.text-center.p-5
+                h2.h5.font-weight-bold Nenhum curso disponivel
+                p.text-muted.mb-0 Assim que novos conteudos forem cadastrados, eles aparecerao por aqui.
