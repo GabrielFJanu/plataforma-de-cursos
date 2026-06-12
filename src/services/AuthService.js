@@ -21,8 +21,7 @@ class AuthService {
         }
 
         const payload = {
-            _id: userFromDb._id.toString(),
-            role: userFromDb.role
+            _id: userFromDb._id.toString()
         }
 
         const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });

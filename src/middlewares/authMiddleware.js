@@ -1,5 +1,6 @@
-﻿import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
+import userRepository from '../repositories/UserRepository.js';
 import { createHttpError } from '../utils/createHttpError.js';
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -26,14 +27,29 @@ export function authenticate(req, res, next) {
         return next(error);
     }
 
-    jwt.verify(token, JWT_SECRET, (jwtError, decoded) => {
+    jwt.verify(token, JWT_SECRET, async (jwtError, decoded) => {
         if (jwtError) {
             const error = createHttpError('Token inválido ou expirado', 401);
             return next(error);
         }
 
-        req.user = decoded;
+        try {
+            const userFromDb = await userRepository.findById(decoded._id);
 
-        next();
+            if (!userFromDb) {
+                const error = createHttpError('Usuário do token não existe mais', 401);
+                return next(error);
+            }
+
+            req.user = {
+                _id: userFromDb._id.toString(),
+                role: userFromDb.role
+            };
+
+            next();
+        }
+        catch (error) {
+            next(error);
+        }
     });
 }
