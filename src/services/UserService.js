@@ -99,19 +99,17 @@ class UserService {
     }
 
     async delete(id) {
-        const userFromDb = await userRepository.findById(id);
+        const deletedUserFromDb = await userRepository.delete(id);
 
-        if (!userFromDb) {
+        if (!deletedUserFromDb) {
             throw createHttpError('Usuário não encontrado', 404);
         }
 
-        const coursesCreatedByUser = await courseRepository.findByCreator(userFromDb._id.toString());
+        const coursesCreatedByUser = await courseRepository.findByCreator(id);
 
         for (const courseCreatedByUser of coursesCreatedByUser) {
             await courseRepository.delete(courseCreatedByUser._id.toString());
         }
-
-        await userRepository.delete(id);
     }
 }
 
