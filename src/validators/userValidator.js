@@ -2,7 +2,7 @@
 import mongoose from 'mongoose';
 
 const validateNonEmptyUpdateBody = body()
-    .custom((_, { req }) => Object.keys(req.body).length > 0)
+    .custom((_, { req }) => Object.keys(req.body ?? {}).length > 0)
     .withMessage('Nenhum dado para atualização foi enviado');
 
 export const validateCreateUser = checkExact([

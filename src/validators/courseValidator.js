@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { extractYoutubeId } from '../utils/extractYoutubeId.js';
 
 const validateNonEmptyUpdateBody = body()
-    .custom((_, { req }) => Object.keys(req.body).length > 0)
+    .custom((_, { req }) => Object.keys(req.body ?? {}).length > 0)
     .withMessage('Nenhum dado para atualização foi enviado');
 
 export const validateCreateCourse = checkExact([
