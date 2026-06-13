@@ -4,21 +4,25 @@ const courseSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, 'Título é obrigatório'],
-        trim: true
+        trim: true,
+        minlength: [1, 'Título não deve ser vazio']
     },
     description: {
         type: String,
-        trim: true
+        trim: true,
+        minlength: [1, 'Descrição não deve ser vazia']
     },
     knowledgeArea: {
         type: String,
         required: [true, 'Área do conhecimento é obrigatória'],
-        trim: true
+        trim: true,
+        minlength: [1, 'Área do conhecimento não deve ser vazia']
     },
     url: {
         type: String,
         required: [true, 'URL é obrigatória'],
-        trim: true
+        trim: true,
+        minlength: [1, 'URL não deve ser vazia']
     },
     youtubeId: {
         type: String,
