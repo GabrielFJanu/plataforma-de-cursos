@@ -121,9 +121,9 @@ Criação de curso:
 
 ```json
 {
-  "title": "Curso de JavaScript",
-  "description": "Introdução ao JavaScript para iniciantes",
+  "title": "Curso de C++",
+  "description": "Introdução ao C++ para iniciantes",
   "knowledgeArea": "Programação",
-  "url": "https://www.youtube.com/watch?v=VIDEO_ID"
+  "url": "https://www.youtube.com/watch?v=Y9Zw6xOGly0"
 }
 ```
