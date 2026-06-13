@@ -1,6 +1,6 @@
 # Plataforma de Cursos
 
-Projeto backend em Node.js para cadastrar usuários e cursos em vídeo. A API permite criar, listar, atualizar e remover usuários e cursos, enquanto a página inicial exibe os cursos cadastrados com vídeos do YouTube.
+API REST para cadastro e gerenciamento de cursos em vídeo. A aplicação permite autenticar usuários, cadastrar cursos com links do YouTube e exibir os cursos cadastrados em uma página web.
 
 ## Tecnologias
 
@@ -14,6 +14,23 @@ Projeto backend em Node.js para cadastrar usuários e cursos em vídeo. A API pe
 - express-validator
 - Swagger
 
+## Funcionalidades
+
+- Cadastro e login de usuários.
+- Autenticação com token JWT.
+- Controle de permissões por papel de usuário: `user` e `admin`.
+- CRUD de usuários para administradores.
+- CRUD de cursos para usuários autenticados.
+- Validação dos dados enviados para a API.
+- Extração automática do ID de vídeos do YouTube.
+- Página inicial com os cursos cadastrados.
+- Documentação interativa com Swagger.
+
+## Pré-requisitos
+
+- Node.js instalado
+- MongoDB disponível localmente ou em uma URL remota
+
 ## Como executar
 
 Instale as dependências:
@@ -21,6 +38,17 @@ Instale as dependências:
 ```bash
 npm install
 ```
+
+Crie um arquivo `.env` na raiz do projeto:
+
+```env
+MONGO_URI=sua-string-de-conexao-mongodb
+JWT_SECRET=sua-chave-secreta
+PORT=3000
+BCRYPT_SALT_ROUNDS=10
+```
+
+`PORT` e `BCRYPT_SALT_ROUNDS` são opcionais. Por padrão, a aplicação usa a porta `3000` e `10` salt rounds.
 
 Inicie o servidor:
 
@@ -30,67 +58,66 @@ npm start
 
 Acesse:
 
-```text
-http://localhost:3000
-```
+- Aplicação web: `http://localhost:3000`
+- Swagger: `http://localhost:3000/api-docs`
 
-## Autenticação
+## Regras principais
 
-As rotas da API usam token JWT no formato `Bearer Token`, exceto as rotas de autenticação.
+- As rotas de autenticação (`/api/auth/register` e `/api/auth/login`) são públicas.
+- As demais rotas da API exigem token JWT no header `Authorization: Bearer seu-token`.
+- Usuários `admin` podem gerenciar usuários e alterar ou remover qualquer curso.
+- Usuários `user` podem criar cursos e alterar ou remover apenas os próprios cursos.
+- Usuários cadastrados por `/api/auth/register` recebem o papel `user`.
+- O `username` de cada usuário deve ser único.
+- O token JWT expira em 1 hora.
+- Senhas são armazenadas com hash bcrypt.
+- Ao remover um usuário, os cursos criados por ele também são removidos.
+- Cursos aceitam URLs do YouTube nos formatos `youtube.com/watch?v=VIDEO_ID` e `youtu.be/VIDEO_ID`.
 
-### 1. Cadastre um usuário
+## Rotas principais
 
-O username informado não pode estar cadastrado no sistema ainda.
+### Autenticação
 
-Envie uma requisição `POST` para:
+| Método | Rota | Descrição |
+| --- | --- | --- |
+| POST | `/api/auth/register` | Cadastra um usuário comum |
+| POST | `/api/auth/login` | Autentica o usuário e retorna um token |
 
-```text
-/api/auth/register
-```
+### Usuários
 
-Exemplo de corpo da requisição:
+| Método | Rota | Descrição |
+| --- | --- | --- |
+| GET | `/api/users` | Lista usuários |
+| POST | `/api/users` | Cria usuário |
+| GET | `/api/users/:id` | Busca usuário por ID |
+| PUT | `/api/users/:id` | Substitui um usuário |
+| PATCH | `/api/users/:id` | Atualiza parcialmente um usuário |
+| DELETE | `/api/users/:id` | Remove um usuário |
+| GET | `/api/users/:id/courses` | Lista cursos criados por um usuário |
+
+### Cursos
+
+| Método | Rota | Descrição |
+| --- | --- | --- |
+| GET | `/api/courses` | Lista cursos |
+| POST | `/api/courses` | Cria curso |
+| GET | `/api/courses/:id` | Busca curso por ID |
+| PUT | `/api/courses/:id` | Substitui um curso |
+| PATCH | `/api/courses/:id` | Atualiza parcialmente um curso |
+| DELETE | `/api/courses/:id` | Remove um curso |
+
+## Exemplos
+
+Cadastro ou login:
 
 ```json
 {
   "username": "gabriel",
-  "password": "senha123"
+  "password": "senha1234"
 }
 ```
 
-### 2. Faça login
-
-Envie uma requisição `POST` para:
-
-```text
-/api/auth/login
-```
-
-Exemplo de corpo da requisição:
-
-```json
-{
-  "username": "gabriel",
-  "password": "senha123"
-}
-```
-
-A resposta retorna um token. Use esse token no header das próximas requisições:
-
-```text
-Authorization: Bearer seu-token
-```
-
-## Como criar um curso
-
-Para criar um curso, é necessário estar autenticado. O usuário do token será registrado automaticamente como criador do curso.
-
-Envie uma requisição `POST` para:
-
-```text
-/api/courses
-```
-
-Exemplo de corpo da requisição:
+Criação de curso:
 
 ```json
 {
@@ -100,52 +127,3 @@ Exemplo de corpo da requisição:
   "url": "https://www.youtube.com/watch?v=VIDEO_ID"
 }
 ```
-
-O sistema extrai automaticamente o ID do vídeo do YouTube para exibir o curso na página inicial.
-Nas respostas da API, o campo `creator` do curso retorna os dados básicos do usuário criador.
-
-## Autorização
-
-- Rotas de usuários são restritas a usuários com papel `admin`, exceto a listagem de cursos por usuário.
-- Qualquer usuário autenticado pode listar, buscar e criar cursos.
-- Apenas o criador do curso ou um usuário `admin` pode substituir, atualizar ou remover um curso.
-
-## Rotas principais
-
-### Auth
-
-| Método | Rota | Descrição |
-| --- | --- | --- |
-| POST | `/api/auth/register` | Cadastra usuário comum |
-| POST | `/api/auth/login` | Autentica usuário e retorna token |
-
-### Usuários
-
-| Método | Rota | Descrição |
-| --- | --- | --- |
-| GET | `/api/users` | Lista usuários |
-| POST | `/api/users` | Cria usuário |
-| GET | `/api/users/:id` | Busca usuário por ID |
-| PUT | `/api/users/:id` | Substitui todos os dados do usuário |
-| PATCH | `/api/users/:id` | Atualiza parcialmente o usuário |
-| DELETE | `/api/users/:id` | Remove usuário |
-| GET | `/api/users/:id/courses` | Lista cursos de um usuário |
-
-### Cursos
-
-| Método | Rota | Descrição |
-| --- | --- | --- |
-| GET | `/api/courses` | Lista cursos |
-| POST | `/api/courses` | Cria curso |
-| GET | `/api/courses/:id` | Busca curso por ID |
-| PUT | `/api/courses/:id` | Substitui todos os dados do curso, permitido para criador ou admin |
-| PATCH | `/api/courses/:id` | Atualiza parcialmente o curso, permitido para criador ou admin |
-| DELETE | `/api/courses/:id` | Remove curso, permitido para criador ou admin |
-
-## Observações
-
-- A porta padrão do servidor e `3000`.
-- A página `/` mostra os cursos cadastrados.
-- Ao remover um usuário, os cursos criados por ele também são removidos.
-- Os IDs recebidos em parâmetros de rota devem ser ObjectIds válidos.
-- `PUT` espera o corpo completo do recurso; `PATCH` aceita atualização parcial.
