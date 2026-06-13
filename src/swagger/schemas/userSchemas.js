@@ -4,6 +4,7 @@
  *   schemas:
  *     UserId:
  *       type: string
+ *       pattern: ^[0-9a-fA-F]{24}$
  *       example: 665a8e7d3f2c9d001f7b1234
  *     User:
  *       type: object
@@ -33,7 +34,6 @@
  *           type: string
  *           minLength: 3
  *           maxLength: 30
- *           description: Deve ser único no sistema.
  *           example: gabriel
  *         password:
  *           type: string
@@ -50,13 +50,11 @@
  *     UpdateUserRequest:
  *       type: object
  *       additionalProperties: false
- *       minProperties: 1
  *       properties:
  *         username:
  *           type: string
  *           minLength: 3
  *           maxLength: 30
- *           description: Deve ser único no sistema.
  *           example: gabriel_novo
  *         password:
  *           type: string

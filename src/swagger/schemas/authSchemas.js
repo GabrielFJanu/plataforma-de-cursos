@@ -31,7 +31,6 @@
  *           type: string
  *           minLength: 3
  *           maxLength: 30
- *           description: Deve ser único no sistema.
  *           example: gabriel
  *         password:
  *           type: string

@@ -4,6 +4,7 @@
  *   schemas:
  *     CourseId:
  *       type: string
+ *       pattern: ^[0-9a-fA-F]{24}$
  *       example: 665a8e7d3f2c9d001f7b1235
  *     Course:
  *       type: object
@@ -72,7 +73,6 @@
  *     UpdateCourseRequest:
  *       type: object
  *       additionalProperties: false
- *       minProperties: 1
  *       properties:
  *         title:
  *           type: string
