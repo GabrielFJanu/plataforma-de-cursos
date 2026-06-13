@@ -50,6 +50,7 @@
  *     UpdateUserRequest:
  *       type: object
  *       additionalProperties: false
+ *       minProperties: 1
  *       properties:
  *         username:
  *           type: string

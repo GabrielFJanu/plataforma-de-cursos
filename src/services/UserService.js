@@ -69,10 +69,6 @@ class UserService {
     }
 
     async update(id, updateUserData) {
-        if (Object.keys(updateUserData).length === 0) {
-            throw createHttpError('Nenhum dado para atualização foi enviado', 400);
-        }
-
         if (updateUserData.username !== undefined) {
             const userWithSameUsername = await userRepository.findByUsername(updateUserData.username);
 

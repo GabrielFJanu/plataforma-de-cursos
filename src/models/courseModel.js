@@ -1,5 +1,7 @@
 ﻿import mongoose from 'mongoose';
 
+import { extractYoutubeId } from '../utils/extractYoutubeId.js';
+
 const courseSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -22,7 +24,11 @@ const courseSchema = new mongoose.Schema({
         type: String,
         required: [true, 'URL é obrigatória'],
         trim: true,
-        minlength: [1, 'URL não deve ser vazia']
+        minlength: [1, 'URL não deve ser vazia'],
+        validate: {
+            validator: url => extractYoutubeId(url) !== null,
+            message: 'URL do YouTube inválida'
+        }
     },
     youtubeId: {
         type: String,

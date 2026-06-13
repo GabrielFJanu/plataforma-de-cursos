@@ -10,10 +10,6 @@ class CourseService {
 
         const youtubeId = extractYoutubeId(createCourseData.url);
 
-        if (!youtubeId) {
-            throw createHttpError('URL do YouTube inválida', 400);
-        }
-
         const courseToCreate = {
             ...createCourseData,
             youtubeId,
@@ -66,10 +62,6 @@ class CourseService {
 
         const youtubeId = extractYoutubeId(replaceCourseData.url);
 
-        if (!youtubeId) {
-            throw createHttpError('URL do YouTube inválida', 400);
-        }
-
         const courseToReplace = {
             ...replaceCourseData,
             youtubeId,
@@ -84,18 +76,10 @@ class CourseService {
     }
 
     async update(id, updateCourseData) {
-        if (Object.keys(updateCourseData).length === 0) {
-            throw createHttpError('Nenhum dado para atualização foi enviado', 400);
-        }
-
         const courseToUpdate = { ...updateCourseData };
 
         if (updateCourseData.url !== undefined) {
             const youtubeId = extractYoutubeId(updateCourseData.url);
-
-            if (!youtubeId) {
-                throw createHttpError('URL do YouTube inválida', 400);
-            }
 
             courseToUpdate.youtubeId = youtubeId;
         }
