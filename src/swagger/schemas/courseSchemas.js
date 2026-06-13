@@ -68,7 +68,7 @@
  *           type: string
  *           format: uri
  *           minLength: 1
- *           description: Deve ser uma URL valida de video do YouTube nos formatos youtube.com/watch?v=VIDEO_ID ou youtu.be/VIDEO_ID.
+ *           description: Deve ser uma URL valida de video do YouTube nos formatos youtube.com/watch?v=VIDEO_ID ou youtu.be/VIDEO_ID, em que VIDEO_ID deve ter 11 caracteres.
  *           example: https://www.youtube.com/watch?v=Y9Zw6xOGly0
  *     UpdateCourseRequest:
  *       type: object
@@ -92,7 +92,7 @@
  *           type: string
  *           format: uri
  *           minLength: 1
- *           description: Deve ser uma URL valida de video do YouTube nos formatos youtube.com/watch?v=VIDEO_ID ou youtu.be/VIDEO_ID.
+ *           description: Deve ser uma URL valida de video do YouTube nos formatos youtube.com/watch?v=VIDEO_ID ou youtu.be/VIDEO_ID, em que VIDEO_ID deve ter 11 caracteres.
  *           example: https://youtu.be/Y9Zw6xOGly0
  */
 

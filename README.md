@@ -72,7 +72,7 @@ Acesse:
 - O token JWT expira em 1 hora.
 - Senhas são armazenadas com hash bcrypt.
 - Ao remover um usuário, os cursos criados por ele também são removidos.
-- Cursos aceitam URLs do YouTube nos formatos `youtube.com/watch?v=VIDEO_ID` e `youtu.be/VIDEO_ID`.
+- Cursos aceitam URLs do YouTube nos formatos `youtube.com/watch?v=VIDEO_ID` e `youtu.be/VIDEO_ID`, em que `VIDEO_ID` deve ter 11 caracteres.
 
 ## Rotas principais
 
