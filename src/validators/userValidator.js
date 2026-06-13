@@ -76,7 +76,7 @@ export const validateUpdateUser = checkExact([
         .trim()
         .notEmpty().withMessage('O papel do usuário não deve ser vazio')
         .isIn(['user', 'admin']).withMessage('O papel do usuário deve ser user ou admin')
-])
+]);
 
 export const validateDeleteUser = validateGetUserById;
 

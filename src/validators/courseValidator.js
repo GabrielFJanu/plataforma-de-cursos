@@ -98,6 +98,6 @@ export const validateUpdateCourse = checkExact([
         .isURL().withMessage('O endereço URL deve ser válido')
         .custom(url => extractYoutubeId(url) !== null)
         .withMessage('O endereço URL deve ser uma URL válida de vídeo do YouTube')
-])
+]);
 
 export const validateDeleteCourse = validateGetCourseById;
