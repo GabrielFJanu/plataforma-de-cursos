@@ -4,30 +4,41 @@
  *   schemas:
  *     LoginRequest:
  *       type: object
+ *       additionalProperties: false
  *       required:
  *         - username
  *         - password
  *       properties:
  *         username:
  *           type: string
+ *           minLength: 3
+ *           maxLength: 30
  *           example: gabriel
  *         password:
  *           type: string
  *           format: password
- *           example: senha123
+ *           minLength: 8
+ *           maxLength: 72
+ *           example: senha1234
  *     RegisterRequest:
  *       type: object
+ *       additionalProperties: false
  *       required:
  *         - username
  *         - password
  *       properties:
  *         username:
  *           type: string
+ *           minLength: 3
+ *           maxLength: 30
+ *           description: Deve ser único no sistema.
  *           example: gabriel
  *         password:
  *           type: string
  *           format: password
- *           example: senha123
+ *           minLength: 8
+ *           maxLength: 72
+ *           example: senha1234
  *     AuthTokenResponse:
  *       type: object
  *       properties:
