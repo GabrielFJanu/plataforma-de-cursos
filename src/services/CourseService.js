@@ -76,6 +76,10 @@ class CourseService {
     }
 
     async update(id, updateCourseData) {
+        if (Object.keys(updateCourseData).length === 0) {
+            throw createHttpError('Nenhum dado para atualização foi enviado', 400);
+        }
+        
         const courseToUpdate = { ...updateCourseData };
 
         if (updateCourseData.url !== undefined) {
